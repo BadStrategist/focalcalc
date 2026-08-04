@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Depth of Field Calculator — Precise DoF &amp; Hyperfocal Distance | FocalCalc</title>
+<meta name="description" content="Free depth of field calculator with a modern camera database (Sony, Canon, Nikon, Fujifilm, Micro 4/3, phones). Get near/far limits, hyperfocal distance, and a visual DoF bar — save presets and print cheat sheets.">
+<link rel="canonical" href="https://focalcalc.com/tools/depth-of-field.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Depth of Field Calculator — FocalCalc">
+<meta property="og:description" content="Accurate DoF and hyperfocal distance for the camera you actually own. Modern camera database, visual results, printable cheat sheets.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://focalcalc.com/tools/depth-of-field.html">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Depth of Field Calculator",
+  "url": "https://focalcalc.com/tools/depth-of-field.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "description": "Calculates near limit, far limit, total depth of field and hyperfocal distance from camera sensor, focal length, aperture and focus distance.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is a good circle of confusion for depth of field?", "acceptedAnswer": { "@type": "Answer", "text": "The standard convention is sensor diagonal divided by 1500. For full frame that is about 0.029-0.030 mm, APS-C about 0.019-0.020 mm, and Micro 4/3 about 0.015 mm. FocalCalc applies this automatically from your camera's sensor size." } },
+    { "@type": "Question", "name": "How is depth of field calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Depth of field uses the hyperfocal distance H = f²/(N·c) + f, where f is focal length, N is aperture number and c is circle of confusion. The near limit is H·s/(H+s−f) and the far limit is H·s/(H−s−f) for a focus distance s; when s reaches H the far limit is infinity." } },
+    { "@type": "Question", "name": "Why is my depth of field different from other calculators?", "acceptedAnswer": { "@type": "Answer", "text": "Differences come from the circle of confusion standard (diagonal/1500 vs 1/1000 inch vs sensor-pixel based), the exact sensor dimensions, and whether the lens formula adds the focal length term. FocalCalc uses the standard diagonal/1500 convention with exact sensor sizes." } },
+    { "@type": "Question", "name": "How much depth of field is in front of vs behind the focus point?", "acceptedAnswer": { "@type": "Answer", "text": "At distances well below hyperfocal, roughly one third of the depth of field is in front of the focus point and two thirds behind it. The split approaches 50/50 as focus distance approaches the hyperfocal distance." } }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Depth of Field Calculator</nav>
+  <h1>Depth of Field Calculator</h1>
+  <p class="muted">Near limit, far limit, total depth of field, and hyperfocal distance — using the exact sensor of the camera you own. Works for mirrorless, DSLR, and phone cameras.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Your setup</h2>
+      <div class="field">
+        <label for="camera">Camera</label>
+        <select id="camera"></select>
+        <div class="hint" id="sensor-info"></div>
+      </div>
+      <div class="field">
+        <label for="lens">Lens preset (optional)</label>
+        <select id="lens"><option value="">Custom focal length…</option></select>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="focal">Focal length (mm)</label>
+          <input id="focal" type="number" min="1" max="2000" step="any" value="50" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="aperture">Aperture (f/)</label>
+          <select id="aperture"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="dist">Focus distance</label>
+        <div class="row2">
+          <input id="dist" type="number" min="0.01" step="any" value="5" inputmode="decimal">
+          <div class="seg" id="unit-seg" role="group" aria-label="Distance unit">
+            <button data-u="m" class="on">m</button><button data-u="ft">ft</button>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label for="coc">Circle of confusion (mm)</label>
+        <input id="coc" type="number" step="any" value="0.029" inputmode="decimal">
+        <div class="hint">Auto-set from sensor (diagonal ÷ 1500). Override for custom print/viewing standards.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="save-preset">💾 Save this setup</button>
+        <button class="btn ghost" id="print">🖨 Print cheat sheet</button>
+      </div>
+      <div id="preset-list" class="mt1"></div>
+    </section>
+
+    <section class="panel" aria-label="Results">
+      <h2>Results</h2>
+      <div class="result-grid">
+        <div class="result"><div class="k">Hyperfocal</div><div class="v" id="r-h">—</div><div class="s">focus here = ∞ DoF</div></div>
+        <div class="result"><div class="k">Near limit</div><div class="v" id="r-near">—</div><div class="s">closest sharp point</div></div>
+        <div class="result"><div class="k">Far limit</div><div class="v" id="r-far">—</div><div class="s" id="r-far-s">farthest sharp point</div></div>
+        <div class="result warn"><div class="k">Total DoF</div><div class="v" id="r-dof">—</div><div class="s" id="r-dof-s">near → far</div></div>
+      </div>
+      <div class="mt1">
+        <div class="k muted" style="font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;font-weight:700">In front / behind</div>
+        <div class="focus-bar" id="focus-bar" aria-hidden="true"><div class="sharp" id="fb-sharp"></div><div class="focus-pt" id="fb-pt"></div></div>
+        <div class="focus-labels"><span id="fb-left">0</span><span id="fb-mid">focus</span><span id="fb-right">∞</span></div>
+      </div>
+      <div class="btn-row no-print">
+        <button class="btn ghost" id="copy">📋 Copy summary</button>
+        <button class="btn ghost" id="share">🔗 Copy link</button>
+      </div>
+      <div class="callout good mt1" id="inf-callout" hidden>Focus distance is at or beyond hyperfocal — everything from <span id="inf-near"></span> to infinity will be acceptably sharp. Set your lens to the hyperfocal distance for maximum sharpness.</div>
+      <div class="callout mt1">💡 <strong>Rule of thumb:</strong> at distances well below hyperfocal, about ⅓ of the DoF is in front of your focus point and ⅔ behind it. Use the visual bar above as your guide.</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-incontent" data-ad="dof"></div>
+
+  <h2>How to use this depth of field calculator</h2>
+  <ol>
+    <li><strong>Pick your camera</strong> — the sensor size and circle of confusion are applied automatically (no more guessing your CoC).</li>
+    <li><strong>Select your lens or type the focal length</strong> and choose the aperture you plan to shoot at.</li>
+    <li><strong>Enter your focus distance</strong> (m or ft) and read the near limit, far limit, and total depth of field.</li>
+    <li><strong>Save setups you use often</strong> — they're stored in your browser and reload instantly next time.</li>
+  </ol>
+  <p>For landscape work, check the <strong>hyperfocal distance</strong>: focus there and everything from half that distance to infinity is sharp. For portraits, you'll usually want a wide aperture so the far limit stays comfortably behind your subject's head.</p>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Hyperfocal Calculator</h3><p>Find the exact focus point that maximizes sharp depth.</p><a class="go" href="hyperfocal.html">Open →</a></div>
+    <div class="card"><h3>ND Filter Calculator</h3><p>Long-exposure shutter times for any filter strength.</p><a class="go" href="nd-filter.html">Open →</a></div>
+    <div class="card"><h3>Field of View Calculator</h3><p>Horizontal and vertical angles for any sensor + lens.</p><a class="go" href="field-of-view.html">Open →</a></div>
+    <div class="card"><h3>Hyperfocal Distance Chart</h3><p>Printable full-frame &amp; APS-C charts, no math needed.</p><a class="go" href="../pages/hyperfocal-chart.html">Open →</a></div>
+    <div class="card"><h3>Circle of Confusion Guide</h3><p>What CoC is, why it matters, and which standard to use.</p><a class="go" href="../pages/circle-of-confusion.html">Open →</a></div>
+    <div class="card"><h3>Camera Sensor Sizes</h3><p>Full frame vs APS-C vs Micro 4/3 vs phone — side by side.</p><a class="go" href="../pages/camera-sensor-sizes.html">Open →</a></div>
+  </div>
+
+  <h2>Depth of field FAQ</h2>
+  <div class="faq">
+    <details><summary>What is depth of field, in plain English?</summary><p>Depth of field is the distance range in your scene that looks acceptably sharp. Only one plane is truly in focus; everything else falls within the depth of field if it's close enough to that plane that the blur stays below the circle of confusion.</p></details>
+    <details><summary>Does sensor size change depth of field?</summary><p>Yes — at the same focal length and aperture, a larger sensor produces shallower depth of field because it needs a longer lens to achieve the same framing. The circle of confusion also scales with sensor diagonal, which the calculator handles automatically.</p></details>
+    <details><summary>What aperture gives maximum depth of field?</summary><p>Diffraction starts softening images around f/8–f/11 on full frame, f/5.6–f/8 on APS-C and Micro 4/3. The sharpest "landscape" choice is usually the smallest aperture before diffraction — use the hyperfocal distance at that aperture.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var unit = "m";
+  var cameras = [], lenses = [];
+  var el = function (id) { return document.getElementById(id); };
+
+  /* ---- load data ---- */
+  function loadJSON(url, cb) {
+    fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function (e) { console.error(url, e); });
+  }
+  loadJSON("../data/cameras.json", function (d) { cameras = d.cameras; fillCameras(); });
+  loadJSON("../data/lenses.json", function (d) { lenses = d.lenses; fillLenses(); });
+
+  function fillCameras() {
+    var sel = el("camera");
+    sel.innerHTML = "";
+    var groups = {};
+    cameras.slice().sort(function (a, b) { return b.pop - a.pop; }).forEach(function (c) {
+      (groups[c.brand] = groups[c.brand] || []).push(c);
+    });
+    Object.keys(groups).forEach(function (brand) {
+      var og = document.createElement("optgroup"); og.label = brand;
+      groups[brand].forEach(function (c) {
+        var o = document.createElement("option"); o.value = c.name; o.textContent = c.name;
+        og.appendChild(o);
+      });
+      sel.appendChild(og);
+    });
+    var def = cameras[0] && cameras[0].name;
+    if (def) { sel.value = def; onCamera(); }
+  }
+  function fillLenses() {
+    var sel = el("lens");
+    lenses.slice().sort(function (a, b) { return a.name.localeCompare(b.name); }).forEach(function (l) {
+      var o = document.createElement("option");
+      o.value = l.focal + "|" + l.max_aperture;
+      o.textContent = l.name;
+      sel.appendChild(o);
+    });
+  }
+  function camByName(name) {
+    for (var i = 0; i < cameras.length; i++) if (cameras[i].name === name) return cameras[i];
+    return null;
+  }
+
+  /* ---- aperture stops ---- */
+  (function fillApertures() {
+    var sel = el("aperture");
+    FC.stops.forEach(function (s) {
+      var o = document.createElement("option"); o.value = s; o.textContent = "f/" + s;
+      sel.appendChild(o);
+    });
+    sel.value = "2.8";
+  })();
+
+  /* ---- events ---- */
+  function onCamera() {
+    var c = camByName(el("camera").value);
+    if (!c) return;
+    var coc = FC.coc(c.sensor_w, c.sensor_h, FC.COC_DIV);
+    el("coc").value = coc;
+    el("sensor-info").textContent = c.format + " · " + c.sensor_w.toFixed(1) + "×" + c.sensor_h.toFixed(1) + " mm sensor · CoC " + coc + " mm";
+    el("unit-seg").dataset.sensor = c.format;
+  }
+  el("camera").addEventListener("change", onCamera);
+  el("lens").addEventListener("change", function () {
+    var v = el("lens").value;
+    if (!v) return;
+    var parts = v.split("|");
+    el("focal").value = parts[0];
+    el("aperture").value = String(Number(parts[1]));
+    compute();
+  });
+  el("unit-seg").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    unit = b.dataset.u;
+    this.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); });
+    compute();
+  });
+  ["focal", "aperture", "dist", "coc"].forEach(function (id) {
+    el(id).addEventListener("input", compute);
+  });
+
+  /* ---- compute ---- */
+  function compute() {
+    var f = parseFloat(el("focal").value);
+    var N = parseFloat(el("aperture").value);
+    var coc = parseFloat(el("coc").value);
+    var d = parseFloat(el("dist").value);
+    if (!f || !N || !coc || !d || f < 1 || N < 0.5) return;
+    var s = unit === "m" ? FC.mToMm(d) : FC.ftToMm(d);
+    var r = FC.dof(f, N, coc, s);
+    var U = unit;
+    el("r-h").textContent = FC.fmtDist(r.H, U);
+    el("r-near").textContent = FC.fmtDist(r.near, U);
+    el("r-far").textContent = FC.fmtDist(r.far, U);
+    el("r-far-s").textContent = r.far === Infinity ? "infinite (focus ≥ hyperfocal)" : "farthest sharp point";
+    el("r-dof").textContent = r.dof === Infinity ? "∞" : FC.fmtDist(r.dof, U);
+    el("r-dof-s").textContent = r.dof === Infinity ? "everything sharp from near limit" : "near → far";
+    el("inf-callout").hidden = r.far !== Infinity;
+    if (r.far === Infinity) el("inf-near").textContent = FC.fmtDist(r.near, U);
+    drawBar(r, s);
+  }
+
+  /* focus bar: map [min(s/2, near*0.8), far or s*2] to 0-100% */
+  function drawBar(r, s) {
+    var lo = Math.min(s / 2, isFinite(r.near) ? r.near * 0.8 : s / 2);
+    var hi = isFinite(r.far) ? r.far : s * 2;
+    if (hi <= lo) hi = lo + 1;
+    var pct = function (mm) { return Math.min(100, Math.max(0, ((mm - lo) / (hi - lo)) * 100)); };
+    el("fb-sharp").style.left = pct(r.near) + "%";
+    el("fb-sharp").style.width = Math.max(0.5, pct(r.far) - pct(r.near)) + "%";
+    el("fb-pt").style.left = pct(s) + "%";
+    el("fb-left").textContent = FC.fmtDist(lo, unit);
+    el("fb-mid").textContent = "focus " + FC.fmtDist(s, unit);
+    el("fb-right").textContent = isFinite(r.far) ? FC.fmtDist(hi, unit) : "∞";
+  }
+
+  /* ---- presets (localStorage) ---- */
+  function presets() { try { return JSON.parse(localStorage.getItem("fc-presets") || "[]"); } catch (e) { return []; } }
+  function savePresets(list) { localStorage.setItem("fc-presets", JSON.stringify(list)); }
+  function renderPresets() {
+    var box = el("preset-list"), list = presets();
+    if (!list.length) { box.innerHTML = ""; return; }
+    box.innerHTML = "<div class='k muted' style='font-size:.78rem;font-weight:700;text-transform:uppercase'>Saved setups</div>" +
+      list.map(function (p, i) {
+        return "<div class='row2 mt1'><button class='btn ghost' data-load='" + i + "'>" + p.name + "</button>" +
+        "<button class='btn ghost' data-del='" + i + "' title='Delete' style='border-color:#e5b8b8;color:#b91c1c'>✕</button></div>";
+      }).join("");
+  }
+  el("save-preset").addEventListener("click", function () {
+    var name = prompt("Name this setup (e.g. \u201cPortrait 85mm\”):");
+    if (!name) return;
+    var list = presets();
+    list.push({
+      name: name, camera: el("camera").value, lens: el("lens").value,
+      focal: el("focal").value, aperture: el("aperture").value, dist: el("dist").value, unit: unit
+    });
+    savePresets(list); renderPresets();
+  });
+  el("preset-list").addEventListener("click", function (e) {
+    var load = e.target.dataset.load, del = e.target.dataset.del, list = presets();
+    if (load !== undefined) {
+      var p = list[load];
+      el("camera").value = p.camera; onCamera();
+      el("lens").value = p.lens || "";
+      el("focal").value = p.focal; el("aperture").value = p.aperture; el("dist").value = p.dist;
+      unit = p.unit || "m";
+      document.querySelectorAll("#unit-seg button").forEach(function (b) { b.classList.toggle("on", b.dataset.u === unit); });
+      compute();
+    }
+    if (del !== undefined) { list.splice(del, 1); savePresets(list); renderPresets(); }
+  });
+  renderPresets();
+
+  /* ---- copy / share / print ---- */
+  el("copy").addEventListener("click", function () {
+    var c = camByName(el("camera").value);
+    var txt = "FocalCalc · " + (c ? c.name : "Custom camera") + "\n" +
+      "Focal: " + el("focal").value + " mm · Aperture: f/" + el("aperture").value + " · Focus: " + el("dist").value + " " + unit + "\n" +
+      "Hyperfocal: " + el("r-h").textContent + " · Near: " + el("r-near").textContent + " · Far: " + el("r-far").textContent + " · DoF: " + el("r-dof").textContent;
+    navigator.clipboard.writeText(txt).then(function () { alert("Copied to clipboard"); });
+  });
+  el("share").addEventListener("click", function () {
+    var params = new URLSearchParams({
+      cam: el("camera").value, f: el("focal").value, a: el("aperture").value, d: el("dist").value, u: unit
+    });
+    navigator.clipboard.writeText(location.origin + location.pathname + "?" + params.toString()).then(function () { alert("Share link copied"); });
+  });
+  el("print").addEventListener("click", function () { window.print(); });
+
+  /* deep-link params */
+  (function initParams() {
+    var p = new URLSearchParams(location.search);
+    if (p.get("cam")) { el("camera").value = p.get("cam"); onCamera(); }
+    if (p.get("f")) el("focal").value = p.get("f");
+    if (p.get("a")) el("aperture").value = p.get("a");
+    if (p.get("d")) el("dist").value = p.get("d");
+    if (p.get("u")) { unit = p.get("u"); document.querySelectorAll("#unit-seg button").forEach(function (b) { b.classList.toggle("on", b.dataset.u === unit); }); }
+    compute();
+  })();
+})();
+</script>
+</body>
+</html>

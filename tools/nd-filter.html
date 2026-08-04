@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ND Filter Calculator — Long Exposure Shutter Times | FocalCalc</title>
+<meta name="description" content="Calculate exact shutter times for any ND filter — ND2 to ND100000 — with and without exposure compensation. Includes a printable ND filter long exposure chart.">
+<link rel="canonical" href="https://focalcalc.com/tools/nd-filter.html">
+<meta property="og:title" content="ND Filter Calculator — FocalCalc">
+<meta property="og:description" content="Exact long-exposure shutter times for any neutral density filter strength.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"ND Filter Calculator","url":"https://focalcalc.com/tools/nd-filter.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › ND Filter Calculator</nav>
+  <h1>ND Filter Calculator</h1>
+  <p class="muted">Enter your base exposure (the shutter speed without the filter) and the filter strength — get the exact shutter time for a silky-smooth long exposure.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Exposure</h2>
+      <div class="field"><label for="base">Base shutter speed (seconds)</label><input id="base" type="number" min="0.0001" step="any" value="0.5" inputmode="decimal"><div class="hint">e.g. 0.5 = 1/2 s · 0.008 = 1/125 s · 4 = 4 s</div></div>
+      <div class="field"><label for="filter">ND filter</label><select id="filter"></select></div>
+      <div class="field"><label for="stops">…or enter stops directly</label><input id="stops" type="number" min="0" max="30" step="0.3" value="10" inputmode="decimal"></div>
+      <div class="field"><label for="comp">Exposure compensation to apply (stops)</label><input id="comp" type="number" min="-10" max="10" step="0.33" value="0" inputmode="decimal"><div class="hint">Optional: e.g. +0.33 for the half-stop between 10 and 13 stops.</div></div>
+      <div class="btn-row"><button class="btn" id="print">🖨 Print chart</button></div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Result</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k">Shutter time</div><div class="v" id="r-time">—</div><div class="s" id="r-time-s">with filter</div></div>
+        <div class="result"><div class="k">Effective stops</div><div class="v" id="r-stops">—</div><div class="s">filter + compensation</div></div>
+        <div class="result"><div class="k">Base</div><div class="v" id="r-base">—</div><div class="s">without filter</div></div>
+      </div>
+      <div class="callout good mt1">🌊 <strong>Reading:</strong> with a <span id="f-name"></span> on top of a <span id="b-name"></span> base exposure, you need a <strong id="t-name"></strong> shutter speed. Bulb mode + a remote release (or the camera's 2-second timer) is the reliable way to shoot it.</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-nd" data-ad="nd"></div>
+
+  <h2>ND filter stops reference</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Filter name</th><th class="num">Optical density</th><th class="num">Stops</th></tr></thead>
+    <tbody>
+      <tr><td>ND2</td><td class="num">0.3</td><td class="num">1</td></tr>
+      <tr><td>ND4</td><td class="num">0.6</td><td class="num">2</td></tr>
+      <tr><td>ND8</td><td class="num">0.9</td><td class="num">3</td></tr>
+      <tr><td>ND16</td><td class="num">1.2</td><td class="num">4</td></tr>
+      <tr><td>ND32</td><td class="num">1.5</td><td class="num">5</td></tr>
+      <tr><td>ND64</td><td class="num">1.8</td><td class="num">6</td></tr>
+      <tr><td>ND100</td><td class="num">2.0</td><td class="num">6.7</td></tr>
+      <tr><td>ND128</td><td class="num">2.1</td><td class="num">7</td></tr>
+      <tr><td>ND256</td><td class="num">2.4</td><td class="num">8</td></tr>
+      <tr><td>ND400</td><td class="num">2.6</td><td class="num">8.7</td></tr>
+      <tr><td>ND512</td><td class="num">2.7</td><td class="num">9</td></tr>
+      <tr><td>ND1000</td><td class="num">3.0</td><td class="num">10</td></tr>
+      <tr><td>ND2000</td><td class="num">3.3</td><td class="num">11</td></tr>
+      <tr><td>ND4000</td><td class="num">3.6</td><td class="num">12</td></tr>
+      <tr><td>ND8000</td><td class="num">3.9</td><td class="num">13</td></tr>
+      <tr><td>ND16000</td><td class="num">4.2</td><td class="num">14</td></tr>
+      <tr><td>ND32000</td><td class="num">4.5</td><td class="num">15</td></tr>
+      <tr><td>ND64000</td><td class="num">4.8</td><td class="num">16</td></tr>
+      <tr><td>ND100000</td><td class="num">5.0</td><td class="num">16.7</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Related guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>ND Filter Long Exposure Chart</h3><p>The full chart: base exposure → shutter time for every filter, printable.</p><a class="go" href="../pages/nd-filter-long-exposure-chart.html">Read →</a></div>
+    <div class="card"><h3>Depth of Field Calculator</h3><p>Pair your long exposure with the right aperture for the scene.</p><a class="go" href="depth-of-field.html">Open →</a></div>
+  </div>
+
+  <h2>ND filter FAQ</h2>
+  <div class="faq">
+    <details><summary>Why does shutter time double with every stop?</summary><p>Each ND stop halves the light reaching the sensor, so the shutter must stay open twice as long to record the same exposure: 1/60 s at 1 stop becomes 1/30 s, 1/15 s, 1/8 s… With a 10-stop ND1000, a 1/60 s base becomes 1/60 × 2¹⁰ = ~17 s.</p></details>
+    <details><summary>What ND strength should I buy first?</summary><p>ND64 (6 stops) or ND1000 (10 stops) are the two most useful. ND64 suits moving water at mid-day; ND1000 is the classic choice for long exposures of 15–30 s in daylight.</p></details>
+    <details><summary>Does stacking two filters add their stops?</summary><p>Yes — optical densities add, so ND8 (3 stops) + ND64 (6 stops) = 9 stops total. Watch for vignetting and color cast when stacking.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var FILTERS = [
+    ["ND2", 1], ["ND4", 2], ["ND8", 3], ["ND16", 4], ["ND32", 5], ["ND64", 6], ["ND100", 6.7],
+    ["ND128", 7], ["ND256", 8], ["ND400", 8.7], ["ND512", 9], ["ND1000", 10], ["ND2000", 11],
+    ["ND4000", 12], ["ND8000", 13], ["ND16000", 14], ["ND32000", 15], ["ND64000", 16], ["ND100000", 16.7]
+  ];
+  FILTERS.forEach(function (f) {
+    var o = document.createElement("option"); o.value = f[1]; o.textContent = f[0] + " (" + f[1] + " stops)";
+    el("filter").appendChild(o);
+  });
+  el("filter").value = "10";
+  function compute() {
+    var base = parseFloat(el("base").value);
+    var stops = parseFloat(el("filter").value) + (parseFloat(el("comp").value) || 0);
+    if (!base || isNaN(stops)) return;
+    var t = FC.ndTime(base, stops);
+    el("r-time").textContent = FC.fmtTime(t);
+    el("r-time-s").textContent = "with filter";
+    el("r-stops").textContent = (Math.round(stops * 100) / 100) + " stops";
+    el("r-base").textContent = FC.fmtTime(base);
+    var fname = el("filter").selectedOptions[0] ? el("filter").selectedOptions[0].textContent.split(" ")[0] : "filter";
+    el("f-name").textContent = fname;
+    el("b-name").textContent = FC.fmtTime(base);
+    el("t-name").textContent = FC.fmtTime(t);
+  }
+  ["base", "filter", "comp"].forEach(function (id) { el(id).addEventListener("input", compute); });
+  el("filter").addEventListener("change", compute);
+  el("print").addEventListener("click", function () { window.print(); });
+  compute();
+})();
+</script>
+</body>
+</html>

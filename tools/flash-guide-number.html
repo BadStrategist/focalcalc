@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flash Guide Number Calculator — GN to Aperture &amp; Distance | FocalCalc</title>
+<meta name="description" content="Flash guide number calculator: solve for aperture, flash distance, or required guide number — with ISO scaling. Works for speedlights, strobes, and built-in flashes.">
+<link rel="canonical" href="https://focalcalc.com/tools/flash-guide-number.html">
+<meta property="og:title" content="Flash Guide Number Calculator — FocalCalc">
+<meta property="og:description" content="Solve flash exposure: aperture, distance, or guide number — with ISO scaling.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Flash Guide Number Calculator","url":"https://focalcalc.com/tools/flash-guide-number.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Flash Guide Number Calculator</nav>
+  <h1>Flash Guide Number Calculator</h1>
+  <p class="muted">The guide number rule: <code>GN = aperture × distance</code>. Give it two of the three (plus your ISO) and FocalCalc solves the rest — including scaling the GN when you change sensitivity.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Solve for</h2>
+      <div class="seg" id="mode" role="group" aria-label="Solve mode">
+        <button data-m="aperture" class="on">Aperture</button>
+        <button data-m="distance">Distance</button>
+        <button data-m="gn">Required GN</button>
+      </div>
+      <div class="field mt1"><label for="gn">Guide number (at ISO <span id="gn-iso-label">100</span>)</label><input id="gn" type="number" min="0.1" step="any" value="32" inputmode="decimal"><div class="hint">Speedlight GN ≈ 30–60 (m, ISO 100, 50 mm zoom) · built-in ≈ 10–15</div></div>
+      <div class="row2">
+        <div class="field"><label for="dist">Flash distance (m)</label><input id="dist" type="number" min="0.1" step="any" value="3" inputmode="decimal"></div>
+        <div class="field"><label for="aperture">Aperture (f/)</label><select id="aperture"></select></div>
+      </div>
+      <div class="field"><label for="iso">ISO</label><select id="iso"></select><div class="hint">GN scales by √2 per stop: ISO 400 doubles the effective GN.</div></div>
+      <div class="callout warn mt1" id="gn-iso-note" hidden>GN is usually quoted at ISO 100 — this calculator adjusts it for your selected ISO automatically.</div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Result</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k" id="r-mode-k">Required aperture</div><div class="v" id="r-main">—</div><div class="s" id="r-main-s">at full power</div></div>
+        <div class="result"><div class="k">Effective GN at ISO</div><div class="v" id="r-gn-iso">—</div><div class="s">GN scaled to your ISO</div></div>
+        <div class="result"><div class="k">Distance (m)</div><div class="v" id="r-dist">—</div><div class="s">working distance for this GN</div></div>
+      </div>
+      <div class="callout good mt1">💡 <strong>Reading:</strong> at full power and <span id="r-iso-inline">ISO 100</span>, your flash covers <span id="r-summary"></span>. Open the aperture, raise ISO, or move closer to use less power / get faster recycle.</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-gn" data-ad="gn"></div>
+
+  <h2>How guide numbers work</h2>
+  <p>At a given ISO (traditionally 100) and zoom head setting, a flash's guide number is the product of aperture × distance that gives a correct exposure at <strong>full power</strong>: GN = f-stop × metres.</p>
+  <ul>
+    <li><strong>Same GN, bigger aperture → shorter reach:</strong> GN 32 at f/2.8 reaches 11.4 m; at f/8 it reaches 4 m.</li>
+    <li><strong>ISO scaling:</strong> the effective GN multiplies by √2 for each ISO stop — ISO 100 → 400 (2 stops) doubles the GN, so GN 32 @ ISO 100 behaves like GN 64 @ ISO 400.</li>
+    <li><strong>Power fractions:</strong> ½ power reduces GN by √2 (one stop); ¼ power by 2 (two stops).</li>
+  </ul>
+
+  <h2>Flash GN FAQ</h2>
+  <div class="faq">
+    <details><summary>What does "GN 60 at ISO 100" actually mean?</summary><p>It means the flash produces correct exposure at full power when aperture × distance = 60 (metres): e.g. f/2 at 30 m, f/4 at 15 m, f/8 at 7.5 m. Real-world reach is always shorter once ceilings, modifiers, and shutter limits are factored in.</p></details>
+    <details><summary>Do softboxes and bounce reduce effective GN?</summary><p>Yes, a lot. A softbox typically costs 1–2 stops (GN ÷ 1.4–2), bouncing off a ceiling costs 2–4 stops. Add those losses before trusting the calculator for off-camera work.</p></details>
+    <details><summary>Why does my camera meter differently than this?</summary><p>TTL metering measures the actual reflected flash and is usually more accurate for close work. The GN math is the planning tool — it tells you if the flash can reach before you set anything up.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var mode = "aperture";
+  FC.stops.forEach(function (s) { var o = document.createElement("option"); o.value = s; o.textContent = "f/" + s; el("aperture").appendChild(o); });
+  el("aperture").value = "4";
+  FC.isos.forEach(function (i) { var o = document.createElement("option"); o.value = i; o.textContent = "ISO " + i; el("iso").appendChild(o); });
+  el("iso").value = "100";
+  el("mode").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    mode = b.dataset.m;
+    this.querySelectorAll("button").forEach(function (x) { x.classList.toggle("on", x === b); });
+    el("r-mode-k").textContent = { aperture: "Required aperture", distance: "Max distance", gn: "Required GN" }[mode];
+    compute();
+  });
+  ["gn", "dist", "aperture", "iso"].forEach(function (id) { el(id).addEventListener("input", compute); });
+  el("aperture").addEventListener("change", compute);
+  el("iso").addEventListener("change", function () { el("gn-iso-label").textContent = el("iso").value; el("gn-iso-note").hidden = false; compute(); });
+  function compute() {
+    var gn = parseFloat(el("gn").value), dist = parseFloat(el("dist").value), N = parseFloat(el("aperture").value), iso = parseInt(el("iso").value, 10);
+    if (!gn || !iso) return;
+    var gnEff = FC.gnAtIso(gn, 100, iso);
+    el("r-gn-iso").textContent = Math.round(gnEff * 10) / 10;
+    var main;
+    if (mode === "aperture") {
+      main = dist ? FC.gnAperture(gnEff, dist) : NaN;
+      el("r-main").textContent = isNaN(main) ? "—" : "f/" + Math.round(main * 10) / 10;
+      el("r-main-s").textContent = "at full power, " + dist + " m";
+      el("r-dist").textContent = dist || "—";
+    } else if (mode === "distance") {
+      main = N ? FC.gnDistance(gnEff, N) : NaN;
+      el("r-main").textContent = isNaN(main) ? "—" : Math.round(main * 100) / 100 + " m";
+      el("r-main-s").textContent = "at f/" + N + ", full power";
+      el("r-dist").textContent = isNaN(main) ? "—" : Math.round(main * 100) / 100;
+    } else {
+      main = (dist && N) ? dist * N : NaN;
+      el("r-main").textContent = isNaN(main) ? "—" : Math.round(main * 10) / 10;
+      el("r-main-s").textContent = "for " + dist + " m at f/" + N;
+      el("r-dist").textContent = dist || "—";
+    }
+    el("r-iso-inline").textContent = "ISO " + iso;
+    el("r-summary").textContent = (mode === "aperture" ? (isNaN(main) ? "a usable aperture" : "f/" + Math.round(main * 10) / 10) : mode === "distance" ? (isNaN(main) ? "a usable distance" : Math.round(main * 100) / 100 + " m") : (isNaN(main) ? "a usable GN" : Math.round(main * 10) / 10)) + " at full power";
+  }
+  compute();
+})();
+</script>
+</body>
+</html>

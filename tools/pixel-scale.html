@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astro Pixel Scale Calculator — Arcseconds per Pixel | FocalCalc</title>
+<meta name="description" content="Calculate image scale in arcseconds per pixel for any camera and telescope or lens — and see if you're in the 1–2″/px sweet spot for sharp stars. Includes the popular astro cameras.">
+<link rel="canonical" href="https://focalcalc.com/tools/pixel-scale.html">
+<meta property="og:title" content="Astro Pixel Scale Calculator — FocalCalc">
+<meta property="og:description" content="Arcseconds per pixel for your astro setup — and the sampling sweet spot for sharp stars.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Astro Pixel Scale Calculator","url":"https://focalcalc.com/tools/pixel-scale.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Astro Pixel Scale Calculator</nav>
+  <h1>Astro Pixel Scale Calculator</h1>
+  <p class="muted">Image scale = <code>206.265 × pixel size (µm) ÷ focal length (mm)</code>. The result, in arcseconds per pixel, tells you whether your seeing, tracking, and optics are matched to your sensor.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Your setup</h2>
+      <div class="field"><label for="camera">Camera</label><select id="camera"></select><div class="hint" id="px-info"></div></div>
+      <div class="row2">
+        <div class="field"><label for="focal">Focal length (mm)</label><input id="focal" type="number" min="1" max="10000" step="any" value="400" inputmode="decimal"></div>
+        <div class="field"><label for="px">Pixel size (µm)</label><input id="px" type="number" min="0.1" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field"><label for="seeing">Typical seeing (arcsec FWHM)</label><select id="seeing">
+        <option value="1.5">Excellent (1.5″)</option><option value="2.0" selected>Good (2.0″)</option>
+        <option value="3.0">Average (3.0″)</option><option value="4.0">Poor (4.0″)</option>
+      </select></div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Result</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k">Pixel scale</div><div class="v" id="r-scale">—</div><div class="s">arcsec / pixel</div></div>
+        <div class="result"><div class="k">Seeing sampling</div><div class="v" id="r-samp">—</div><div class="s">pixels per seeing disk</div></div>
+        <div class="result inf"><div class="k">Verdict</div><div class="v" id="r-verdict" style="font-size:1rem">—</div><div class="s">for sharp round stars</div></div>
+      </div>
+      <div class="callout good mt1">🔭 <strong>The 1–2″/px rule:</strong> most amateur setups land between 1 and 2 arcseconds per pixel — a good match for typical seeing (2″) and common mounts. Below ~0.5″/px you're oversampling (huge files, no new detail, tracking demands explode); above ~4″/px you're undersampling (blocky stars, wasted resolution).</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-px" data-ad="px"></div>
+
+  <h2>Why pixel scale matters</h2>
+  <p>Pixel scale determines how much sky each pixel covers. It's the single best number for judging whether a camera + lens/telescope pairing makes sense before you buy:</p>
+  <ul>
+    <li><strong>Undersampled (&gt; 3–4″/px):</strong> stars land on single pixels — square, blocky stars that don't improve with more exposure.</li>
+    <li><strong>Sweet spot (1–2″/px):</strong> several pixels across each star image; good for most mounts and skies.</li>
+    <li><strong>Oversampled (&lt; 0.7″/px):</strong> the optics or seeing can't deliver that detail — you collect noise and huge files for nothing, and tracking errors become visible.</li>
+  </ul>
+  <p>Rule of thumb: pixel scale ≈ seeing ÷ 3 gives near-critical sampling. With 2″ seeing that's ~0.67″/px — most hobbyists choose slightly coarser to keep guiding easy.</p>
+
+  <h2>Pixel scale FAQ</h2>
+  <div class="faq">
+    <details><summary>What's the formula for pixel scale?</summary><p>Pixel scale (″/px) = 206.265 × pixel size (µm) ÷ focal length (mm). Example: a camera with 3.8 µm pixels behind a 400 mm lens gives 206.265 × 3.8 ÷ 400 ≈ 1.96″/px.</p></details>
+    <details><summary>Is smaller pixel scale always better?</summary><p>No. Below the seeing limit you're oversampling — more pixels per star than the atmosphere delivers. The result is larger files, longer exposures for the same signal, and stricter guiding for zero real resolution gain.</p></details>
+    <details><summary>How do I find my camera's pixel size?</summary><p>Pixel size = sensor height (mm) × 1000 ÷ vertical resolution. FocalCalc stores this for every camera in the list automatically — just pick your camera.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var cameras = [];
+  function loadJSON(url, cb) { fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function () {}); }
+  loadJSON("../data/cameras.json", function (d) {
+    cameras = d.cameras;
+    var sel = el("camera"), groups = {};
+    cameras.slice().sort(function (a, b) { return b.pop - a.pop; }).forEach(function (c) { (groups[c.brand] = groups[c.brand] || []).push(c); });
+    Object.keys(groups).forEach(function (b) {
+      var og = document.createElement("optgroup"); og.label = b;
+      groups[b].forEach(function (c) { var o = document.createElement("option"); o.value = c.name; o.textContent = c.name; og.appendChild(o); });
+      sel.appendChild(og);
+    });
+    sel.value = cameras[0].name; onCamera();
+  });
+  function camByName(n) { for (var i = 0; i < cameras.length; i++) if (cameras[i].name === n) return cameras[i]; return null; }
+  function pixelSize(c) { return (c.sensor_h / c.px_h) * 1000; }
+  function onCamera() {
+    var c = camByName(el("camera").value); if (!c) return;
+    el("px").value = Math.round(pixelSize(c) * 100) / 100;
+    el("px-info").textContent = c.format + " · " + Math.round(pixelSize(c) * 100) / 100 + " µm pixels · " + c.px_w + "×" + c.px_h;
+    compute();
+  }
+  el("camera").addEventListener("change", onCamera);
+  ["focal", "px", "seeing"].forEach(function (id) { el(id).addEventListener("input", compute); });
+  el("seeing").addEventListener("change", compute);
+  function compute() {
+    var f = parseFloat(el("focal").value), px = parseFloat(el("px").value), seeing = parseFloat(el("seeing").value);
+    if (!f || !px) return;
+    var s = FC.pixelScale(px, f);
+    var samp = seeing / s;
+    el("r-scale").textContent = Math.round(s * 100) / 100 + "″/px";
+    el("r-samp").textContent = Math.round(samp * 10) / 10 + " px";
+    var verdict, cls = "";
+    if (s >= 1 && s <= 2) { verdict = "✅ Sweet spot — well matched"; cls = "inf"; }
+    else if (s < 0.7) { verdict = "⚠️ Oversampled — detail limited by seeing/optics"; }
+    else if (s < 1) { verdict = "👍 Fine, but demanding on tracking"; }
+    else if (s <= 3) { verdict = "👍 Acceptable — slightly coarse"; }
+    else { verdict = "⚠️ Undersampled — stars will look blocky"; }
+    var v = el("r-verdict");
+    v.textContent = verdict;
+    v.className = "v " + cls;
+  }
+  compute();
+})();
+</script>
+</body>
+</html>

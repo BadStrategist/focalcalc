@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyperfocal Distance Calculator — Sharp from Here to Infinity | FocalCalc</title>
+<meta name="description" content="Calculate the hyperfocal distance for any camera and lens: focus there and everything from half the hyperfocal distance to infinity is acceptably sharp. Modern camera database included.">
+<link rel="canonical" href="https://focalcalc.com/tools/hyperfocal.html">
+<meta property="og:title" content="Hyperfocal Distance Calculator — FocalCalc">
+<meta property="og:description" content="The landscape photographer's key number: focus at hyperfocal and everything from half that distance to infinity is sharp.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Hyperfocal Distance Calculator","url":"https://focalcalc.com/tools/hyperfocal.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Hyperfocal Distance Calculator</nav>
+  <h1>Hyperfocal Distance Calculator</h1>
+  <p class="muted">Set your lens to the hyperfocal distance and everything from <strong>half that distance to infinity</strong> will be acceptably sharp — the classic landscape technique for maximum depth of field without focus stacking.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Your setup</h2>
+      <div class="field"><label for="camera">Camera</label><select id="camera"></select><div class="hint" id="sensor-info"></div></div>
+      <div class="row2">
+        <div class="field"><label for="focal">Focal length (mm)</label><input id="focal" type="number" min="1" max="2000" step="any" value="24" inputmode="decimal"></div>
+        <div class="field"><label for="aperture">Aperture (f/)</label><select id="aperture"></select></div>
+      </div>
+      <div class="field"><label for="coc">Circle of confusion (mm)</label><input id="coc" type="number" step="any" inputmode="decimal"><div class="hint">Auto-set from sensor (diagonal ÷ 1500).</div></div>
+      <div class="btn-row">
+        <button class="btn" id="print">🖨 Print</button>
+        <button class="btn ghost" id="to-dof">Open in DoF calculator →</button>
+      </div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Result</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k">Hyperfocal distance</div><div class="v" id="r-h">—</div><div class="s">focus here</div></div>
+        <div class="result"><div class="k">Near limit at H</div><div class="v" id="r-near">—</div><div class="s">half of H — closest sharp point</div></div>
+        <div class="result inf"><div class="k">Far limit</div><div class="v">∞</div><div class="s">everything to infinity sharp</div></div>
+      </div>
+      <div class="callout good mt1">📸 <strong>How to use it:</strong> switch your lens to manual focus, set the distance scale to the hyperfocal distance shown, and shoot. Everything from <span id="near-inline"></span> to the horizon will be sharp.</div>
+      <div class="callout mt1">💡 <strong>Tip:</strong> stopping down one full stop (e.g. f/8 → f/11) roughly halves the hyperfocal distance — check the difference before you shoot.</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-hyper" data-ad="hyper"></div>
+
+  <h2>What is hyperfocal distance?</h2>
+  <p>The hyperfocal distance <strong>H</strong> is the focus distance at which the far limit of your depth of field just touches infinity. Focus closer and you lose the horizon; focus farther and you waste depth of field in front of you. It's calculated as:</p>
+  <p><code>H = f² / (N × c) + f</code></p>
+  <p>where <em>f</em> is focal length (mm), <em>N</em> is the aperture number, and <em>c</em> is the circle of confusion (mm). For a 24 mm lens at f/8 on full frame (CoC 0.030 mm): H = 576 / 0.24 + 24 = <strong>2,424 mm ≈ 2.42 m</strong> — focus at ~2.4 m and everything from ~1.2 m to infinity is sharp.</p>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Depth of Field Calculator</h3><p>Near/far limits and total DoF for any focus distance.</p><a class="go" href="depth-of-field.html">Open →</a></div>
+    <div class="card"><h3>Hyperfocal Distance Chart</h3><p>Printable charts for full frame &amp; APS-C — no math needed.</p><a class="go" href="../pages/hyperfocal-chart.html">Open →</a></div>
+    <div class="card"><h3>Depth of Field for Landscape</h3><p>Hyperfocal, focus stacking, and the f-stop sweet spot.</p><a class="go" href="../pages/depth-of-field-landscape.html">Read →</a></div>
+  </div>
+
+  <h2>Hyperfocal FAQ</h2>
+  <div class="faq">
+    <details><summary>Is the hyperfocal distance the same as the infinity mark on my lens?</summary><p>No. The infinity mark is where distant subjects are sharp, but the near limit may be far away. Hyperfocal is the specific distance that maximizes sharpness from near to infinity — usually closer than you think.</p></details>
+    <details><summary>Does hyperfocal focusing work for wide-angle lenses only?</summary><p>It works for any focal length, but the numbers get impractical at longer focal lengths — a 200 mm lens at f/8 has a hyperfocal distance of ~170 m on full frame, so it's mainly useful for wide and standard lenses.</p></details>
+    <details><summary>Is hyperfocal focusing accurate enough for modern high-resolution sensors?</summary><p>With the standard CoC convention, hyperfocal is "acceptably sharp" for normal viewing. On high-megapixel sensors some photographers use a stricter CoC (e.g. diagonal ÷ 2000) or focus stack instead — the stricter CoC makes H roughly 33% farther.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var cameras = [];
+  function loadJSON(url, cb) { fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function () {}); }
+  loadJSON("../data/cameras.json", function (d) {
+    cameras = d.cameras;
+    var sel = el("camera"), groups = {};
+    cameras.slice().sort(function (a, b) { return b.pop - a.pop; }).forEach(function (c) { (groups[c.brand] = groups[c.brand] || []).push(c); });
+    Object.keys(groups).forEach(function (b) {
+      var og = document.createElement("optgroup"); og.label = b;
+      groups[b].forEach(function (c) { var o = document.createElement("option"); o.value = c.name; o.textContent = c.name; og.appendChild(o); });
+      sel.appendChild(og);
+    });
+    sel.value = cameras[0].name; onCamera();
+  });
+  FC.stops.forEach(function (s) { var o = document.createElement("option"); o.value = s; o.textContent = "f/" + s; el("aperture").appendChild(o); });
+  el("aperture").value = "8";
+  function camByName(n) { for (var i = 0; i < cameras.length; i++) if (cameras[i].name === n) return cameras[i]; return null; }
+  function onCamera() {
+    var c = camByName(el("camera").value); if (!c) return;
+    el("coc").value = FC.coc(c.sensor_w, c.sensor_h, FC.COC_DIV);
+    el("sensor-info").textContent = c.format + " · " + c.sensor_w.toFixed(1) + "×" + c.sensor_h.toFixed(1) + " mm sensor";
+  }
+  el("camera").addEventListener("change", onCamera);
+  ["focal", "coc"].forEach(function (id) { el(id).addEventListener("input", compute); });
+  el("aperture").addEventListener("change", compute);
+  function compute() {
+    var f = parseFloat(el("focal").value), N = parseFloat(el("aperture").value), coc = parseFloat(el("coc").value);
+    if (!f || !N || !coc) return;
+    var H = FC.hyperfocal(f, N, coc);
+    el("r-h").textContent = FC.fmtDist(H, "m");
+    el("r-near").textContent = FC.fmtDist(H / 2, "m");
+    el("near-inline").textContent = FC.fmtDist(H / 2, "m");
+  }
+  el("print").addEventListener("click", function () { window.print(); });
+  el("to-dof").addEventListener("click", function () {
+    var c = camByName(el("camera").value);
+    var q = new URLSearchParams({ cam: c ? c.name : "", f: el("focal").value, a: el("aperture").value });
+    location.href = "depth-of-field.html?" + q.toString();
+  });
+  compute();
+})();
+</script>
+</body>
+</html>

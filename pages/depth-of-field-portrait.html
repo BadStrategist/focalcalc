@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Depth of Field for Portrait Photography — Lens, Distance &amp; Aperture | FocalCalc</title>
+<meta name="description" content="Portrait depth of field: how much background blur do you actually need, which lens/aperture/distance combos deliver it, and the real numbers for 50mm, 85mm and 135mm on full frame and APS-C.">
+<link rel="canonical" href="https://focalcalc.com/pages/depth-of-field-portrait.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Depth of Field for Portrait Photography — FocalCalc">
+<meta property="og:description" content="The lens, distance, and aperture math behind portrait background blur.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Depth of Field for Portrait Photography","author":{"@type":"Organization","name":"FocalCalc"},"publisher":{"@type":"Organization","name":"FocalCalc"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides › Portrait DoF</nav>
+  <h1>Depth of Field for Portrait Photography</h1>
+  <p class="muted">Portraits are the opposite of landscapes: you want shallow depth of field, placed so the <em>eyes</em> are sharp and the rest falls away. The numbers make it predictable.</p>
+
+  <h2>How much DoF is actually right?</h2>
+  <p>The classic portrait target is <strong>both eyes sharp</strong> — about 3–8 cm of depth of field at the eyes for a head-and-shoulders shot. Much less and one eye blurs; much more and the background starts competing with the subject.</p>
+  <p>Here's the real math (full frame, CoC 0.029 mm, subject at 2 m):</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Lens</th><th class="num">Aperture</th><th class="num">Total DoF at 2 m</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>50 mm</td><td class="num">f/1.8</td><td class="num">~16 cm</td><td>Good — safe for head-and-shoulders</td></tr>
+      <tr><td>85 mm</td><td class="num">f/1.8</td><td class="num">~5.5 cm</td><td>Classic — both eyes sharp, hair softens</td></tr>
+      <tr><td>85 mm</td><td class="num">f/2.8</td><td class="num">~9 cm</td><td>Forgiving group/candid choice</td></tr>
+      <tr><td>135 mm</td><td class="num">f/2</td><td class="num">~2 cm</td><td>Very thin — focus on the near eye, recompose</td></tr>
+    </tbody>
+  </table></div>
+  <p>These come straight from the <a href="../tools/depth-of-field.html">depth of field calculator</a> — change the subject distance to 3 m and every number roughly doubles.</p>
+
+  <h2>The three levers (and their limits)</h2>
+  <ul>
+    <li><strong>Focal length:</strong> 85–135 mm compresses perspective and magnifies background blur. 50 mm needs to be close — which distorts features at very short distances.</li>
+    <li><strong>Aperture:</strong> f/1.2–f/2 gives the thinnest DoF but the thinnest margin for focus error — at f/1.2 a 2 cm shift in the subject's pose can move their eyes out of the sharp zone.</li>
+    <li><strong>Subject-to-background distance:</strong> the most underrated lever. Move the subject 2 m from the background and even f/4 produces creamy separation; with the subject against a wall, no lens can save it.</li>
+  </ul>
+
+  <h2>Focus technique for thin DoF</h2>
+  <ol>
+    <li><strong>Focus on the near eye</strong> (single-point AF, eye-detection on mirrorless) — the near eye is what viewers lock onto.</li>
+    <li><strong>Shoot at the widest aperture that keeps both eyes sharp</strong> for the framing — check the DoF number, don't guess.</li>
+    <li><strong>Watch the ⅓–⅔ rule:</strong> about ⅓ of the DoF sits in front of the focus point, ⅔ behind — so focus slightly toward you if the far eye matters.</li>
+    <li>If using a 135 mm at f/2, shoot a quick burst and pick the sharpest frame — a 2 cm DoF moves with the subject's sway.</li>
+  </ol>
+
+  <h2>APS-C and Micro 4/3 portraits</h2>
+  <p>On APS-C, an 85 mm f/1.8 at 2 m gives ~4 cm of DoF — still perfect for portraits; the crop just changes your working distance for the same framing (step back to ~2.7 m for head-and-shoulders, which widens DoF to ~7 cm). On Micro 4/3, a 45 mm f/1.8 behaves like a 90 mm full-frame field of view with roughly the DoF of an f/3.6 full-frame lens — the format's famous "two-stop" penalty. Same framing, more DoF than full frame; you compensate with faster lenses or more background distance.</p>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Depth of Field Calculator</h3><p>Your exact near/far limits for any lens, distance, and camera.</p><a class="go" href="../tools/depth-of-field.html">Open →</a></div>
+    <div class="card"><h3>Flash Guide Number Calculator</h3><p>Keep the aperture you want and still get correct flash exposure.</p><a class="go" href="../tools/flash-guide-number.html">Open →</a></div>
+    <div class="card"><h3>Camera Sensor Sizes</h3><p>Why format changes the "look" of the same lens.</p><a class="go" href="camera-sensor-sizes.html">Read →</a></div>
+  </div>
+
+  <h2>Portrait DoF FAQ</h2>
+  <div class="faq">
+    <details><summary>Why do my f/1.8 portraits have one eye sharp and the other soft?</summary><p>At typical 85 mm f/1.8 portrait distances your total DoF is only ~5 cm — less than the distance between a subject's eyes when they turn their head. Solution: stop to f/2.8 (DoF ~9 cm) or ask for a slight profile angle so both eyes are in the same plane.</p></details>
+    <details><summary>Does a 50 mm f/1.2 give the same blur as an 85 mm f/1.8?</summary><p>At the same subject framing and distance-to-background, no — background blur scales mostly with focal length and subject-to-background distance. The 85 mm compresses and blurs more, which is why it's the classic portrait focal length.</p></details>
+    <details><summary>Is background blur the same as depth of field?</summary><p>Related but not identical. DoF is the sharp zone in front of/behind the subject; background blur is how strongly a background <em>beyond</em> the DoF falls off. A long lens can have both shallow DoF and heavy background blur; a fast wide lens has shallow DoF but mild background blur.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

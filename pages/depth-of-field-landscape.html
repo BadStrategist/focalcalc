@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Depth of Field for Landscape Photography — Hyperfocal &amp; Focus Stacking | FocalCalc</title>
+<meta name="description" content="Depth of field for landscape photography: hyperfocal focusing, the f-stop sweet spot (f/8-f/11), focus stacking, and the real numbers for common wide-angle lenses on full frame and APS-C.">
+<link rel="canonical" href="https://focalcalc.com/pages/depth-of-field-landscape.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Depth of Field for Landscape Photography — FocalCalc">
+<meta property="og:description" content="Hyperfocal, the f/8-f/11 sweet spot, and focus stacking — with real numbers.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Depth of Field for Landscape Photography","author":{"@type":"Organization","name":"FocalCalc"},"publisher":{"@type":"Organization","name":"FocalCalc"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides › Landscape DoF</nav>
+  <h1>Depth of Field for Landscape Photography</h1>
+  <p class="muted">Landscape is the one genre where you usually want <em>maximum</em> depth of field. Here's the math that gets you there without guessing.</p>
+
+  <h2>The classic answer: hyperfocal focusing</h2>
+  <p>Focus at the hyperfocal distance and everything from half of it to infinity is acceptably sharp. For a <strong>24 mm lens at f/8 on full frame</strong> (CoC 0.029 mm):</p>
+  <ul>
+    <li>Hyperfocal distance: <strong>2.5 m</strong> — focus at ~2.5 m</li>
+    <li>Sharp from <strong>1.25 m to infinity</strong></li>
+  </ul>
+  <p>Stop down to f/11 and the hyperfocal distance drops to <strong>1.84 m</strong> (sharp from 0.92 m). On APS-C the same lens at f/8 gives a hyperfocal distance of ~1.7 m — even easier. The full pre-computed table is in the <a href="hyperfocal-chart.html">hyperfocal distance chart</a>, and the exact value for your camera is one click away in the <a href="../tools/hyperfocal.html">hyperfocal calculator</a>.</p>
+
+  <h2>The f-stop sweet spot</h2>
+  <p>Stopping down increases depth of field, but diffraction softens detail. The practical sweet spot:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Format</th><th>Sweet spot</th><th>Diffraction visible beyond</th></tr></thead>
+    <tbody>
+      <tr><td>Full frame</td><td>f/8 – f/11</td><td>~f/16 (avoid f/22 unless necessary)</td></tr>
+      <tr><td>APS-C</td><td>f/5.6 – f/8</td><td>~f/11</td></tr>
+      <tr><td>Micro 4/3</td><td>f/4 – f/5.6</td><td>~f/8</td></tr>
+      <tr><td>Phone</td><td>f/1.8 – f/2.8 (fixed)</td><td>n/a — diffraction-free zone</td></tr>
+    </tbody>
+  </table></div>
+  <p>If f/8 on your format doesn't give enough depth of field, don't chase f/22 — use focus stacking instead (below).</p>
+
+  <h2>When hyperfocal isn't enough</h2>
+  <p>Two situations break the hyperfocal approach:</p>
+  <ul>
+    <li><strong>A very close foreground</strong> (a rock or flower 0.3 m from the lens) — even f/11 can't hold it and the horizon together. Set focus on the foreground and let the background blur, or…</li>
+    <li><strong>Focus stacking</strong>: shoot a series focused from near to far (typically 3–7 frames at f/8, moving the focus point ~⅓ of the DoF depth between shots) and blend in post. This gives f/8 sharpness at f/22 depth — the standard approach for pro landscape work.</li>
+  </ul>
+
+  <h2>Practical workflow</h2>
+  <ol>
+    <li>Compose, then pick your aperture: <strong>f/8 on full frame, f/5.6–f/8 on APS-C</strong>.</li>
+    <li>Look up the hyperfocal distance (chart or <a href="../tools/hyperfocal.html">calculator</a>) and set manual focus there.</li>
+    <li>If a foreground element sits closer than half the hyperfocal distance, decide: foreground-focused shot, or a focus stack.</li>
+    <li>Shoot, then check at 100%: if the nearest element is soft, focus nearer and reshoot — better than "fixing in post".</li>
+  </ol>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Hyperfocal Calculator</h3><p>Your exact hyperfocal distance in one click.</p><a class="go" href="../tools/hyperfocal.html">Open →</a></div>
+    <div class="card"><h3>Hyperfocal Distance Chart</h3><p>Pre-computed tables for all common formats.</p><a class="go" href="hyperfocal-chart.html">Read →</a></div>
+    <div class="card"><h3>ND Filter Calculator</h3><p>Long exposures for water and skies pair perfectly with f/8.</p><a class="go" href="../tools/nd-filter.html">Open →</a></div>
+  </div>
+
+  <h2>Landscape DoF FAQ</h2>
+  <div class="faq">
+    <details><summary>Should I focus at infinity instead of hyperfocal?</summary><p>Only if the scene is entirely distant (mountains across a valley). Focusing at infinity wastes the depth of field in front of you — hyperfocal gives you sharp foregrounds for free.</p></details>
+    <details><summary>Is the hyperfocal distance accurate on modern lenses?</summary><p>Most mirrorless lenses no longer print a distance scale, so set focus by looking at the lens-distance readout, using focus peaking, or by focusing on an object at the computed distance. The math is exact; your focus mechanism is the variable.</p></details>
+    <details><summary>Do I need a tripod for hyperfocal landscape shots?</summary><p>For maximum sharpness, yes — it lets you use the sweet-spot aperture without raising ISO, and it's essential for focus stacking. A tripod plus 2-second timer (or remote) removes mirror/camera-shake variables entirely.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

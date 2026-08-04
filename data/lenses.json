@@ -1,0 +1,31 @@
+{
+  "_comment": "FocalCalc lens presets — popular primes/zooms used for quick-select in the DoF tool. focal = mm, max_aperture = widest f-stop.",
+  "lenses": [
+    { "name": "Canon RF 50mm f/1.2L USM", "brand": "Canon", "mount": "RF", "focal": 50, "max_aperture": 1.2 },
+    { "name": "Canon RF 24-70mm f/2.8L IS USM", "brand": "Canon", "mount": "RF", "focal": 50, "max_aperture": 2.8 },
+    { "name": "Canon RF 70-200mm f/2.8L IS USM", "brand": "Canon", "mount": "RF", "focal": 135, "max_aperture": 2.8 },
+    { "name": "Sony FE 35mm f/1.4 GM", "brand": "Sony", "mount": "E", "focal": 35, "max_aperture": 1.4 },
+    { "name": "Sony FE 50mm f/1.2 GM", "brand": "Sony", "mount": "E", "focal": 50, "max_aperture": 1.2 },
+    { "name": "Sony FE 85mm f/1.4 GM", "brand": "Sony", "mount": "E", "focal": 85, "max_aperture": 1.4 },
+    { "name": "Sony FE 24-70mm f/2.8 GM II", "brand": "Sony", "mount": "E", "focal": 50, "max_aperture": 2.8 },
+    { "name": "Sony FE 70-200mm f/2.8 GM OSS II", "brand": "Sony", "mount": "E", "focal": 135, "max_aperture": 2.8 },
+    { "name": "Nikon Z 50mm f/1.2 S", "brand": "Nikon", "mount": "Z", "focal": 50, "max_aperture": 1.2 },
+    { "name": "Nikon Z 24-70mm f/2.8 S", "brand": "Nikon", "mount": "Z", "focal": 50, "max_aperture": 2.8 },
+    { "name": "Nikon Z 70-200mm f/2.8 VR S", "brand": "Nikon", "mount": "Z", "focal": 135, "max_aperture": 2.8 },
+    { "name": "Fujifilm XF 33mm f/1.4 R LM WR", "brand": "Fujifilm", "mount": "X", "focal": 33, "max_aperture": 1.4 },
+    { "name": "Fujifilm XF 56mm f/1.2 R WR", "brand": "Fujifilm", "mount": "X", "focal": 56, "max_aperture": 1.2 },
+    { "name": "Fujifilm XF 16-55mm f/2.8 R LM WR II", "brand": "Fujifilm", "mount": "X", "focal": 35, "max_aperture": 2.8 },
+    { "name": "Panasonic 50mm f/1.8 S", "brand": "Panasonic", "mount": "L", "focal": 50, "max_aperture": 1.8 },
+    { "name": "Panasonic 24-105mm f/4 S", "brand": "Panasonic", "mount": "L", "focal": 50, "max_aperture": 4 },
+    { "name": "OM System 20mm f/1.4 Pro", "brand": "OM System", "mount": "M43", "focal": 20, "max_aperture": 1.4 },
+    { "name": "OM System 40-150mm f/2.8 Pro", "brand": "OM System", "mount": "M43", "focal": 90, "max_aperture": 2.8 },
+    { "name": "Leica Summilux 28mm f/1.7 (Q3)", "brand": "Leica", "mount": "Fixed", "focal": 28, "max_aperture": 1.7 },
+    { "name": "Sigma 24-70mm f/2.8 DG DN Art", "brand": "Sigma", "mount": "E/L", "focal": 50, "max_aperture": 2.8 },
+    { "name": "Sigma 85mm f/1.4 DG DN Art", "brand": "Sigma", "mount": "E/L", "focal": 85, "max_aperture": 1.4 },
+    { "name": "Tamron 28-75mm f/2.8 Di III VXD G2", "brand": "Tamron", "mount": "E", "focal": 50, "max_aperture": 2.8 },
+    { "name": "Tamron 35-150mm f/2-2.8 Di III VXD", "brand": "Tamron", "mount": "E", "focal": 85, "max_aperture": 2.8 },
+    { "name": "Viltrox 27mm f/1.2 Pro (APS-C)", "brand": "Viltrox", "mount": "X", "focal": 27, "max_aperture": 1.2 },
+    { "name": "Canon EF 50mm f/1.8 STM (legacy)", "brand": "Canon", "mount": "EF", "focal": 50, "max_aperture": 1.8 },
+    { "name": "Nikkor 50mm f/1.8G (legacy)", "brand": "Nikon", "mount": "F", "focal": 50, "max_aperture": 1.8 }
+  ]
+}

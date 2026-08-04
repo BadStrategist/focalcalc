@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circle of Confusion Explained — What It Means &amp; Which Standard to Use | FocalCalc</title>
+<meta name="description" content="What circle of confusion (CoC) actually is, why calculators disagree, the standard values for full frame, APS-C, Micro 4/3 and phone sensors, and how to pick a stricter CoC for high-resolution cameras.">
+<link rel="canonical" href="https://focalcalc.com/pages/circle-of-confusion.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Circle of Confusion Explained — FocalCalc">
+<meta property="og:description" content="The CoC standard, the values for every sensor format, and when to use a stricter one.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Circle of Confusion Explained","description":"What CoC is, standard values per sensor, and which standard to use.","author":{"@type":"Organization","name":"FocalCalc"},"publisher":{"@type":"Organization","name":"FocalCalc"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides › Circle of Confusion</nav>
+  <h1>Circle of Confusion Explained</h1>
+  <p class="muted">The one number hiding inside every depth of field calculation — and the reason calculators disagree with each other.</p>
+
+  <h2>What is the circle of confusion?</h2>
+  <p>A lens focuses only one plane perfectly. Everything else is a slightly out-of-focus circle of light on the sensor — the "circle of confusion." If that circle is small enough, your eye perceives the point as sharp. The <strong>circle of confusion (CoC)</strong> is the largest blur spot that still looks like a point in the final print.</p>
+  <p>Two things decide it: <strong>how much you enlarge the image</strong> (a full-frame shot printed at 20×24 is enlarged ~8×; a phone shot at the same size is enlarged ~50×) and <strong>how close you view from</strong>. The classic assumption is an 8×10 print viewed from ~25 cm, which works out to a blur spot of about 1/1000 inch on the print.</p>
+
+  <h2>The standard values</h2>
+  <p>The most common convention is <strong>sensor diagonal ÷ 1500</strong> (some use ÷ 1730 for an even stricter 8×10 standard). FocalCalc uses ÷ 1500 by default. That gives these values:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Sensor format</th><th class="num">Dimensions (mm)</th><th class="num">Diagonal (mm)</th><th class="num">CoC ÷1500 (mm)</th></tr></thead>
+    <tbody>
+      <tr><td>Full frame</td><td class="num">36 × 24</td><td class="num">43.3</td><td class="num">0.029</td></tr>
+      <tr><td>APS-C (Sony / Nikon / Fujifilm)</td><td class="num">23.5 × 15.6</td><td class="num">28.2</td><td class="num">0.019</td></tr>
+      <tr><td>APS-C (Canon)</td><td class="num">22.3 × 14.9</td><td class="num">26.8</td><td class="num">0.018</td></tr>
+      <tr><td>Micro 4/3</td><td class="num">17.3 × 13</td><td class="num">21.6</td><td class="num">0.015</td></tr>
+      <tr><td>1-inch</td><td class="num">13.2 × 8.8</td><td class="num">15.9</td><td class="num">0.011</td></tr>
+      <tr><td>Phone main sensor (~1/1.28″)</td><td class="num">9.8 × 7.3</td><td class="num">12.2</td><td class="num">0.008</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Why do calculators give different answers?</h2>
+  <ul>
+    <li><strong>Different CoC standards.</strong> Diagonal ÷ 1500 vs ÷ 1730 vs a fixed 0.030 mm for everything vs pixel-based values. The stricter the CoC, the farther the hyperfocal distance and the smaller the depth of field.</li>
+    <li><strong>Different sensor dimensions.</strong> Some calculators use 36×24 for "full frame" regardless of the camera; exact values (35.9×23.9 for many Nikons) shift results a little.</li>
+    <li><strong>Formula variants.</strong> Older calculators omit the "+ f" term in the hyperfocal formula — negligible for wide lenses, a few percent for telephotos.</li>
+  </ul>
+
+  <h2>Should you use a stricter CoC?</h2>
+  <p>If you pixel-peep at 100%, or print very large, the classic CoC is too generous. A common stricter choice is <strong>diagonal ÷ 2000</strong> (full frame ≈ 0.022 mm). Because H = f²/(N·c), making the CoC one-third smaller makes the hyperfocal distance one-third larger and depth of field roughly one-third smaller. Our <a href="../tools/depth-of-field.html">depth of field calculator</a> lets you override the CoC — start with ÷2000 if you inspect images closely.</p>
+
+  <h2>Related guides &amp; tools</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Depth of Field Calculator</h3><p>Try the CoC override and watch near/far limits change live.</p><a class="go" href="../tools/depth-of-field.html">Open →</a></div>
+    <div class="card"><h3>Camera Sensor Sizes</h3><p>Every format side by side with crop factors.</p><a class="go" href="camera-sensor-sizes.html">Read →</a></div>
+    <div class="card"><h3>Hyperfocal Distance Chart</h3><p>Pre-computed values for the standard CoC.</p><a class="go" href="hyperfocal-chart.html">Read →</a></div>
+  </div>
+
+  <h2>Circle of confusion FAQ</h2>
+  <div class="faq">
+    <details><summary>Does my camera's pixel size set the circle of confusion?</summary><p>Not directly. CoC is about perceived sharpness in the final image, not pixel size. Pixel-based "CoC" values are sometimes used for astrophotography (where a star should ideally land within one pixel), but for general photography the viewing-standard CoC is the right tool.</p></details>
+    <details><summary>What CoC does dofmaster or my camera's DoF preview use?</summary><p>Most classic calculators use diagonal ÷ 1500 (dofmaster lists ~0.029-0.030 mm for full frame). In-camera DoF previews use the lens's actual aperture and the sensor, but the on-screen preview is too small to judge precisely — calculators are more reliable for planning.</p></details>
+    <details><summary>Is a smaller CoC always more accurate?</summary><p>No — it's a threshold, not a measurement. A "stricter" CoC is more conservative (less of the image counts as sharp). Pick the standard that matches how you view: ÷1500 for normal prints, ÷2000 for pixel-peeping and large prints.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

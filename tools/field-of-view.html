@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field of View Calculator — Angle of View for Any Lens | FocalCalc</title>
+<meta name="description" content="Calculate horizontal, vertical, and diagonal field of view for any camera sensor and focal length — including 35 mm equivalent. Plan framing, gimbal moves, and lens purchases.">
+<link rel="canonical" href="https://focalcalc.com/tools/field-of-view.html">
+<meta property="og:title" content="Field of View Calculator — FocalCalc">
+<meta property="og:description" content="Angle of view in degrees for any sensor and focal length.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Field of View Calculator","url":"https://focalcalc.com/tools/field-of-view.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Field of View Calculator</nav>
+  <h1>Field of View Calculator</h1>
+  <p class="muted">Angle of view = <code>2 × atan(sensor ÷ (2 × focal length))</code>. See exactly how much of the scene any lens sees on your camera — before you buy or frame.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Your setup</h2>
+      <div class="field"><label for="camera">Camera</label><select id="camera"></select><div class="hint" id="sensor-info"></div></div>
+      <div class="row2">
+        <div class="field"><label for="focal">Focal length (mm)</label><input id="focal" type="number" min="1" max="2000" step="any" value="50" inputmode="decimal"></div>
+        <div class="field"><label for="dist">Distance (m, optional)</label><input id="dist" type="number" min="0.1" step="any" value="10" inputmode="decimal"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="print">🖨 Print</button></div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Results</h2>
+      <div class="result-grid">
+        <div class="result"><div class="k">Horizontal FOV</div><div class="v" id="r-h">—</div><div class="s">across the frame</div></div>
+        <div class="result"><div class="k">Vertical FOV</div><div class="v" id="r-v">—</div><div class="s">top to bottom</div></div>
+        <div class="result"><div class="k">Diagonal FOV</div><div class="v" id="r-d">—</div><div class="s">corner to corner</div></div>
+        <div class="result"><div class="k">35 mm equiv.</div><div class="v" id="r-eq">—</div><div class="s">full-frame focal length</div></div>
+      </div>
+      <div class="result-grid mt1">
+        <div class="result"><div class="k">Scene width @ distance</div><div class="v" id="r-w">—</div><div class="s">left to right</div></div>
+        <div class="result"><div class="k">Scene height @ distance</div><div class="v" id="r-h2">—</div><div class="s">top to bottom</div></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-fov" data-ad="fov"></div>
+
+  <h2>How field of view works</h2>
+  <p>Field of view (angle of view) is set by two things: the sensor dimensions and the focal length. A 50 mm lens on full frame sees 39.6° horizontally; the same lens on APS-C sees about 26.5° — which is why crop sensors "crop" the frame (1.5× crop ≈ 75 mm equivalent).</p>
+  <p>The <strong>35 mm equivalent</strong> is the focal length that would give the same framing on a full-frame body. It's how photographers compare lenses across sensor sizes: Micro 4/3 has a 2× crop, APS-C ≈ 1.5× (Canon ≈ 1.6×), phones ≈ 5-7×.</p>
+
+  <h2>Field of view FAQ</h2>
+  <div class="faq">
+    <details><summary>What's the difference between FOV and focal length?</summary><p>Focal length is a property of the lens; field of view is the result on a given sensor. The same lens gives different FOV on different bodies. That's why "35 mm equivalent" exists.</p></details>
+    <details><summary>How is field of view calculated?</summary><p>FOV = 2 × atan(sensor dimension ÷ (2 × focal length)), in degrees. Horizontal uses sensor width, vertical uses height, diagonal uses the diagonal.</p></details>
+    <details><summary>Does field of view change when I crop in post?</summary><p>Yes — cropping changes the effective sensor area, so the FOV narrows exactly like using a longer lens. The calculator's distance fields show you the scene dimensions your final crop will cover.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var cameras = [];
+  function loadJSON(url, cb) { fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function () {}); }
+  loadJSON("../data/cameras.json", function (d) {
+    cameras = d.cameras;
+    var sel = el("camera"), groups = {};
+    cameras.slice().sort(function (a, b) { return b.pop - a.pop; }).forEach(function (c) { (groups[c.brand] = groups[c.brand] || []).push(c); });
+    Object.keys(groups).forEach(function (b) {
+      var og = document.createElement("optgroup"); og.label = b;
+      groups[b].forEach(function (c) { var o = document.createElement("option"); o.value = c.name; o.textContent = c.name; og.appendChild(o); });
+      sel.appendChild(og);
+    });
+    sel.value = cameras[0].name; onCamera();
+  });
+  function camByName(n) { for (var i = 0; i < cameras.length; i++) if (cameras[i].name === n) return cameras[i]; return null; }
+  function onCamera() {
+    var c = camByName(el("camera").value); if (!c) return;
+    el("sensor-info").textContent = c.format + " · " + c.sensor_w.toFixed(1) + "×" + c.sensor_h.toFixed(1) + " mm sensor";
+    compute();
+  }
+  el("camera").addEventListener("change", onCamera);
+  ["focal", "dist"].forEach(function (id) { el(id).addEventListener("input", compute); });
+  function compute() {
+    var c = camByName(el("camera").value); if (!c) return;
+    var f = parseFloat(el("focal").value), d = parseFloat(el("dist").value);
+    if (!f) return;
+    var fov = FC.fov(c.sensor_w, c.sensor_h, f);
+    el("r-h").textContent = Math.round(fov.hfov * 10) / 10 + "°";
+    el("r-v").textContent = Math.round(fov.vfov * 10) / 10 + "°";
+    el("r-d").textContent = Math.round(fov.dfov * 10) / 10 + "°";
+    var eq = f * 36 / c.sensor_w;
+    el("r-eq").textContent = Math.round(eq) + " mm";
+    if (d) {
+      var w = 2 * Math.tan(fov.hfov / 2 * Math.PI / 180) * d;
+      var h = 2 * Math.tan(fov.vfov / 2 * Math.PI / 180) * d;
+      el("r-w").textContent = Math.round(w * 10) / 10 + " m";
+      el("r-h2").textContent = Math.round(h * 10) / 10 + " m";
+    } else { el("r-w").textContent = "—"; el("r-h2").textContent = "—"; }
+  }
+  el("print").addEventListener("click", function () { window.print(); });
+  compute();
+})();
+</script>
+</body>
+</html>
