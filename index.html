@@ -18,8 +18,7 @@
   "@type": "WebSite",
   "name": "FocalCalc",
   "url": "https://focalcalc.com/",
-  "description": "Free photography calculators: depth of field, hyperfocal distance, ND filter exposure, flash guide number, astro pixel scale, field of view.",
-  "potentialAction": { "@type": "SearchAction", "target": "https://focalcalc.com/search?q={search_term_string}", "query-input": "required name=search_term_string" }
+  "description": "Free photography calculators: depth of field, hyperfocal distance, ND filter exposure, flash guide number, astro pixel scale, field of view."
 }
 </script>
 </head>
@@ -34,9 +33,9 @@
       <a class="pill" href="tools/depth-of-field.html">📐 Depth of Field</a>
       <a class="pill" href="tools/hyperfocal.html">🌄 Hyperfocal</a>
       <a class="pill" href="tools/nd-filter.html">🌑 ND Filter</a>
-      <a class="pill" href="tools/flash-guide-number.html">⚡ Flash GN</a>
-      <a class="pill" href="tools/pixel-scale.html">🔭 Pixel Scale</a>
-      <a class="pill" href="tools/field-of-view.html">🖼 Field of View</a>
+      <a class="pill" href="tools/exposure.html">🎛️ Exposure</a>
+      <a class="pill" href="tools/star-trails.html">✨ Star Trails</a>
+      <a class="pill" href="pages/guides.html">📚 All guides</a>
     </div>
   </div>
 </section>
@@ -44,68 +43,94 @@
 <main class="container">
   <div class="ad-slot" id="ad-home" data-ad="home"></div>
 
-  <h2>Calculators</h2>
+  <h2>Calculators <span class="muted" style="font-weight:400">— free forever, no account needed</span></h2>
+
+  <h3 class="cat-head">Focus &amp; depth of field</h3>
   <div class="grid grid-3">
-    <div class="card">
+    <a class="card" href="tools/depth-of-field.html">
+      <div class="icon-tile">📐</div>
       <h3>Depth of Field</h3>
-      <p>Near/far limits, total DoF, hyperfocal distance, and a visual focus bar. Camera database includes Sony, Canon, Nikon, Fujifilm, Micro 4/3 and phone sensors.</p>
-      <a class="go" href="tools/depth-of-field.html">Open calculator →</a>
-    </div>
-    <div class="card">
+      <p>Near/far limits, total DoF, hyperfocal distance, and a visual focus bar. Knows your exact sensor.</p>
+      <span class="card-go">Open calculator →</span>
+    </a>
+    <a class="card" href="tools/hyperfocal.html">
+      <div class="icon-tile">🌄</div>
       <h3>Hyperfocal Distance</h3>
-      <p>Focus at the hyperfocal point and everything from half that distance to infinity is sharp — the landscape photographer's most-used number.</p>
-      <a class="go" href="tools/hyperfocal.html">Open calculator →</a>
-    </div>
-    <div class="card">
-      <h3>ND Filter Exposure</h3>
-      <p>Exact shutter time for any ND filter strength — from ND2 to ND100000 — with a printable long-exposure chart.</p>
-      <a class="go" href="tools/nd-filter.html">Open calculator →</a>
-    </div>
-    <div class="card">
-      <h3>Flash Guide Number</h3>
-      <p>Solve for aperture, distance, or required GN — including ISO scaling so your flash math survives a sensitivity change.</p>
-      <a class="go" href="tools/flash-guide-number.html">Open calculator →</a>
-    </div>
-    <div class="card">
-      <h3>Astro Pixel Scale</h3>
-      <p>Arcseconds per pixel for your camera + lens, with the 1–2″/px sweet spot for sharp star images. Built for astrophotographers.</p>
-      <a class="go" href="tools/pixel-scale.html">Open calculator →</a>
-    </div>
-    <div class="card">
-      <h3>Field of View</h3>
-      <p>Horizontal, vertical and diagonal angles of view for any sensor and focal length — useful for framing, gimbals, and lens choice.</p>
-      <a class="go" href="tools/field-of-view.html">Open calculator →</a>
-    </div>
-    <div class="card">
+      <p>Focus here and everything from half that distance to infinity is sharp — the landscape number.</p>
+      <span class="card-go">Open calculator →</span>
+    </a>
+    <a class="card" href="tools/macro-dof.html">
+      <div class="icon-tile">🔬</div>
+      <h3>Macro DoF</h3>
+      <p>Depth of field at 1:1 and beyond — effective aperture and the exact focus-stacking step size.</p>
+      <span class="card-go">Open calculator →</span>
+    </a>
+  </div>
+
+  <h3 class="cat-head">Exposure &amp; light</h3>
+  <div class="grid grid-3">
+    <a class="card" href="tools/exposure.html">
+      <div class="icon-tile">🎛️</div>
       <h3>Exposure Equivalence</h3>
       <p>EV + equivalent exposures: change aperture, shutter, or ISO and keep the identical brightness.</p>
-      <a class="go" href="tools/exposure.html">Open calculator →</a>
-    </div>
-    <div class="card">
-      <h3>Print Resolution</h3>
-      <p>How big can you print? Pixels, DPI and print size — with the megapixel print chart.</p>
-      <a class="go" href="tools/print-resolution.html">Open calculator →</a>
-    </div>
-    <div class="card">
+      <span class="card-go">Open calculator →</span>
+    </a>
+    <a class="card" href="tools/nd-filter.html">
+      <div class="icon-tile">🌑</div>
+      <h3>ND Filter</h3>
+      <p>Exact shutter time for any filter — ND2 to ND100000 — with exposure compensation built in.</p>
+      <span class="card-go">Open calculator →</span>
+    </a>
+    <a class="card" href="tools/flash-guide-number.html">
+      <div class="icon-tile">⚡</div>
+      <h3>Flash Guide Number</h3>
+      <p>Solve aperture, distance, or required GN — with ISO scaling for speedlights and strobes.</p>
+      <span class="card-go">Open calculator →</span>
+    </a>
+  </div>
+
+  <h3 class="cat-head">Astro &amp; night sky</h3>
+  <div class="grid grid-3">
+    <a class="card" href="tools/star-trails.html">
+      <div class="icon-tile">✨</div>
       <h3>Star Trails (500/NPF)</h3>
       <p>The max shutter time for sharp stars, using your camera's real pixel size and aperture.</p>
-      <a class="go" href="tools/star-trails.html">Open calculator →</a>
-    </div>
-    <div class="card">
-      <h3>Macro DoF</h3>
-      <p>Depth of field at 1:1 and beyond — effective aperture and focus-stacking step size.</p>
-      <a class="go" href="tools/macro-dof.html">Open calculator →</a>
-    </div>
-    <div class="card">
+      <span class="card-go">Open calculator →</span>
+    </a>
+    <a class="card" href="tools/pixel-scale.html">
+      <div class="icon-tile">🔭</div>
+      <h3>Astro Pixel Scale</h3>
+      <p>Arcseconds per pixel for any camera + lens — and the 1–2″/px sweet spot for sharp stars.</p>
+      <span class="card-go">Open calculator →</span>
+    </a>
+    <a class="card" href="tools/field-of-view.html">
+      <div class="icon-tile">🖼️</div>
+      <h3>Field of View</h3>
+      <p>Horizontal, vertical and diagonal angles for any sensor and lens — with 35 mm equivalent.</p>
+      <span class="card-go">Open calculator →</span>
+    </a>
+  </div>
+
+  <h3 class="cat-head">Video &amp; print</h3>
+  <div class="grid grid-3">
+    <a class="card" href="tools/shutter-angle.html">
+      <div class="icon-tile">🎬</div>
       <h3>Shutter Angle</h3>
       <p>The 180° rule computed: shutter angle ↔ speed for any frame rate, 24 to 120 fps.</p>
-      <a class="go" href="tools/shutter-angle.html">Open calculator →</a>
-    </div>
-    <div class="card">
+      <span class="card-go">Open calculator →</span>
+    </a>
+    <a class="card" href="tools/video-nd.html">
+      <div class="icon-tile">🌫️</div>
       <h3>Video ND Filter</h3>
       <p>Exactly how many ND stops you need for the 180° shutter in daylight — and which filter to grab.</p>
-      <a class="go" href="tools/video-nd.html">Open calculator →</a>
-    </div>
+      <span class="card-go">Open calculator →</span>
+    </a>
+    <a class="card" href="tools/print-resolution.html">
+      <div class="icon-tile">🖨️</div>
+      <h3>Print Resolution</h3>
+      <p>How big can you print? Pixels, DPI and print size — with the megapixel print chart.</p>
+      <span class="card-go">Open calculator →</span>
+    </a>
   </div>
 
   <h2>Why FocalCalc?</h2>
@@ -115,24 +140,24 @@
     <div class="card"><h3>💾 Built to return</h3><p>Save camera + lens setups in your browser, share result links, print cheat sheets for your bag. Your settings are there next time — no account needed.</p></div>
   </div>
 
-  <h2>Popular guides</h2>
+  <h2>Popular guides <span class="muted" style="font-weight:400">— reference charts &amp; how-tos</span></h2>
   <div class="grid grid-3">
-    <div class="card"><h3>Hyperfocal Distance Chart</h3><p>Printable charts for full frame and APS-C — find your hyperfocal distance without touching a calculator.</p><a class="go" href="pages/hyperfocal-chart.html">Read →</a></div>
-    <div class="card"><h3>ND Filter Long Exposure Chart</h3><p>Base exposure → final shutter time for every common filter strength.</p><a class="go" href="pages/nd-filter-long-exposure-chart.html">Read →</a></div>
-    <div class="card"><h3>Circle of Confusion Explained</h3><p>What CoC means, why calculators disagree, and which standard you should use.</p><a class="go" href="pages/circle-of-confusion.html">Read →</a></div>
-    <div class="card"><h3>Camera Sensor Sizes Compared</h3><p>Full frame vs APS-C vs Micro 4/3 vs phone: dimensions, crop factors, and what changes.</p><a class="go" href="pages/camera-sensor-sizes.html">Read →</a></div>
-    <div class="card"><h3>Depth of Field for Landscape</h3><p>Hyperfocal, focus stacking, and the f-stop sweet spot for maximum sharpness.</p><a class="go" href="pages/depth-of-field-landscape.html">Read →</a></div>
-    <div class="card"><h3>Depth of Field for Portraits</h3><p>How much background blur do you actually need? Lens, distance, and aperture math.</p><a class="go" href="pages/depth-of-field-portrait.html">Read →</a></div>
-    <div class="card"><h3>Exposure Triangle Explained</h3><p>Aperture, shutter, ISO — what each does and which to change first.</p><a class="go" href="pages/exposure-triangle.html">Read →</a></div>
-    <div class="card"><h3>Shutter Speed Chart</h3><p>The right shutter speed for every subject — birds to waterfalls to video.</p><a class="go" href="pages/shutter-speed-chart.html">Read →</a></div>
-    <div class="card"><h3>Depth of Field for Macro</h3><p>Magnification math, effective aperture, and focus-stacking workflow.</p><a class="go" href="pages/depth-of-field-macro.html">Read →</a></div>
-    <div class="card"><h3>Astro Focus &amp; DoF</h3><p>Infinity focus done right, the f-ratio trade-off, and star-exposure rules.</p><a class="go" href="pages/depth-of-field-astro.html">Read →</a></div>
-    <div class="card"><h3>Depth of Field for Sports</h3><p>Freeze motion and keep a razor-thin sharp zone on a moving subject.</p><a class="go" href="pages/depth-of-field-sports.html">Read →</a></div>
-    <div class="card"><h3>Real Estate DoF</h3><p>The f/8 rule, where to focus, and sharp interiors wall to wall.</p><a class="go" href="pages/depth-of-field-real-estate.html">Read →</a></div>
-    <div class="card"><h3>Long Exposure Guide</h3><p>Silky water and light trails: the full settings workflow with ND math.</p><a class="go" href="pages/long-exposure.html">Read →</a></div>
-    <div class="card"><h3>Low Light Settings</h3><p>Noise vs blur — the ISO/shutter/aperture strategy with real EV numbers.</p><a class="go" href="pages/low-light.html">Read →</a></div>
-    <div class="card"><h3>50mm DoF Table</h3><p>Near and far limits for the most-owned lens on the planet.</p><a class="go" href="pages/dof-table-50mm.html">Read →</a></div>
-    <div class="card"><h3>85mm DoF Table</h3><p>The portrait lens, computed: f/1.2–f/8 at every distance.</p><a class="go" href="pages/dof-table-85mm.html">Read →</a></div>
+    <a class="card" href="pages/hyperfocal-chart.html"><div class="icon-tile">📊</div><h3>Hyperfocal Distance Chart</h3><p>Printable charts for full frame and APS-C — find your hyperfocal distance without touching a calculator.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/nd-filter-long-exposure-chart.html"><div class="icon-tile">📊</div><h3>ND Filter Long Exposure Chart</h3><p>Base exposure → final shutter time for every common filter strength.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/exposure-triangle.html"><div class="icon-tile">📘</div><h3>Exposure Triangle Explained</h3><p>Aperture, shutter, ISO — what each does, how they trade off, and which to change first.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/shutter-speed-chart.html"><div class="icon-tile">📊</div><h3>Shutter Speed Chart</h3><p>The right shutter speed for every subject — birds to waterfalls to video.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/long-exposure.html"><div class="icon-tile">🌊</div><h3>Long Exposure Guide</h3><p>Silky water and light trails: the full settings workflow with ND math.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/low-light.html"><div class="icon-tile">🌙</div><h3>Low Light Settings</h3><p>Noise vs blur — the ISO/shutter/aperture strategy with real EV numbers.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/circle-of-confusion.html"><div class="icon-tile">📘</div><h3>Circle of Confusion Explained</h3><p>What CoC means, why calculators disagree, and which standard you should use.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/camera-sensor-sizes.html"><div class="icon-tile">📏</div><h3>Camera Sensor Sizes Compared</h3><p>Full frame vs APS-C vs Micro 4/3 vs phone: dimensions, crop factors, and what changes.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/depth-of-field-landscape.html"><div class="icon-tile">🏞️</div><h3>DoF for Landscape</h3><p>Hyperfocal, focus stacking, and the f-stop sweet spot for maximum sharpness.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/depth-of-field-portrait.html"><div class="icon-tile">👤</div><h3>DoF for Portraits</h3><p>How much background blur do you actually need? Lens, distance, and aperture math.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/depth-of-field-macro.html"><div class="icon-tile">🐜</div><h3>DoF for Macro</h3><p>Magnification math, effective aperture, and the focus-stacking workflow.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/depth-of-field-astro.html"><div class="icon-tile">🌌</div><h3>Astro Focus &amp; DoF</h3><p>Infinity focus done right, the f-ratio trade-off, and star-exposure rules.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/depth-of-field-sports.html"><div class="icon-tile">🏃</div><h3>DoF for Sports</h3><p>Freeze motion and keep a razor-thin sharp zone on a moving subject.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/depth-of-field-real-estate.html"><div class="icon-tile">🏠</div><h3>Real Estate DoF</h3><p>The f/8 rule, where to focus, and sharp interiors wall to wall.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/dof-table-50mm.html"><div class="icon-tile">📏</div><h3>50mm DoF Table</h3><p>Near and far limits for the most-owned lens on the planet, fully computed.</p><span class="card-go">Read guide →</span></a>
+    <a class="card" href="pages/dof-table-85mm.html"><div class="icon-tile">📏</div><h3>85mm DoF Table</h3><p>The portrait lens, computed: f/1.2–f/8 at every distance.</p><span class="card-go">Read guide →</span></a>
   </div>
 
   <h2>Frequently asked questions</h2>
