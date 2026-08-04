@@ -21,6 +21,7 @@
   ];
 
   const FOOT_LINKS = [
+    ["Free Tools", "/pages/free-photography-calculators.html"],
     ["About", "/pages/about.html"],
     ["Contact", "/pages/contact.html"],
     ["Privacy Policy", "/pages/privacy.html"],
@@ -48,6 +49,12 @@
         '<nav class="fnav" aria-label="Footer navigation">' +
         FOOT_LINKS.map(l => '<a href="' + l[1] + '">' + l[0] + "</a>").join("") +
         "</nav></div>";
+      // above-footer ad slot (renders only post-approval + consent; inert otherwise)
+      const slot = document.createElement("div");
+      slot.className = "ad-slot";
+      slot.id = "ad-footer";
+      slot.dataset.ad = "footer";
+      footer.parentNode.insertBefore(slot, footer);
     }
   }
 
