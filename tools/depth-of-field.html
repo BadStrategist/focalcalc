@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Depth of Field Calculator — DoF & Hyperfocal Distance | FocalCalc</title>
+<title>Free Depth of Field Calculator — DoF & Hyperfocal Distance | ShutterMath</title>
 <meta name="description" content="Free depth of field calculator with a modern camera database (Sony, Canon, Nikon, Fujifilm, Micro 4/3, phones). Near/far limits, hyperfocal distance, visual DoF bar — no sign-up.">
-<link rel="canonical" href="https://focalcalc.com/tools/depth-of-field.html">
+<link rel="canonical" href="https://shuttermath.com/tools/depth-of-field.html">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Depth of Field Calculator — FocalCalc">
+<meta property="og:title" content="Depth of Field Calculator — ShutterMath">
 <meta property="og:description" content="Accurate DoF and hyperfocal distance for the camera you actually own. Modern camera database, visual results, printable cheat sheets.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://focalcalc.com/tools/depth-of-field.html">
+<meta property="og:url" content="https://shuttermath.com/tools/depth-of-field.html">
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
 <script type="application/ld+json">
@@ -18,7 +18,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Depth of Field Calculator",
-  "url": "https://focalcalc.com/tools/depth-of-field.html",
+  "url": "https://shuttermath.com/tools/depth-of-field.html",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Any",
   "isAccessibleForFree": true,
@@ -31,9 +31,9 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is a good circle of confusion for depth of field?", "acceptedAnswer": { "@type": "Answer", "text": "The standard convention is sensor diagonal divided by 1500. For full frame that is about 0.029-0.030 mm, APS-C about 0.019-0.020 mm, and Micro 4/3 about 0.015 mm. FocalCalc applies this automatically from your camera's sensor size." } },
+    { "@type": "Question", "name": "What is a good circle of confusion for depth of field?", "acceptedAnswer": { "@type": "Answer", "text": "The standard convention is sensor diagonal divided by 1500. For full frame that is about 0.029-0.030 mm, APS-C about 0.019-0.020 mm, and Micro 4/3 about 0.015 mm. ShutterMath applies this automatically from your camera's sensor size." } },
     { "@type": "Question", "name": "How is depth of field calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Depth of field uses the hyperfocal distance H = f²/(N·c) + f, where f is focal length, N is aperture number and c is circle of confusion. The near limit is H·s/(H+s−f) and the far limit is H·s/(H−s−f) for a focus distance s; when s reaches H the far limit is infinity." } },
-    { "@type": "Question", "name": "Why is my depth of field different from other calculators?", "acceptedAnswer": { "@type": "Answer", "text": "Differences come from the circle of confusion standard (diagonal/1500 vs 1/1000 inch vs sensor-pixel based), the exact sensor dimensions, and whether the lens formula adds the focal length term. FocalCalc uses the standard diagonal/1500 convention with exact sensor sizes." } },
+    { "@type": "Question", "name": "Why is my depth of field different from other calculators?", "acceptedAnswer": { "@type": "Answer", "text": "Differences come from the circle of confusion standard (diagonal/1500 vs 1/1000 inch vs sensor-pixel based), the exact sensor dimensions, and whether the lens formula adds the focal length term. ShutterMath uses the standard diagonal/1500 convention with exact sensor sizes." } },
     { "@type": "Question", "name": "How much depth of field is in front of vs behind the focus point?", "acceptedAnswer": { "@type": "Answer", "text": "At distances well below hyperfocal, roughly one third of the depth of field is in front of the focus point and two thirds behind it. The split approaches 50/50 as focus distance approaches the hyperfocal distance." } }
   ]
 }
@@ -307,7 +307,7 @@
   /* ---- copy / share / print ---- */
   el("copy").addEventListener("click", function () {
     var c = camByName(el("camera").value);
-    var txt = "FocalCalc · " + (c ? c.name : "Custom camera") + "\n" +
+    var txt = "ShutterMath · " + (c ? c.name : "Custom camera") + "\n" +
       "Focal: " + el("focal").value + " mm · Aperture: f/" + el("aperture").value + " · Focus: " + el("dist").value + " " + unit + "\n" +
       "Hyperfocal: " + el("r-h").textContent + " · Near: " + el("r-near").textContent + " · Far: " + el("r-far").textContent + " · DoF: " + el("r-dof").textContent;
     navigator.clipboard.writeText(txt).then(function () { alert("Copied to clipboard"); });

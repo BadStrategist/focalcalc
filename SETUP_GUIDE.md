@@ -1,4 +1,4 @@
-# FocalCalc — 5-Minute Setup Guide (analytics, Search Console, domain)
+# ShutterMath — 5-Minute Setup Guide (analytics, Search Console, domain)
 
 Everything below is designed so the site works perfectly with **nothing** configured
 (ads inert, analytics inert, no consent spam). These steps add the growth layer.
@@ -7,12 +7,12 @@ Everything below is designed so the site works perfectly with **nothing** config
 
 ## 1. Analytics (GoatCounter) — ~2 minutes, free, no consent banner needed
 
-1. Sign up at https://www.goatcounter.com/signup (free tier). Pick a site code, e.g. `focalcalc`.
+1. Sign up at https://www.goatcounter.com/signup (free tier). Pick a site code, e.g. `shuttermath`.
 2. Open `assets/js/main.js`, find:
    ```js
-   const GOATCOUNTER_CODE = ""; // e.g. "focalcalc" -> https://focalcalc.goatcounter.com
+   const GOATCOUNTER_CODE = ""; // e.g. "shuttermath" -> https://shuttermath.goatcounter.com
    ```
-3. Set it: `const GOATCOUNTER_CODE = "focalcalc";`
+3. Set it: `const GOATCOUNTER_CODE = "shuttermath";`
 4. Commit + push. That's it — the counter loads on every page.
 
 Why GoatCounter: cookieless, no personal data, GDPR-friendly, shows in dashboards
@@ -22,7 +22,7 @@ lives in one place.
 ## 2. Google Search Console — ~3 minutes
 
 1. Go to https://search.google.com/search-console → **Add property** → **URL prefix**.
-2. Enter `https://badstrategist.github.io/focalcalc/` (use the GitHub URL for now; add
+2. Enter `https://badstrategist.github.io/shuttermath/` (use the GitHub URL for now; add
    the custom domain as a second property later).
 3. Choose the **HTML file** verification method → Google shows a token like `aB3xYz9Qw`.
 4. From the repo root, run:
@@ -31,12 +31,12 @@ lives in one place.
    ```
 5. Commit + push `googleaB3xYz9Qw.html` (takes ~1 min to deploy), click **Verify**.
 6. In the property: **Sitemaps** → submit `sitemap.xml` (the GitHub Pages URL,
-   i.e. `https://badstrategist.github.io/focalcalc/sitemap.xml`).
+   i.e. `https://badstrategist.github.io/shuttermath/sitemap.xml`).
 7. Wait 24–72h for the first impression data. That's the week-4 checkpoint data.
 
 ## 3. Custom domain (when you've picked the name)
 
-When you own the domain (e.g. focalcalc.com):
+When you own the domain (e.g. shuttermath.com):
 
 1. Tell me the domain — I'll add a `CNAME` file with it and push (10 minutes).
 2. At your registrar, add DNS records:

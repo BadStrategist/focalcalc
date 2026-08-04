@@ -1,4 +1,4 @@
-/* FocalCalc — core photography math. Standard published formulas.
+/* ShutterMath — core photography math. Standard published formulas.
    All DoF math in millimetres internally; helpers convert for display.
    Formulas:
      Hyperfocal:  H = f^2 / (N * c) + f

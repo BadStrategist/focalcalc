@@ -1,11 +1,11 @@
-/* FocalCalc — shared chrome: header/footer inject, consent gate, ad-slot renderer.
+/* ShutterMath — shared chrome: header/footer inject, consent gate, ad-slot renderer.
    Ad code is fully inert until ADSENSE_CLIENT is set post-approval — the site is
    self-sufficient without ads, per Google Publisher Policies. */
 (function () {
   "use strict";
 
   const SITE = {
-    name: "FocalCalc",
+    name: "ShutterMath",
     tagline: "Photography calculators that know the camera you own",
     year: new Date().getFullYear()
   };
@@ -33,7 +33,7 @@
     if (header) {
       header.innerHTML =
         '<div class="container">' +
-        '<a class="brand" href="/">Focal<span>Calc</span></a>' +
+        '<a class="brand" href="/">Shutter<span>Math</span></a>' +
         '<nav class="nav" aria-label="Main navigation">' +
         NAV.map(n => '<a href="' + n[1] + '">' + n[0] + "</a>").join("") +
         '</nav><button class="nav-toggle" aria-label="Menu">☰</button></div>';
@@ -109,7 +109,7 @@
 
   /* --- GoatCounter analytics: privacy-friendly, cookieless, GDPR-friendly.
      Inert until GOATCOUNTER_CODE is set (see SETUP_GUIDE.md). --- */
-  const GOATCOUNTER_CODE = ""; // e.g. "focalcalc" -> https://focalcalc.goatcounter.com
+  const GOATCOUNTER_CODE = ""; // e.g. "shuttermath" -> https://shuttermath.goatcounter.com
   function loadAnalytics() {
     if (GOATCOUNTER_CODE === "") return;
     const s = document.createElement("script");

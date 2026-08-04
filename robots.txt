@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://focalcalc.com/sitemap.xml
+Sitemap: https://shuttermath.com/sitemap.xml
