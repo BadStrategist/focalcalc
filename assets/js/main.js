@@ -39,7 +39,14 @@
         '</nav><button class="nav-toggle" aria-label="Menu">☰</button></div>';
       const t = header.querySelector(".nav-toggle");
       const nav = header.querySelector(".nav");
-      t.addEventListener("click", () => { nav.style.display = nav.style.display === "flex" ? "none" : "flex"; nav.style.flexDirection = "column"; nav.style.alignItems = "flex-start"; });
+      t.addEventListener("click", () => {
+        const open = nav.classList.toggle("open");
+        t.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+        nav.classList.remove("open");
+        t.setAttribute("aria-expanded", "false");
+      }));
     }
     const footer = document.querySelector(".site-footer");
     if (footer) {
