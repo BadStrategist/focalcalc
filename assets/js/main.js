@@ -86,9 +86,22 @@
     }
   };
 
+  /* --- GoatCounter analytics: privacy-friendly, cookieless, GDPR-friendly.
+     Inert until GOATCOUNTER_CODE is set (see SETUP_GUIDE.md). --- */
+  const GOATCOUNTER_CODE = ""; // e.g. "focalcalc" -> https://focalcalc.goatcounter.com
+  function loadAnalytics() {
+    if (GOATCOUNTER_CODE === "") return;
+    const s = document.createElement("script");
+    s.setAttribute("data-goatcounter", "https://" + GOATCOUNTER_CODE + ".goatcounter.com/count");
+    s.async = true;
+    s.src = "https://gc.zgo.at/count.js";
+    document.head.appendChild(s);
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     injectChrome();
     showConsent();
+    loadAnalytics();
     document.querySelectorAll("[data-ad]").forEach(el => window.FC_ADS.render(el.id || "ad-" + el.dataset.ad));
   });
 })();

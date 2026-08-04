@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Low Light Photography — Noise vs Blur Settings | FocalCalc</title>
+<meta name="description" content="Low light photography settings: the noise-vs-blur trade-off, which ISO to use, real EV numbers for night scenes, and when a tripod beats every sensor.">
+<link rel="canonical" href="https://focalcalc.com/pages/low-light.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Low Light Photography Guide — FocalCalc">
+<meta property="og:description" content="ISO, shutter and aperture strategy for night and indoor shooting — with real EV numbers.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Low Light Photography Settings","author":{"@type":"Organization","name":"FocalCalc"},"publisher":{"@type":"Organization","name":"FocalCalc"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides › Low Light</nav>
+  <h1>Low Light Photography — Noise vs Blur</h1>
+  <p class="muted">Every low-light shot is a trade: raise ISO and get noise, slow the shutter and get blur, open the aperture and lose depth of field. Here's how to pick the least-bad option — with the numbers.</p>
+
+  <h2>How dark is "low light"? (EV reality check)</h2>
+  <p>Exposure value (EV100) is the shorthand. The <a href="../tools/exposure.html">exposure calculator</a> computes it; here's the map:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th class="num">EV100</th><th>Scene</th><th>Handheld settings (f/1.8, ISO 3200)</th></tr></thead>
+    <tbody>
+      <tr><td class="num">15</td><td>Bright sun</td><td class="num">1/8000 s — you'll never see this</td></tr>
+      <tr><td class="num">10</td><td>Overcast day</td><td class="num">1/250 s</td></tr>
+      <tr><td class="num">7</td><td>Sunset / bright interior</td><td class="num">1/30 s — edge of handheld</td></tr>
+      <tr><td class="num">5</td><td>City night / lit street</td><td class="num">1/8 s — needs a tripod or IBIS</td></tr>
+      <tr><td class="num">3</td><td>Home interior, evening</td><td class="num">1/2 s — tripod territory</td></tr>
+      <tr><td class="num">0</td><td>Full moon night landscape</td><td class="num">8 s — tripod, or see astro</td></tr>
+      <tr><td class="num">-3</td><td>Starlight only</td><td class="num">60 s+ — astrophotography</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>The decision order</h2>
+  <ol>
+    <li><strong>Is the camera still?</strong> Tripod → use base ISO and whatever shutter/aperture you like; noise becomes irrelevant. This is the single biggest low-light upgrade, and it's free.</li>
+    <li><strong>Handheld? Set the slowest safe shutter first</strong> (1/focal length, or 2–4 stops slower with stabilization — see the <a href="shutter-speed-chart.html">shutter speed chart</a>). Blur from camera shake is unrecoverable; noise is at least manageable.</li>
+    <li><strong>Open the aperture as far as your depth of field allows</strong> (f/1.8 portrait vs f/5.6 group shot — the <a href="../tools/depth-of-field.html">DoF calculator</a> shows the cost).</li>
+    <li><strong>Then raise ISO last</strong>, until the meter is happy. Modern full-frame bodies are clean to 6400; APS-C to ~3200; phones fake it with multi-frame stacking.</li>
+  </ol>
+
+  <h2>ISO: the honest guide</h2>
+  <ul>
+    <li><strong>Base ISO (100–200):</strong> always when on a tripod.</li>
+    <li><strong>ISO 800–1600:</strong> invisible on most cameras. Free light for handheld shots.</li>
+    <li><strong>ISO 3200–6400:</strong> fine for full frame and good APS-C; noise is visible but printable. <em>Better than a blurry ISO 400 shot.</em></li>
+    <li><strong>ISO 12800+:</strong> emergency only — or embrace the grain; monochrome conversion hides it beautifully.</li>
+  </ul>
+
+  <h2>Two practical low-light recipes</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Situation</th><th>Settings</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Night street, handheld</td><td class="num">f/2.8 · 1/60 s · ISO 3200</td><td>Fast enough to freeze people; IBIS helps at 1/60</td></tr>
+      <tr><td>Night street, tripod</td><td class="num">f/8 · 8 s · ISO 100</td><td>Maximum DoF, zero noise; car lights streak</td></tr>
+      <tr><td>Indoor party, handheld</td><td class="num">f/1.8 · 1/125 s · ISO 1600–3200</td><td>Thin DoF accepted; motion frozen</td></tr>
+      <tr><td>Milky Way (wide)</td><td class="num">f/2 · 10–15 s · ISO 3200</td><td>See the <a href="../tools/star-trails.html">star trails calculator</a> for the max time</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Exposure Equivalence</h3><p>Trade ISO, shutter, and aperture with the math done.</p><a class="go" href="../tools/exposure.html">Open →</a></div>
+    <div class="card"><h3>Shutter Speed Chart</h3><p>The slowest safe handheld speed for your lens.</p><a class="go" href="shutter-speed-chart.html">Read →</a></div>
+    <div class="card"><h3>Star Trails Calculator</h3><p>Max shutter time before stars trail at night.</p><a class="go" href="../tools/star-trails.html">Open →</a></div>
+  </div>
+
+  <h2>Low light FAQ</h2>
+  <div class="faq">
+    <details><summary>Is high ISO noise or underexposure noise?</summary><p>Both. Noise is mostly set by how little light the sensor captures (underexposure), then amplified by ISO. "Expose to the right" — brighten the exposure in camera (via ISO or shutter) to keep signal high, then recover in post. Noise reduction software works best on properly exposed frames.</p></details>
+    <details><summary>Does image stabilization help moving subjects?</summary><p>No — IBIS/lens IS only cancels your shake, not subject motion. A person walking needs 1/60–1/125 regardless of stabilization. Stabilization buys handheld capability for static subjects (buildings, night streets).</p></details>
+    <details><summary>Why does my phone take better night shots than my camera?</summary><p>Phones stack many short exposures (computational photography) to cancel noise, then sharpen with AI. Your camera can do the same: bracket 5–10 shots on a tripod and average them in post — the "poor man's astro" technique that works for night cityscapes too.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

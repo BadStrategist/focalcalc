@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Long Exposure Photography — Settings &amp; ND Filter Workflow | FocalCalc</title>
+<meta name="description" content="Long exposure photography settings: the exact workflow from meter to shutter release, which ND filter strength for which effect, and the exposure math that makes silky water and light trails work.">
+<link rel="canonical" href="https://focalcalc.com/pages/long-exposure.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Long Exposure Photography Guide — FocalCalc">
+<meta property="og:description" content="The complete settings workflow: ND stops, exposure math, and technique.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Long Exposure Photography Settings and ND Filter Workflow","author":{"@type":"Organization","name":"FocalCalc"},"publisher":{"@type":"Organization","name":"FocalCalc"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides › Long Exposure</nav>
+  <h1>Long Exposure Photography — Settings &amp; Workflow</h1>
+  <p class="muted">Silky waterfalls, empty streets, streaking car lights: all the same trick — keep the shutter open long enough that motion becomes blur. Here's the exact workflow, with the math at each step.</p>
+
+  <h2>The workflow, step by step</h2>
+  <ol>
+    <li><strong>Compose and focus</strong> — focus, then switch to manual. Autofocus at f/11 in the dark will hunt.</li>
+    <li><strong>Set aperture + ISO:</strong> f/8–f/11 for depth of field (see <a href="depth-of-field-landscape.html">landscape DoF</a>), ISO 100 always.</li>
+    <li><strong>Meter without the filter</strong> — note the shutter speed your meter wants (e.g. 1/60 s at f/11).</li>
+    <li><strong>Decide your target time</strong> — how blurred do you want the motion?</li>
+    <li><strong>Find the ND stops:</strong> stops = log₂(target ÷ base). 1/60 s → 15 s needs log₂(900) ≈ <strong>9.8 stops</strong> → an ND1000 (10 stops) gets you to ~17 s.</li>
+    <li><strong>Mount the filter, set bulb (or the computed speed), release</strong> — remote release or 2-second timer, never your finger.</li>
+    <li><strong>Check the histogram</strong> — if highlights clip, add a stop of ND or shorten; the first frame is a test frame.</li>
+  </ol>
+
+  <h2>Which effect needs which exposure</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Effect</th><th class="num">Typical time</th><th class="num">ND needed (from 1/60 s base)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Slight motion in water</td><td class="num">¼ – 1 s</td><td class="num">ND8–ND16 (3–4 stops)</td><td>Mist starts; keep rocks crisp</td></tr>
+      <tr><td>Silky waterfall</td><td class="num">2 – 8 s</td><td class="num">ND64–ND1000 (6–10 stops)</td><td>The classic look</td></tr>
+      <tr><td>Empty streets / crowds gone</td><td class="num">15 – 60 s</td><td class="num">ND1000+ (10+ stops)</td><td>People vanish; car lights streak</td></tr>
+      <tr><td>Light trails</td><td class="num">10 – 30 s</td><td class="num">ND1000 (10 stops)</td><td>Night — often no ND needed</td></tr>
+      <tr><td>Clouds streaking</td><td class="num">1 – 5 min</td><td class="num">ND1000+ stacked</td><td>Check for sensor hotspots</td></tr>
+    </tbody>
+  </table></div>
+  <p>Run your own numbers with the <a href="../tools/nd-filter.html">ND filter calculator</a> or read straight off the <a href="nd-filter-long-exposure-chart.html">long exposure chart</a>.</p>
+
+  <h2>The three mistakes that ruin long exposures</h2>
+  <ul>
+    <li><strong>Shooting at f/22 "for sharpness."</strong> Diffraction beats the DoF gain; f/8–f/11 is sharper. If you need more depth, focus-stack.</li>
+    <li><strong>Trusting the filter's rated density.</strong> Budget NDs can be off by a third of a stop — meter through the filter when possible, or bracket.</li>
+    <li><strong>Camera shake you can't see.</strong> Tripod + remote + mirror lockup (DSLRs) + switch off image stabilization on the tripod (it can hunt and add micro-shake).</li>
+  </ul>
+
+  <h2>Long exposure math, plainly</h2>
+  <p>Each ND stop doubles the shutter time: 1/60 → 1/30 → 1/15 → 1/8 → ¼ → ½ → 1 s → 2 s → 4 s → 8 s → 16 s → 32 s. Ten stops (ND1000) turns 1/60 s into ~17 s. That's the entire calculation — the calculator and chart just do it for you, including the awkward fractions.</p>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>ND Filter Calculator</h3><p>Exact shutter for any filter and base exposure.</p><a class="go" href="../tools/nd-filter.html">Open →</a></div>
+    <div class="card"><h3>ND Filter Long Exposure Chart</h3><p>The full pre-computed table, printable.</p><a class="go" href="nd-filter-long-exposure-chart.html">Read →</a></div>
+    <div class="card"><h3>Shutter Speed Chart</h3><p>Waterfall times and everything else in one table.</p><a class="go" href="shutter-speed-chart.html">Read →</a></div>
+  </div>
+
+  <h2>Long exposure FAQ</h2>
+  <div class="faq">
+    <details><summary>Do I need a 10-stop ND, or is 6 enough?</summary><p>It depends on the effect. ND64 (6 stops) takes 1/60 s to ~1 s — fine for misty water. ND1000 (10 stops) reaches 15–30 s — the crowd-removing, cloud-streaking territory. Most photographers own both; a variable ND covers the middle.</p></details>
+    <details><summary>Why is my long exposure purple or green?</summary><p>Color cast from the ND filter — cheap filters shift toward magenta/green. Fix in post with a white-balance eyedropper on a neutral area, or buy higher-quality glass. Stacking two cheap filters worsens the cast.</p></details>
+    <details><summary>Can I do long exposures on a phone?</summary><p>Modern phones have built-in long exposure / light-trail modes that stack frames instead of opening the shutter — different technique, same look. The composition and subject advice here applies identically.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
