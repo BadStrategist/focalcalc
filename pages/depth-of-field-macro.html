@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Depth of Field for Macro Photography — Magnification &amp; Stacking | FocalCalc</title>
+<meta name="description" content="Macro depth of field explained: why DoF shrinks with magnification, effective aperture, and the focus-stacking workflow that gets whole subjects sharp at 1:1 and beyond.">
+<link rel="canonical" href="https://focalcalc.com/pages/depth-of-field-macro.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Depth of Field for Macro — FocalCalc">
+<meta property="og:description" content="Macro DoF math, effective aperture, and stacking workflow.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Depth of Field for Macro Photography","author":{"@type":"Organization","name":"FocalCalc"},"publisher":{"@type":"Organization","name":"FocalCalc"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides › Macro DoF</nav>
+  <h1>Depth of Field for Macro Photography</h1>
+  <p class="muted">Macro is where depth of field stops being "a couple of meters" and becomes fractions of a millimeter. The math is different, the tools are different, and the workflow is focus stacking.</p>
+
+  <h2>The magnification problem</h2>
+  <p>At macro distances, depth of field follows <strong>DoF ≈ 2·N·c·(m+1)/m²</strong>, where m is magnification (1:1 = 1.0). The m² term is the killer — each doubling of magnification quarters the depth of field:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Magnification</th><th class="num">DoF at f/8 (full frame)</th><th class="num">Effective aperture</th></tr></thead>
+    <tbody>
+      <tr><td>1:4 (0.25×)</td><td class="num">~1.2 mm</td><td class="num">f/10</td></tr>
+      <tr><td>1:2 (0.5×)</td><td class="num">~0.52 mm</td><td class="num">f/12</td></tr>
+      <tr><td>1:1 (1.0×)</td><td class="num">~0.23 mm</td><td class="num">f/16</td></tr>
+      <tr><td>2:1 (2.0×)</td><td class="num">~0.07 mm</td><td class="num">f/24</td></tr>
+      <tr><td>3:1 (3.0×)</td><td class="num">~0.04 mm</td><td class="num">f/32</td></tr>
+    </tbody>
+  </table></div>
+  <p>An insect's eye sits maybe 1–2 mm from its wing — a 1:1 shot at f/8 can't hold both. And the effective aperture column shows the second problem: at 1:1, f/8 set is f/16 effective, losing two stops of light and gaining diffraction. Your exact numbers are in the <a href="../tools/macro-dof.html">macro DoF calculator</a>.</p>
+
+  <h2>Why stopping down fails</h2>
+  <p>At 1:1, going from f/8 to f/16 doubles the DoF (0.23 → 0.46 mm) but the effective aperture hits f/32 — where diffraction has already softened everything to a similar blur as the DoF gain. The image looks "sharp" nowhere. This is why pro macro is done at f/5.6–f/11 with stacking, not f/32 single shots.</p>
+
+  <h2>The focus-stacking workflow</h2>
+  <ol>
+    <li><strong>Rig it:</strong> camera on a rail (or tripod with a focusing rail); subject still. Focus ring moves the lens, the rail moves the camera — for 1:1+ use the rail.</li>
+    <li><strong>Shoot wide-ish:</strong> f/5.6–f/11 (f/8 typical) to minimize diffraction while keeping a usable step size.</li>
+    <li><strong>Step by 80% of the DoF:</strong> the calculator's <em>stacking step</em> output is exactly this — move focus that far between frames. Overlap 20–30% so the stacking software has matching detail.</li>
+    <li><strong>Merge:</strong> Helicon Focus or Photoshop (Edit → Auto-Blend Layers). Review edges for halos; if present, use a smaller step.</li>
+  </ol>
+  <p>A 3 mm-deep subject at 1:1 with 0.23 mm DoF needs roughly <strong>15–20 frames</strong>. Live subjects (breathing, swaying) force a compromise: wider aperture, faster shutter, flash, and a smaller stack.</p>
+
+  <h2>Lighting and exposure at high magnification</h2>
+  <ul>
+    <li><strong>Effective aperture light loss:</strong> your camera meters through the lens so exposure is usually right — but manual flash math must add the stops (at 1:1, add 2 stops).</li>
+    <li><strong>Diffusion beats power:</strong> a diffused flash near the lens (ring or twin-flash) gives the short, motion-freezing light macro needs; continuous light means slower shutter and more shake.</li>
+    <li><strong>Focus at working aperture:</strong> focus wide open to see, stop down to shoot, or use focus peaking if available.</li>
+  </ul>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Macro DoF Calculator</h3><p>DoF, effective aperture, and stacking step for your magnification.</p><a class="go" href="../tools/macro-dof.html">Open →</a></div>
+    <div class="card"><h3>Shutter Speed Chart</h3><p>Handheld macro needs 1/200 s or faster.</p><a class="go" href="shutter-speed-chart.html">Read →</a></div>
+    <div class="card"><h3>Exposure Equivalence</h3><p>Recompute exposure when effective aperture bites.</p><a class="go" href="../tools/exposure.html">Open →</a></div>
+  </div>
+
+  <h2>Macro DoF FAQ</h2>
+  <div class="faq">
+    <details><summary>Do I need a macro lens for focus stacking?</summary><p>No — extension tubes, close-up filters, or reversing rings on a normal lens all work. What matters is controlled focus movement: a rail for 1:1+, or a lens with a smooth focus ring for lower magnifications.</p></details>
+    <details><summary>Why does my 100 mm macro show more DoF than a 60 mm at the same magnification?</summary><p>At the same magnification, focal length mostly cancels out of the macro DoF formula — the difference you see is usually working distance (100 mm lets you shoot from farther, which helps light and skittish subjects, not DoF).</p></details>
+    <details><summary>Can I stack handheld shots?</summary><p>Software can align handheld stacks, but success drops fast at 1:1 — the alignment quality suffers and steps become uneven. Tripod + rail until the subject forces you handheld, then burst-shoot and hope for 2–4 usable frames.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

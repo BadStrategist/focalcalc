@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Print Resolution Calculator — Pixels, DPI &amp; Print Size | FocalCalc</title>
+<meta name="description" content="Calculate the largest print size for your camera's megapixels at any DPI — or the pixels needed for a target print. Includes the megapixel print size chart for 150, 240, 300 and 600 DPI.">
+<link rel="canonical" href="https://focalcalc.com/tools/print-resolution.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Print Resolution Calculator — FocalCalc">
+<meta property="og:description" content="Megapixels → print size at any DPI, or pixels needed for any print. With the full chart.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Print Resolution Calculator","url":"https://focalcalc.com/tools/print-resolution.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Print Resolution Calculator</nav>
+  <h1>Print Resolution Calculator</h1>
+  <p class="muted">The honest answer to "how big can I print?" — based on your camera's real pixel dimensions and the DPI your print lab actually uses.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>1 · Your image</h2>
+      <div class="field"><label for="camera">Camera (or Custom)</label><select id="camera"></select></div>
+      <div class="row2">
+        <div class="field"><label for="pxw">Width (pixels)</label><input id="pxw" type="number" min="1" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="pxh">Height (pixels)</label><input id="pxh" type="number" min="1" step="any" inputmode="decimal"></div>
+      </div>
+      <h2 style="margin-top:1rem">2 · Print DPI</h2>
+      <div class="field"><label for="dpi">DPI</label><select id="dpi">
+        <option value="150">150 DPI — large format / viewing from distance</option>
+        <option value="200">200 DPI — good general print</option>
+        <option value="240">240 DPI — photo-lab standard</option>
+        <option value="300" selected>300 DPI — max detail / fine art</option>
+        <option value="600">600 DPI — reproduction / line art</option>
+      </select></div>
+      <div class="callout warn mt1">💡 <strong>Reality check:</strong> most photo labs print at <strong>240–300 DPI</strong>, and big-wall canvases are usually printed at <strong>150 DPI</strong>. 300 DPI is not "required" for large prints — viewing distance matters more than the number.</div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Result</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k">Print size @ DPI</div><div class="v" id="r-size">—</div><div class="s" id="r-size-s">width × height</div></div>
+        <div class="result"><div class="k">Megapixels</div><div class="v" id="r-mp">—</div><div class="s">native resolution</div></div>
+        <div class="result"><div class="k">Pixels per cm</div><div class="v" id="r-ppc">—</div><div class="s">at selected DPI</div></div>
+      </div>
+      <div class="mt1"><div class="k muted" style="font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;font-weight:700">Other common DPIs</div>
+      <div class="table-wrap"><table id="dpi-table"><thead><tr><th>DPI</th><th class="num">Print size</th><th>Use case</th></tr></thead><tbody></tbody></table></div></div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-print" data-ad="print"></div>
+
+  <h2>Megapixel print size chart</h2>
+  <p>Maximum print dimensions at the three most common DPIs, for typical camera resolutions (3:2 aspect):</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Megapixels</th><th class="num">Pixel dimensions</th><th class="num">@ 150 DPI</th><th class="num">@ 240 DPI</th><th class="num">@ 300 DPI</th></tr></thead>
+    <tbody>
+      <tr><td>12 MP</td><td class="num">4,288 × 2,848</td><td class="num">28.6 × 19.0 in</td><td class="num">17.9 × 11.9 in</td><td class="num">14.3 × 9.5 in</td></tr>
+      <tr><td>20 MP</td><td class="num">5,472 × 3,648</td><td class="num">36.5 × 24.3 in</td><td class="num">22.8 × 15.2 in</td><td class="num">18.2 × 12.2 in</td></tr>
+      <tr><td>24 MP</td><td class="num">6,000 × 4,000</td><td class="num">40.0 × 26.7 in</td><td class="num">25.0 × 16.7 in</td><td class="num">20.0 × 13.3 in</td></tr>
+      <tr><td>33 MP</td><td class="num">7,008 × 4,672</td><td class="num">46.7 × 31.1 in</td><td class="num">29.2 × 19.5 in</td><td class="num">23.4 × 15.6 in</td></tr>
+      <tr><td>45 MP</td><td class="num">8,192 × 5,464</td><td class="num">54.6 × 36.4 in</td><td class="num">34.1 × 22.8 in</td><td class="num">27.3 × 18.2 in</td></tr>
+      <tr><td>50 MP</td><td class="num">8,640 × 5,760</td><td class="num">57.6 × 38.4 in</td><td class="num">36.0 × 24.0 in</td><td class="num">28.8 × 19.2 in</td></tr>
+      <tr><td>61 MP</td><td class="num">9,504 × 6,336</td><td class="num">63.4 × 42.2 in</td><td class="num">39.6 × 26.4 in</td><td class="num">31.7 × 21.1 in</td></tr>
+      <tr><td>100 MP</td><td class="num">11,600 × 8,700</td><td class="num">77.3 × 58.0 in</td><td class="num">48.3 × 36.3 in</td><td class="num">38.7 × 29.0 in</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>What DPI do you actually need?</h2>
+  <ul>
+    <li><strong>300 DPI</strong> — the fine-art standard for prints viewed up close (A4 and smaller).</li>
+    <li><strong>240 DPI</strong> — the typical photo-lab ceiling; most labs print at this and it's indistinguishable from 300 in practice.</li>
+    <li><strong>150 DPI</strong> — perfectly fine for large wall prints and canvases viewed from arm's length or more. A 24 MP camera prints 40×27 in at 150 DPI.</li>
+    <li><strong>Below ~100 DPI</strong> — softness becomes visible at normal viewing distances; resize with care.</li>
+  </ul>
+
+  <h2>Print resolution FAQ</h2>
+  <div class="faq">
+    <details><summary>Can I print bigger than the calculator says?</summary><p>Yes — software upscaling (or the lab's own upscaler) can print any size; the calculator shows the size at which every pixel maps cleanly to the DPI grid. Most labs upsample to 300 DPI automatically, and modern AI upscalers make modest enlargements invisible.</p></details>
+    <details><summary>Is 300 DPI always better than 150 DPI?</summary><p>For the same print size, higher DPI means more detail only if the viewing distance is close. A 40-inch print viewed from 6 feet at 150 DPI looks identical to 300 DPI to most eyes. Choose DPI by viewing distance, not by the maximum number.</p></details>
+    <details><summary>What DPI should I use for a canvas or metal print?</summary><p>Canvas: 150 DPI is the norm (the texture hides detail anyway). Metal and acrylic: 240–300 DPI recommended since they're glossy and often viewed close.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var cameras = [];
+  function loadJSON(url, cb) { fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function () {}); }
+  loadJSON("../data/cameras.json", function (d) {
+    cameras = d.cameras;
+    var sel = el("camera"), groups = {}, custom = document.createElement("option");
+    custom.value = ""; custom.textContent = "Custom resolution…";
+    sel.appendChild(custom);
+    cameras.slice().sort(function (a, b) { return b.pop - a.pop; }).forEach(function (c) {
+      var o = document.createElement("option"); o.value = c.name; o.textContent = c.name + " (" + Math.round(c.px_w * c.px_h / 1e6) + " MP)";
+      sel.appendChild(o);
+    });
+    sel.value = ""; compute();
+  });
+  function camByName(n) { for (var i = 0; i < cameras.length; i++) if (cameras[i].name === n) return cameras[i]; return null; }
+  function cm(inches) { return Math.round(inches * 2.54); }
+  function sizeLabel(w, h) { return w + " × " + h + " in  (" + cm(w) + " × " + cm(h) + " cm)"; }
+  el("camera").addEventListener("change", function () {
+    var c = camByName(el("camera").value);
+    if (c) { el("pxw").value = c.px_w; el("pxh").value = c.px_h; }
+    compute();
+  });
+  ["pxw", "pxh", "dpi"].forEach(function (id) { el(id).addEventListener("input", compute); });
+  function compute() {
+    var w = parseInt(el("pxw").value, 10), h = parseInt(el("pxh").value, 10), dpi = parseFloat(el("dpi").value);
+    if (!w || !h || !dpi) return;
+    var mp = w * h / 1e6;
+    el("r-mp").textContent = Math.round(mp * 10) / 10 + " MP";
+    el("r-size").textContent = sizeLabel(Math.round(w / dpi * 100) / 100, Math.round(h / dpi * 100) / 100);
+    el("r-size-s").textContent = "at " + dpi + " DPI";
+    el("r-ppc").textContent = Math.round(dpi / 2.54) + " px/cm";
+    var tbody = el("dpi-table").querySelector("tbody");
+    tbody.innerHTML = "";
+    var cases = [[150, "large format / viewing from distance"], [200, "good general print"], [240, "photo-lab standard"], [300, "max detail / fine art"], [600, "reproduction / line art"]];
+    cases.forEach(function (c) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = "<td>" + c[0] + "</td><td class='num'>" + sizeLabel(Math.round(w / c[0] * 100) / 100, Math.round(h / c[0] * 100) / 100) + "</td><td>" + c[1] + "</td>";
+      tbody.appendChild(tr);
+    });
+  }
+  compute();
+})();
+</script>
+</body>
+</html>

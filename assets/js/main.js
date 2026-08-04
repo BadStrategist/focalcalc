@@ -16,8 +16,8 @@
     ["ND Filter", "/tools/nd-filter.html"],
     ["Flash GN", "/tools/flash-guide-number.html"],
     ["Pixel Scale", "/tools/pixel-scale.html"],
-    ["Field of View", "/tools/field-of-view.html"],
-    ["Guides", "/pages/hyperfocal-chart.html"]
+    ["Shutter Angle", "/tools/shutter-angle.html"],
+    ["Guides", "/pages/guides.html"]
   ];
 
   const FOOT_LINKS = [

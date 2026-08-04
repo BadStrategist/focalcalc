@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shutter Angle Calculator — 180° Rule for Video | FocalCalc</title>
+<meta name="description" content="Convert shutter angle to shutter speed (and back) for video: the 180-degree rule, frame rates from 24 to 120 fps, and the motion-blur math behind cinematic footage.">
+<link rel="canonical" href="https://focalcalc.com/tools/shutter-angle.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Shutter Angle Calculator — FocalCalc">
+<meta property="og:description" content="The 180° rule, computed: shutter angle ↔ speed for any frame rate.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Shutter Angle Calculator","url":"https://focalcalc.com/tools/shutter-angle.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Shutter Angle Calculator</nav>
+  <h1>Shutter Angle Calculator</h1>
+  <p class="muted">In video, shutter speed is described as an angle. The cinematic standard — the <strong>180° rule</strong> — sets the shutter to <strong>1/(2 × frame rate)</strong>: 1/48 s at 24 fps, 1/60 s at 30 fps, 1/120 s at 60 fps. That's the natural motion blur your eye expects.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Angle → speed</h2>
+      <div class="row2">
+        <div class="field"><label for="fps">Frame rate (fps)</label><select id="fps">
+          <option value="23.976">23.976 (cinema)</option>
+          <option value="24" selected>24</option>
+          <option value="25">25 (PAL)</option>
+          <option value="30">30</option>
+          <option value="50">50 (PAL)</option>
+          <option value="60">60</option>
+          <option value="120">120 (slow-mo)</option>
+        </select></div>
+        <div class="field"><label for="angle">Shutter angle (°)</label><select id="angle">
+          <option value="360">360 — max motion blur</option>
+          <option value="270">270</option>
+          <option value="180" selected>180 — the standard</option>
+          <option value="90">90 — crisper motion</option>
+          <option value="45">45 — staccato look</option>
+          <option value="11.25">11.25 (1/864 @ 24)</option>
+        </select></div>
+      </div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Result</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k">Shutter speed</div><div class="v" id="r-speed">—</div><div class="s">for this angle</div></div>
+        <div class="result inf"><div class="k">180° speed</div><div class="v" id="r-180">—</div><div class="s">the cinematic reference</div></div>
+      </div>
+      <div class="callout good mt1">🎬 <strong>Reading:</strong> at <span id="r-fps-inline"></span> fps the 180° shutter is <strong id="r-180-inline"></strong>. Set this and motion looks natural. Go wider (270–360°) for dreamy blur, narrower (90–45°) for crisp, staccato motion — but stay near 180° for the "film look".</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-angle" data-ad="angle"></div>
+
+  <h2>Common frame rate × angle table</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th class="num">FPS</th><th class="num">360°</th><th class="num">270°</th><th class="num">180°</th><th class="num">90°</th><th class="num">45°</th></tr></thead>
+    <tbody>
+      <tr><td class="num">24</td><td class="num">1/24 s</td><td class="num">1/32 s</td><td class="num">1/48 s</td><td class="num">1/96 s</td><td class="num">1/192 s</td></tr>
+      <tr><td class="num">25</td><td class="num">1/25 s</td><td class="num">1/33 s</td><td class="num">1/50 s</td><td class="num">1/100 s</td><td class="num">1/200 s</td></tr>
+      <tr><td class="num">30</td><td class="num">1/30 s</td><td class="num">1/40 s</td><td class="num">1/60 s</td><td class="num">1/120 s</td><td class="num">1/240 s</td></tr>
+      <tr><td class="num">50</td><td class="num">1/50 s</td><td class="num">1/67 s</td><td class="num">1/100 s</td><td class="num">1/200 s</td><td class="num">1/400 s</td></tr>
+      <tr><td class="num">60</td><td class="num">1/60 s</td><td class="num">1/80 s</td><td class="num">1/120 s</td><td class="num">1/240 s</td><td class="num">1/480 s</td></tr>
+      <tr><td class="num">120</td><td class="num">1/120 s</td><td class="num">1/160 s</td><td class="num">1/240 s</td><td class="num">1/480 s</td><td class="num">1/960 s</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Shutter angle FAQ</h2>
+  <div class="faq">
+    <details><summary>Why 180 degrees?</summary><p>Shutter angle describes how long the shutter stays open per frame, as a fraction of a full rotation. At 180° it's open half the frame time, giving motion blur that matches how the eye tracks movement — too open (360°) blurs, too closed (45°) stutters.</p></details>
+    <details><summary>What shutter speed for slow motion?</summary><p>Same rule: 1/(2 × fps). At 120 fps that's 1/240 s. Many cameras auto-set this when you select 180° in video mode — check your menu.</p></details>
+    <details><summary>Does the 180° rule apply to stills?</summary><p>No — stills use shutter speed directly (1/focal length or faster for handheld). The angle system is a video/cinema convention, though the motion-blur logic is the same.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  function fmt(t) { return "1/" + Math.round(t < 1 ? 1 / t : t * 1000) + " s"; }
+  function compute() {
+    var fps = parseFloat(el("fps").value), angle = parseFloat(el("angle").value);
+    if (!fps || !angle) return;
+    var s = FC.shutterFromAngle(fps, angle);
+    el("r-speed").textContent = fmt(s);
+    el("r-180").textContent = fmt(FC.shutterFromAngle(fps, 180));
+    el("r-fps-inline").textContent = fps;
+    el("r-180-inline").textContent = fmt(FC.shutterFromAngle(fps, 180));
+  }
+  ["fps", "angle"].forEach(function (id) { el(id).addEventListener("change", compute); });
+  compute();
+})();
+</script>
+</body>
+</html>

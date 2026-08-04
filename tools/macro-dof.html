@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Macro Depth of Field Calculator — Magnification &amp; Focus Stacking | FocalCalc</title>
+<meta name="description" content="Macro DoF calculator: depth of field at your reproduction ratio (1:1, 1:2…), effective aperture, and the focus-stacking step size for razor-sharp macro shots.">
+<link rel="canonical" href="https://focalcalc.com/tools/macro-dof.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Macro Depth of Field Calculator — FocalCalc">
+<meta property="og:description" content="DoF, effective aperture and stacking step size for macro photography.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Macro Depth of Field Calculator","url":"https://focalcalc.com/tools/macro-dof.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Macro DoF Calculator</nav>
+  <h1>Macro Depth of Field Calculator</h1>
+  <p class="muted">At macro distances the normal DoF formulas break down — magnification takes over. This calculator uses the magnification-based approximation, reports your <strong>effective aperture</strong>, and gives you the exact <strong>focus-stacking step size</strong>.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Your setup</h2>
+      <div class="field"><label for="camera">Camera</label><select id="camera"></select></div>
+      <div class="field"><label for="mag">Magnification (reproduction ratio)</label><select id="mag">
+        <option value="0.1">1:10 (0.1×)</option>
+        <option value="0.25">1:4 (0.25×)</option>
+        <option value="0.5" selected>1:2 (0.5×)</option>
+        <option value="1">1:1 (1.0×)</option>
+        <option value="2">2:1 (2.0×)</option>
+        <option value="3">3:1 (3.0×)</option>
+        <option value="5">5:1 (5.0×)</option>
+      </select><div class="hint">1:1 = subject is life-size on the sensor · most macro lenses reach 1:1, extension tubes/reversing rings go beyond</div></div>
+      <div class="field"><label for="aperture">Set aperture (f/)</label><select id="aperture"></select><div class="hint">Macro lenses report the <em>set</em> f-stop; the effective aperture is wider (more light loss) as magnification rises</div></div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Result</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k">Depth of field</div><div class="v" id="r-dof">—</div><div class="s">at this magnification</div></div>
+        <div class="result"><div class="k">Effective aperture</div><div class="v" id="r-ne">—</div><div class="s">what the sensor sees</div></div>
+        <div class="result inf"><div class="k">Stacking step</div><div class="v" id="r-step">—</div><div class="s">move focus this far per shot</div></div>
+      </div>
+      <div class="callout good mt1">🔬 <strong>Reading:</strong> at <span id="r-mag-inline"></span> your total DoF is <strong id="r-dof-inline"></strong> — thinner than paper. To photograph a whole insect, shoot a stack: move focus <strong id="r-step-inline"></strong> between frames (overlap 20–30% for safety), then merge in Helicon Focus or Photoshop.</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-macro" data-ad="macro"></div>
+
+  <h2>Why macro DoF is different</h2>
+  <p>At 1:1 magnification, depth of field is roughly <strong>DoF ≈ 2·N·c·(m+1)/m²</strong> — it scales with the square of magnification, which is why 2:1 has about a quarter of the DoF of 1:1 at the same f-stop. Two practical consequences:</p>
+  <ul>
+    <li><strong>Stopping down barely helps.</strong> f/16 at 1:1 gives ~1.9 mm of DoF on full frame — and diffraction (plus effective-aperture light loss) is already visible.</li>
+    <li><strong>Effective aperture widens.</strong> At 1:1 the effective aperture is 2 stops slower than set: f/8 set = f/16 effective. Your meter and exposure need the compensation, which is why macro images look underexposed at high magnification.</li>
+  </ul>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Depth of Field Calculator</h3><p>The standard near/far calculator for non-macro work.</p><a class="go" href="depth-of-field.html">Open →</a></div>
+    <div class="card"><h3>Depth of Field for Macro</h3><p>Stacking workflow, lighting, and lens choices.</p><a class="go" href="../pages/depth-of-field-macro.html">Read →</a></div>
+    <div class="card"><h3>Exposure Equivalence</h3><p>Recompute exposure when effective aperture kicks in.</p><a class="go" href="exposure.html">Open →</a></div>
+  </div>
+
+  <h2>Macro DoF FAQ</h2>
+  <div class="faq">
+    <details><summary>Why is my sharp area so thin even at f/16?</summary><p>Because DoF falls with the square of magnification. At 2:1, f/16 gives under 1 mm. Diffraction also erodes sharpness beyond ~f/11 effective — which is exactly why macro photographers focus-stack instead of stopping down.</p></details>
+    <details><summary>What does effective aperture mean for exposure?</summary><p>The effective aperture is N × (1 + m). At 1:1 it's two stops narrower than set, so your camera's through-the-lens metering compensates automatically — but manual flash calculations must add those stops or your macro shots come out dark.</p></details>
+    <details><summary>How do I choose a stacking step size?</summary><p>Move focus by roughly 80% of the DoF per frame (the calculator's step uses this with safety overlap). Too big → gaps that even software can't stitch; too small → hundreds of redundant frames.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var cameras = [];
+  function loadJSON(url, cb) { fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function () {}); }
+  loadJSON("../data/cameras.json", function (d) {
+    cameras = d.cameras;
+    var sel = el("camera"), groups = {};
+    cameras.slice().sort(function (a, b) { return b.pop - a.pop; }).forEach(function (c) { (groups[c.brand] = groups[c.brand] || []).push(c); });
+    Object.keys(groups).forEach(function (b) {
+      var og = document.createElement("optgroup"); og.label = b;
+      groups[b].forEach(function (c) { var o = document.createElement("option"); o.value = c.name; o.textContent = c.name; og.appendChild(o); });
+      sel.appendChild(og);
+    });
+    sel.value = cameras[0].name; onCamera();
+  });
+  FC.stops.forEach(function (s) { var o = document.createElement("option"); o.value = s; o.textContent = "f/" + s; el("aperture").appendChild(o); });
+  el("aperture").value = "8";
+  function camByName(n) { for (var i = 0; i < cameras.length; i++) if (cameras[i].name === n) return cameras[i]; return null; }
+  function onCamera() {
+    var c = camByName(el("camera").value); if (!c) return;
+    el("camera").dataset.coc = FC.coc(c.sensor_w, c.sensor_h, FC.COC_DIV);
+    compute();
+  }
+  el("camera").addEventListener("change", onCamera);
+  ["mag", "aperture"].forEach(function (id) { el(id).addEventListener("change", compute); });
+  function fmtU(mm) { return mm >= 1 ? Math.round(mm * 100) / 100 + " mm" : Math.round(mm * 1000) + " µm"; }
+  function compute() {
+    var c = camByName(el("camera").value); if (!c) return;
+    var m = parseFloat(el("mag").value), N = parseFloat(el("aperture").value);
+    var coc = FC.coc(c.sensor_w, c.sensor_h, FC.COC_DIV);
+    if (!m || !N) return;
+    var dof = FC.macroDof(N, coc, m);
+    var ne = FC.effectiveAperture(N, m);
+    var step = dof * 0.8;
+    el("r-dof").textContent = fmtU(dof);
+    el("r-ne").textContent = "f/" + Math.round(ne * 10) / 10;
+    el("r-step").textContent = fmtU(step);
+    el("r-mag-inline").textContent = (m >= 1 ? m + ":1" : "1:" + Math.round(1 / m)) + " (" + m + "×)";
+    el("r-dof-inline").textContent = fmtU(dof);
+    el("r-step-inline").textContent = fmtU(step);
+  }
+  compute();
+})();
+</script>
+</body>
+</html>

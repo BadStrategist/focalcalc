@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>500 Rule &amp; NPF Calculator — Max Exposure for Sharp Stars | FocalCalc</title>
+<meta name="description" content="Calculate the maximum shutter time for sharp stars: 500/400/300 rules and the accurate NPF rule, using your camera's crop factor and pixel size. No star trails, no guessing.">
+<link rel="canonical" href="https://focalcalc.com/tools/star-trails.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="500 Rule & NPF Calculator — FocalCalc">
+<meta property="og:description" content="Max shutter time for sharp stars: 500/400/300 rules + NPF, with your camera's real pixel size.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"500 Rule and NPF Calculator","url":"https://focalcalc.com/tools/star-trails.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Star Trails Calculator</nav>
+  <h1>500 Rule &amp; NPF Calculator</h1>
+  <p class="muted">The maximum shutter time before stars visibly trail — computed three ways: the classic 500 rule, the stricter 300 rule for high-res sensors, and the <strong>NPF rule</strong>, which accounts for your camera's actual pixel size and aperture.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Your setup</h2>
+      <div class="field"><label for="camera">Camera</label><select id="camera"></select><div class="hint" id="px-info"></div></div>
+      <div class="row2">
+        <div class="field"><label for="focal">Focal length (mm)</label><input id="focal" type="number" min="1" max="2000" step="any" value="24" inputmode="decimal"></div>
+        <div class="field"><label for="aperture">Aperture (f/)</label><select id="aperture"></select></div>
+      </div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Max exposure times</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k">NPF rule (accurate)</div><div class="v" id="r-npf">—</div><div class="s">pixel-size aware</div></div>
+        <div class="result"><div class="k">500 rule</div><div class="v" id="r-500">—</div><div class="s">classic, forgiving</div></div>
+        <div class="result"><div class="k">300 rule</div><div class="v" id="r-300">—</div><div class="s">safer for high-res</div></div>
+      </div>
+      <div class="callout good mt1">🌌 <strong>How to use it:</strong> set your shutter to <strong id="r-npf-inline"></strong> (or just under), open the aperture fully, then raise ISO until the histogram is ⅓–½ from the left. Check at 100% zoom: if stars are still elongated, shorten by 20%.</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-astro" data-ad="astro"></div>
+
+  <h2>Which rule should you use?</h2>
+  <ul>
+    <li><strong>NPF rule</strong> — the accurate one. Formula: t = (35·N + 30·p) / f, where N is aperture, p is pixel size in µm, and f is the <em>full-frame equivalent</em> focal length. It accounts for both your sensor's pixel density and lens speed. Use this.</li>
+    <li><strong>500 rule</strong> — t = 500 / (focal × crop). Fine for older, lower-resolution sensors; visibly trails on 24 MP+ cameras at 100% view.</li>
+    <li><strong>300 rule</strong> — t = 300 / (focal × crop). A safer general choice for modern high-res sensors.</li>
+  </ul>
+  <p>All three assume you're shooting away from the celestial poles; pointing near Polaris (or Sigma Octantis) lets you push times 2–3× longer before trails appear.</p>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Astro Pixel Scale Calculator</h3><p>Is your sampling matched to your optics and seeing?</p><a class="go" href="pixel-scale.html">Open →</a></div>
+    <div class="card"><h3>Depth of Field for Astro</h3><p>Focusing at infinity, the f-ratio trade-off, and stacking.</p><a class="go" href="../pages/depth-of-field-astro.html">Read →</a></div>
+    <div class="card"><h3>Exposure Equivalence</h3><p>Balance ISO and shutter to hit the exact exposure.</p><a class="go" href="exposure.html">Open →</a></div>
+  </div>
+
+  <h2>Star exposure FAQ</h2>
+  <div class="faq">
+    <details><summary>Why do stars trail at long exposures?</summary><p>The Earth rotates ~15°/hour. A longer shutter moves each star across more pixels; when the movement exceeds about one pixel (or the pixel-size tolerance in NPF), the star becomes a streak instead of a point.</p></details>
+    <details><summary>Does the 500 rule still work on my 45 MP camera?</summary><p>Poorly — it was calibrated for 12–16 MP sensors. At 45 MP the pixels are ~4.4 µm and trails are visible well before 500/f. The NPF rule (or 300/f) is the right choice for modern sensors.</p></details>
+    <details><summary>What if I want star trails on purpose?</summary><p>Then ignore all rules — stack many long exposures (30 s–5 min each) and composite. The calculator's job is the opposite: keeping stars as points.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var cameras = [];
+  function loadJSON(url, cb) { fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function () {}); }
+  loadJSON("../data/cameras.json", function (d) {
+    cameras = d.cameras;
+    var sel = el("camera"), groups = {};
+    cameras.slice().sort(function (a, b) { return b.pop - a.pop; }).forEach(function (c) { (groups[c.brand] = groups[c.brand] || []).push(c); });
+    Object.keys(groups).forEach(function (b) {
+      var og = document.createElement("optgroup"); og.label = b;
+      groups[b].forEach(function (c) { var o = document.createElement("option"); o.value = c.name; o.textContent = c.name; og.appendChild(o); });
+      sel.appendChild(og);
+    });
+    sel.value = cameras[0].name; onCamera();
+  });
+  FC.stops.forEach(function (s) { var o = document.createElement("option"); o.value = s; o.textContent = "f/" + s; el("aperture").appendChild(o); });
+  el("aperture").value = "2.8";
+  function camByName(n) { for (var i = 0; i < cameras.length; i++) if (cameras[i].name === n) return cameras[i]; return null; }
+  function onCamera() {
+    var c = camByName(el("camera").value); if (!c) return;
+    var px = c.sensor_h / c.px_h * 1000;
+    el("px-info").textContent = c.format + " · crop " + Math.round(43.3 / Math.hypot(c.sensor_w, c.sensor_h) * 100) / 100 + "× · " + Math.round(px * 100) / 100 + " µm pixels";
+    compute();
+  }
+  el("camera").addEventListener("change", onCamera);
+  ["focal"].forEach(function (id) { el(id).addEventListener("input", compute); });
+  el("aperture").addEventListener("change", compute);
+  function fmt(s) { return s < 60 ? Math.round(s * 10) / 10 + " s" : Math.round(s / 60 * 10) / 10 + " min"; }
+  function compute() {
+    var c = camByName(el("camera").value); if (!c) return;
+    var f = parseFloat(el("focal").value), N = parseFloat(el("aperture").value);
+    if (!f || !N) return;
+    var crop = Math.hypot(36, 24) / Math.hypot(c.sensor_w, c.sensor_h);
+    var px = c.sensor_h / c.px_h * 1000;
+    var npf = FC.npfRule(f, crop, N, px);
+    el("r-npf").textContent = fmt(npf);
+    el("r-500").textContent = fmt(FC.starRule(f, crop, 500));
+    el("r-300").textContent = fmt(FC.starRule(f, crop, 300));
+    el("r-npf-inline").textContent = fmt(npf);
+  }
+  compute();
+})();
+</script>
+</body>
+</html>

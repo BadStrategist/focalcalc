@@ -77,6 +77,24 @@
       return Math.round(s * 1000) + " ms";
     },
     fmtStops: function (x) { return Math.round(x * 100) / 100; },
+    // --- exposure value (EV100 = log2(N^2 / t); standard convention) ---
+    ev100: (N, t_s) => Math.log2((N * N) / t_s),
+    evAtIso: (ev100, iso) => ev100 - Math.log2(iso / 100),
+    shutterFor: (N, ev) => (N * N) / Math.pow(2, ev),
+    apertureFor: (t_s, ev) => Math.sqrt(Math.pow(2, ev) * t_s),
+    // --- print resolution ---
+    dpiFrom: (px, inches) => px / inches,
+    inchesFrom: (px, dpi) => px / dpi,
+    maxPrint: (w, h, dpi) => ({ wIn: w / dpi, hIn: h / dpi }),
+    // --- astro star-exposure rules (seconds) ---
+    starRule: (focal, crop, rule) => rule / (focal * crop),
+    npfRule: (focal, crop, N, px_um) => (35 * N + 30 * px_um) / (focal * crop),
+    // --- macro (approx; m = magnification, e.g. 1:1 => 1) ---
+    macroDof: (N, coc_mm, m) => (2 * N * coc_mm * (m + 1)) / (m * m), // mm
+    effectiveAperture: (N, m) => N * (1 + m),
+    // --- video shutter angle ---
+    shutterFromAngle: (fps, angle) => 1 / (fps * 360 / angle),
+    angleFromShutter: (fps, t_s) => 360 * t_s * fps,
     // --- default CoC div (standard) ---
     COC_DIV: 1500
   };

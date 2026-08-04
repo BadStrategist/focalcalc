@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Astrophotography Focus &amp; Depth of Field — Sharp Stars Every Time | FocalCalc</title>
+<meta name="description" content="Astrophotography focusing and DoF: why you focus at infinity (not the lens mark), the f-ratio trade-off for Milky Way shots, and the 500/NPF star-exposure rules with real numbers.">
+<link rel="canonical" href="https://focalcalc.com/pages/depth-of-field-astro.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Astro Focus & DoF — FocalCalc">
+<meta property="og:description" content="Infinity focus, f-ratio trade-offs, and star-exposure rules for astro.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔭</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Astrophotography Focus and Depth of Field","author":{"@type":"Organization","name":"FocalCalc"},"publisher":{"@type":"Organization","name":"FocalCalc"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides › Astro Focus &amp; DoF</nav>
+  <h1>Astrophotography Focus &amp; Depth of Field</h1>
+  <p class="muted">Stars are at infinity — so astro DoF is less about "how much is sharp" and more about two numbers: nailing infinity focus, and how long you can expose before stars trail.</p>
+
+  <h2>Focusing at infinity, properly</h2>
+  <p>The <strong>lens infinity mark is a lie</strong> — most lenses overshoot infinity (they're built to focus slightly past it for thermal drift), so trusting the mark gives you slightly soft stars. Do this instead:</p>
+  <ol>
+    <li><strong>Manual focus + live view at 10×</strong> on the brightest star you can find.</li>
+    <li>Turn the focus ring until the star is the <strong>smallest, tightest point</strong> — not a disk with a halo.</li>
+    <li><strong>Focus-peaking</strong> (red highlight) makes this easy on mirrorless; tape the ring afterward if it drifts.</li>
+    <li>For lenses with no stars visible (city glow), focus on the moon, a distant light, or use the lens's hard infinity stop then back off 1–2 mm of ring travel.</li>
+  </ol>
+  <p>A subtle point: a wide-angle at f/2.8 focused at 25 m instead of infinity still looks sharp because the hyperfocal distance is ~4 m — but a 135 mm lens at f/2 focused 1 m off infinity is visibly soft. <a href="../tools/depth-of-field.html">Check your hyperfocal</a> to know how much forgiveness you have.</p>
+
+  <h2>The f-ratio trade-off (Milky Way)</h2>
+  <p>Astro landscapes run the classic DoF trade-off against light collection:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th class="num">Aperture</th><th class="num">DoF at 24 mm, 5 m focus (FF)</th><th>Astro verdict</th></tr></thead>
+    <tbody>
+      <tr><td class="num">f/1.4</td><td class="num">~1.3 m</td><td>Maximum light, foreground risk — focus-stack foreground + sky</td></tr>
+      <tr><td class="num">f/2</td><td class="num">~2.6 m</td><td>The classic Milky Way choice</td></tr>
+      <tr><td class="num">f/2.8</td><td class="num">~5.3 m</td><td>Forgiving, still fast; hyperfocal ≈ 4 m</td></tr>
+      <tr><td class="num">f/4</td><td class="num">~11 m</td><td>Half the light of f/2 — needs ISO or stacking</td></tr>
+    </tbody>
+  </table></div>
+  <p>The pro workflow: shoot the sky at f/1.8–f/2.8 focused at infinity, then shoot a foreground frame focused at 3–5 m and blend — you get maximum star light <em>and</em> a sharp foreground. That's DoF math applied to astro.</p>
+
+  <h2>How long before stars trail?</h2>
+  <p>Stars move ~15°/hour. The maximum exposure before visible trails depends on your lens and sensor:</p>
+  <ul>
+    <li><strong>500 rule:</strong> 500 ÷ (focal × crop) — fine for old sensors, trails on 24 MP+.</li>
+    <li><strong>300 rule:</strong> 300 ÷ (focal × crop) — safer on modern high-res bodies.</li>
+    <li><strong>NPF rule:</strong> (35·N + 30·p) ÷ focal<sub>equiv</sub> — accounts for pixel size and aperture; the accurate choice.</li>
+  </ul>
+  <p>Example: 24 mm on a full-frame 45 MP camera (4.4 µm pixels) at f/2.8 → NPF ≈ (35×2.8 + 30×4.4) ÷ 24 = <strong>9.6 s</strong>, vs the 500 rule's optimistic 20.8 s. Get your exact numbers in the <a href="../tools/star-trails.html">star trails calculator</a>.</p>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Star Trails Calculator</h3><p>500/400/300 + NPF max exposures for your camera.</p><a class="go" href="../tools/star-trails.html">Open →</a></div>
+    <div class="card"><h3>Pixel Scale Calculator</h3><p>Is your sampling matched to your optics and skies?</p><a class="go" href="../tools/pixel-scale.html">Open →</a></div>
+    <div class="card"><h3>Exposure Equivalence</h3><p>Balance ISO vs shutter to hit the exposure.</p><a class="go" href="../tools/exposure.html">Open →</a></div>
+  </div>
+
+  <h2>Astro focus FAQ</h2>
+  <div class="faq">
+    <details><summary>Should I use autofocus at night?</summary><p>AF usually fails on stars (too little contrast). Focus manually with live-view magnification; some newer cameras have a "star AF" mode that works — worth testing, but manual is the reliable default.</p></details>
+    <details><summary>Why do my stars look like donuts?</summary><p>That's usually focus slightly off (the classic halo) or coma in the lens corners. Fix focus first; if corners still show it, stop down one stop and re-check.</p></details>
+    <details><summary>Do I need a star tracker?</summary><p>Not for wide-field Milky Way (the 500/NPF times are enough). For deep-sky through a telescope — yes, tracking is required, and then the exposure-time question becomes about noise, not trails.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

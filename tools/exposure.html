@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exposure Equivalence Calculator — Aperture, Shutter &amp; ISO | FocalCalc</title>
+<meta name="description" content="Calculate exposure value (EV) and find equivalent exposures: change aperture, shutter, or ISO and get the matching settings that produce the identical exposure.">
+<link rel="canonical" href="https://focalcalc.com/tools/exposure.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Exposure Equivalence Calculator — FocalCalc">
+<meta property="og:description" content="EV calculator with equivalent exposure pairs for aperture, shutter and ISO.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Exposure Equivalence Calculator","url":"https://focalcalc.com/tools/exposure.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Exposure Equivalence Calculator</nav>
+  <h1>Exposure Equivalence Calculator</h1>
+  <p class="muted">One exposure, many settings. Enter what your meter says, then find every aperture/shutter/ISO combination that captures the <strong>identical</strong> amount of light — the exposure triangle, without the guesswork.</p>
+
+  <div class="tool-wrap mt1">
+    <section class="panel" aria-label="Calculator inputs">
+      <h2>Your current exposure</h2>
+      <div class="field"><label for="aperture">Aperture (f/)</label><select id="aperture"></select></div>
+      <div class="field"><label for="shutter">Shutter speed</label>
+        <div class="row2">
+          <select id="shutter"></select>
+          <input id="shutter-custom" type="number" min="0.0001" step="any" placeholder="custom (s)" inputmode="decimal">
+        </div>
+      </div>
+      <div class="field"><label for="iso">ISO</label><select id="iso"></select></div>
+      <div class="field"><label for="shift">What to change (equivalence)</label><select id="shift">
+        <option value="aperture">Aperture → find new shutter</option>
+        <option value="shutter">Shutter → find new aperture</option>
+        <option value="iso">ISO → find new shutter</option>
+      </select></div>
+      <div class="field"><label for="target">New value</label><select id="target"></select></div>
+    </section>
+    <section class="panel" aria-label="Results">
+      <h2>Result</h2>
+      <div class="result-grid">
+        <div class="result warn"><div class="k">Exposure value (EV100)</div><div class="v" id="r-ev">—</div><div class="s">same light, any combo</div></div>
+        <div class="result"><div class="k">EV at your ISO</div><div class="v" id="r-eviso">—</div><div class="s" id="r-eviso-s">scene brightness</div></div>
+        <div class="result inf"><div class="k">Equivalent setting</div><div class="v" id="r-eq">—</div><div class="s" id="r-eq-s">identical exposure</div></div>
+      </div>
+      <div class="callout good mt1">💡 <strong>Reading:</strong> your exposure is <strong id="r-summary"></strong>. To keep the same exposure after your change, use <strong id="r-eq-inline"></strong>. The camera will show the same brightness — only depth of field, motion blur, or noise change.</div>
+    </section>
+  </div>
+
+  <div class="ad-slot" id="ad-exp" data-ad="exp"></div>
+
+  <h2>Equivalent exposure pairs (same EV, full frame reference)</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th class="num">Aperture</th><th>Shutter (at ISO 100)</th><th class="num">EV100</th></tr></thead>
+    <tbody>
+      <tr><td class="num">f/1.4</td><td>1/1000 s</td><td class="num">10</td></tr>
+      <tr><td class="num">f/2.0</td><td>1/500 s</td><td class="num">10</td></tr>
+      <tr><td class="num">f/2.8</td><td>1/250 s</td><td class="num">10</td></tr>
+      <tr><td class="num">f/4.0</td><td>1/125 s</td><td class="num">10</td></tr>
+      <tr><td class="num">f/5.6</td><td>1/60 s</td><td class="num">10</td></tr>
+      <tr><td class="num">f/8.0</td><td>1/30 s</td><td class="num">10</td></tr>
+      <tr><td class="num">f/11</td><td>1/15 s</td><td class="num">10</td></tr>
+      <tr><td class="num">f/16</td><td>1/8 s</td><td class="num">10</td></tr>
+    </tbody>
+  </table></div>
+  <p>Each row captures the same amount of light (EV 10): closing the aperture one stop halves the light, so the shutter must double in length. This is the exposure triangle in its purest form. For the full explanation see the <a href="../pages/exposure-triangle.html">exposure triangle guide</a>.</p>
+
+  <h2>Exposure value FAQ</h2>
+  <div class="faq">
+    <details><summary>What is exposure value (EV)?</summary><p>EV = log₂(N²/t) — a single number describing how much light reaches the sensor for a given aperture N and shutter time t. EV100 is the EV at ISO 100. Higher EV = brighter scene or more light collected.</p></details>
+    <details><summary>Do equivalent exposures look identical?</summary><p>Brightness: yes. But each parameter changes the image: aperture changes depth of field, shutter changes motion blur, ISO changes noise. Equivalence lets you trade one for another while keeping brightness constant.</p></details>
+    <details><summary>How does ISO fit into EV?</summary><p>ISO doesn't change the light — it changes amplification. The scene-brightness value is EV100 − log₂(ISO/100): at ISO 400 (2 stops), the same scene reads as 2 EVs lower, which is why you can shoot at 1/4 the shutter speed or 2 stops narrower aperture.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  "use strict";
+  var el = function (id) { return document.getElementById(id); };
+  var SHUTTERS = [["1/8000",1/8000],["1/4000",1/4000],["1/2000",1/2000],["1/1000",1/1000],["1/500",1/500],["1/250",1/250],["1/125",1/125],["1/60",1/60],["1/30",1/30],["1/15",1/15],["1/8",1/8],["1/4",1/4],["1/2",1/2],["1 s",1],["2 s",2],["4 s",4],["8 s",8],["15 s",15],["30 s",30]];
+  function fill(selId, values, selVal) {
+    var sel = el(selId); sel.innerHTML = "";
+    values.forEach(function (v) { var o = document.createElement("option"); o.value = v[1]; o.textContent = v[0]; sel.appendChild(o); });
+    sel.value = selVal;
+  }
+  fill("aperture", FC.stops.map(function (s) { return ["f/" + s, s]; }), 2.8);
+  fill("shutter", SHUTTERS, 1/250);
+  fill("iso", FC.isos.map(function (i) { return ["ISO " + i, i]; }), 100);
+  function fillTarget() {
+    var mode = el("shift").value;
+    var sel = el("target"); sel.innerHTML = "";
+    if (mode === "aperture") FC.stops.forEach(function (s) { var o = document.createElement("option"); o.value = s; o.textContent = "f/" + s; sel.appendChild(o); });
+    else if (mode === "shutter") SHUTTERS.forEach(function (s) { var o = document.createElement("option"); o.value = s[1]; o.textContent = s[0]; sel.appendChild(o); });
+    else FC.isos.forEach(function (i) { var o = document.createElement("option"); o.value = i; o.textContent = "ISO " + i; sel.appendChild(o); });
+    sel.value = mode === "aperture" ? 4 : (mode === "shutter" ? 1/125 : 400);
+  }
+  el("shift").addEventListener("change", fillTarget);
+  fillTarget();
+  function curShutter() {
+    var c = parseFloat(el("shutter-custom").value);
+    return c ? c : parseFloat(el("shutter").value);
+  }
+  ["aperture", "shutter", "iso", "shift", "target"].forEach(function (id) { el(id).addEventListener("change", compute); });
+  el("shutter-custom").addEventListener("input", compute);
+  function fmtShutter(t) {
+    if (t >= 1) return (Math.round(t * 10) / 10) + " s";
+    var denom = Math.round(1 / t);
+    return "1/" + denom + " s";
+  }
+  function compute() {
+    var N = parseFloat(el("aperture").value), t = curShutter(), iso = parseInt(el("iso").value, 10);
+    if (!N || !t || !iso) return;
+    var ev = FC.ev100(N, t);
+    var evIso = FC.evAtIso(ev, iso);
+    el("r-ev").textContent = Math.round(ev * 100) / 100;
+    el("r-eviso").textContent = Math.round(evIso * 100) / 100;
+    var mode = el("shift").value, target = parseFloat(el("target").value), eq;
+    if (mode === "aperture") { eq = FC.shutterFor(target, ev); el("r-eq").textContent = fmtShutter(eq); el("r-eq-s").textContent = "with f/" + target; }
+    else if (mode === "shutter") { eq = FC.apertureFor(target, ev); el("r-eq").textContent = "f/" + Math.round(eq * 10) / 10; el("r-eq-s").textContent = "with " + fmtShutter(target); }
+    else { eq = FC.shutterFor(N, ev - Math.log2(target / 100)); el("r-eq").textContent = fmtShutter(eq); el("r-eq-s").textContent = "at ISO " + target; }
+    el("r-summary").textContent = "f/" + N + " · " + fmtShutter(t) + " · ISO " + iso;
+    el("r-eq-inline").textContent = el("r-eq").textContent + " " + el("r-eq-s").textContent;
+  }
+  compute();
+})();
+</script>
+</body>
+</html>

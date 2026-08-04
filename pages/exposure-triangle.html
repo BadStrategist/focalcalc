@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exposure Triangle Explained — Aperture, Shutter Speed &amp; ISO | FocalCalc</title>
+<meta name="description" content="The exposure triangle explained with real numbers: what aperture, shutter speed and ISO each do, how they trade off to keep the same exposure, and which to change first.">
+<link rel="canonical" href="https://focalcalc.com/pages/exposure-triangle.html">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Exposure Triangle Explained — FocalCalc">
+<meta property="og:description" content="Aperture, shutter, ISO — with real numbers and practical priority order.">
+<meta property="og:type" content="article">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Exposure Triangle Explained","author":{"@type":"Organization","name":"FocalCalc"},"publisher":{"@type":"Organization","name":"FocalCalc"}}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Guides › Exposure Triangle</nav>
+  <h1>Exposure Triangle Explained</h1>
+  <p class="muted">Three controls, one result: the amount of light that reaches your sensor. Here's what each one does, how they trade off, and which to change first — with numbers you can verify in the <a href="../tools/exposure.html">exposure equivalence calculator</a>.</p>
+
+  <h2>The three corners</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Control</th><th>What it changes</th><th>Cost of overdoing it</th><th>One stop =</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Aperture (f/)</strong></td><td>Amount of light + <strong>depth of field</strong></td><td>Narrow apertures → diffraction softness</td><td>f/2.8 → f/4 → f/5.6 → f/8… (each halves the light)</td></tr>
+      <tr><td><strong>Shutter speed (s)</strong></td><td>Amount of light + <strong>motion blur</strong></td><td>Slow speeds → camera shake and subject blur</td><td>1/500 → 1/250 → 1/125 → 1/60… (each doubles the light)</td></tr>
+      <tr><td><strong>ISO</strong></td><td>Amplification of the captured light</td><td>High ISO → visible noise</td><td>100 → 200 → 400 → 800 (each doubles sensitivity)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>The trade-off, with real numbers</h2>
+  <p>Say your meter says <strong>f/4 · 1/250 s · ISO 100</strong>. That's an exposure value of EV100 = 12. Every combination below captures the <em>same amount of light</em>:</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th class="num">Aperture</th><th class="num">Shutter</th><th class="num">ISO</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td class="num">f/4</td><td class="num">1/250 s</td><td class="num">100</td><td>Starting point — balanced</td></tr>
+      <tr><td class="num">f/2.8</td><td class="num">1/500 s</td><td class="num">100</td><td>Shallower DoF, freezes motion</td></tr>
+      <tr><td class="num">f/5.6</td><td class="num">1/125 s</td><td class="num">100</td><td>More DoF, risk of blur</td></tr>
+      <tr><td class="num">f/4</td><td class="num">1/500 s</td><td class="num">200</td><td>Faster shutter, ISO doubles</td></tr>
+      <tr><td class="num">f/8</td><td class="num">1/60 s</td><td class="num">100</td><td>Maximum DoF, needs steady camera</td></tr>
+    </tbody>
+  </table></div>
+  <p>Every row is identically bright. The <strong>only differences are aesthetic</strong>: depth of field, motion blur, and noise. That's why "correct exposure" is a creative choice, not a number.</p>
+
+  <h2>Which corner to change first (priority order)</h2>
+  <ol>
+    <li><strong>Shutter speed first</strong> — set the slowest speed that still freezes your subject (1/focal length handheld, or the <a href="shutter-speed-chart.html">subject chart</a>). Motion blur is the one mistake you can't fix.</li>
+    <li><strong>Aperture second</strong> — dial the depth of field your shot needs (f/1.8 portrait vs f/8 landscape), then…</li>
+    <li><strong>ISO last</strong> — raise ISO only to make up the remaining difference. Modern cameras are clean up to ISO 1600–3200; noise beats blur.</li>
+  </ol>
+
+  <h2>Common exposure mistakes</h2>
+  <ul>
+    <li><strong>"I'll fix it in post."</strong> Raising exposure in editing amplifies noise and clips highlights. Better to expose right (or deliberately overexpose by ⅓–⅔ stop for shadows, then recover — the "expose to the right" technique).</li>
+    <li><strong>Chasing shallow DoF everywhere.</strong> f/1.2 portraits with drifting focus are soft; the <a href="depth-of-field-portrait.html">portrait guide</a> shows when to stop down.</li>
+    <li><strong>ISO fear.</strong> On a modern camera, ISO 3200 in low light is usually better than a 1/15 s blurry shot at ISO 100.</li>
+  </ul>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <div class="card"><h3>Exposure Equivalence Calculator</h3><p>Generate every equivalent exposure for your settings.</p><a class="go" href="../tools/exposure.html">Open →</a></div>
+    <div class="card"><h3>Shutter Speed Chart</h3><p>The right shutter for every subject.</p><a class="go" href="shutter-speed-chart.html">Read →</a></div>
+    <div class="card"><h3>Depth of Field Calculator</h3><p>See exactly what your aperture choice does.</p><a class="go" href="../tools/depth-of-field.html">Open →</a></div>
+  </div>
+
+  <h2>Exposure triangle FAQ</h2>
+  <div class="faq">
+    <details><summary>Does ISO really belong in the "exposure" triangle?</summary><p>Strictly, exposure is light only (aperture × shutter). ISO is amplification applied after capture. But in practice the three work together to set final brightness, so the triangle is the useful mental model — with the caveat that ISO doesn't add light, it adds noise.</p></details>
+    <details><summary>What is "stopping down" and "opening up"?</summary><p>One stop = doubling or halving the light. Opening up (wider aperture, slower shutter, higher ISO) doubles light; stopping down halves it. The exposure equivalence calculator does the bookkeeping for you.</p></details>
+    <details><summary>Why do my photos look different at the same exposure?</summary><p>Because exposure isn't the whole picture — the <em>character</em> changes with settings: bokeh from aperture, blur from shutter, grain from ISO. Same brightness, different image. That's exactly why the triangle matters.</p></details>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
