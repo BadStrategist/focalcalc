@@ -51,6 +51,20 @@
     }
   }
 
+  /* --- Relative-link fix (GitHub Pages project sites).
+     Pages live under /<repo>/ (and later a custom domain), so root-absolute
+     hrefs like /tools/x.html 404. Compute the base from this script's own src
+     ("../" per directory level) and rewrite every root-absolute link. --- */
+  function fixRootLinks() {
+    const src = (document.querySelector('script[src$="main.js"]') || {}).getAttribute ? document.querySelector('script[src$="main.js"]').getAttribute("src") : "assets/js/main.js";
+    const depth = (src.match(/\.\.\//g) || []).length;
+    const base = "../".repeat(depth);
+    document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+      const clean = a.getAttribute("href").replace(/^\//, "");
+      a.setAttribute("href", base + (clean === "" ? "index.html" : clean));
+    });
+  }
+
   /* --- consent (GDPR/EEA; Google-certified CMP script slot) --- */
   function consent() {
     const KEY = "fc-consent";
@@ -100,6 +114,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     injectChrome();
+    fixRootLinks();
     showConsent();
     loadAnalytics();
     document.querySelectorAll("[data-ad]").forEach(el => window.FC_ADS.render(el.id || "ad-" + el.dataset.ad));
