@@ -114,6 +114,8 @@ a.card:hover .icon-tile { transform: scale(1.06); }
 .focus-bar .sharp { position: absolute; top: 0; bottom: 0; background: linear-gradient(90deg, rgba(37,99,235,.25), rgba(37,99,235,.75), rgba(37,99,235,.25)); }
 .focus-bar .focus-pt { position: absolute; top: -3px; bottom: -3px; width: 3px; background: var(--red); border-radius: 2px; }
 .focus-labels { display: flex; justify-content: space-between; font-size: .78rem; color: var(--ink-soft); }
+/* inline SVG diagrams (zero HTTP requests — pure markup) */
+.dof-diagram, .fov-diagram, .hfd-diagram { width: 100%; height: auto; background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin: .9rem 0; }
 
 /* buttons */
 .btn { display: inline-block; background: var(--brand); color: #fff; border: 0; border-radius: 8px; padding: .6rem 1.1rem; font-size: .95rem; font-weight: 700; cursor: pointer; font-family: inherit; }

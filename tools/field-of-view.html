@@ -9,6 +9,8 @@
 <meta property="og:title" content="Field of View Calculator — ShutterMath">
 <meta property="og:description" content="Angle of view in degrees for any sensor and focal length.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://shuttermath.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📷</text></svg>">
 <script type="application/ld+json">
@@ -48,6 +50,13 @@
   </div>
 
   <div class="ad-slot" id="ad-fov" data-ad="fov"></div>
+
+  <svg class="fov-diagram" id="fov-diagram" viewBox="0 0 600 220" role="img" aria-label="Field of view cone diagram: camera at left, shaded cone shows the angle captured by the lens">
+    <line x1="40" y1="110" x2="590" y2="110" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"/>
+    <polygon id="fov-cone" points="40,110 590,40 590,180" fill="rgba(37,99,235,.14)" stroke="#2563eb" stroke-width="1.5"/>
+    <text id="fov-angle" x="315" y="128" font-size="14" fill="#1d4ed8" font-weight="700" text-anchor="middle"/>
+    <text x="32" y="105" font-size="10" fill="#64748b" text-anchor="end">camera</text>
+  </svg>
 
   <h2>How field of view works</h2>
   <p>Field of view (angle of view) is set by two things: the sensor dimensions and the focal length. A 50 mm lens on full frame sees 39.6° horizontally; the same lens on APS-C sees about 26.5° — which is why crop sensors "crop" the frame (1.5× crop ≈ 75 mm equivalent).</p>
@@ -113,6 +122,10 @@
       el("r-w").textContent = Math.round(w * 10) / 10 + " m";
       el("r-h2").textContent = Math.round(h * 10) / 10 + " m";
     } else { el("r-w").textContent = "—"; el("r-h2").textContent = "—"; }
+    /* cone diagram */
+    var dy = Math.min(105, Math.tan(fov.hfov / 2 * Math.PI / 180) * 550);
+    el("fov-cone").setAttribute("points", "40,110 590," + (110 - dy) + " 590," + (110 + dy));
+    el("fov-angle").textContent = Math.round(fov.hfov * 10) / 10 + "° field of view";
   }
   el("print").addEventListener("click", function () { window.print(); });
   compute();
