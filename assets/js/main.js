@@ -22,6 +22,7 @@
 
   const FOOT_LINKS = [
     ["Free Tools", "/pages/free-photography-calculators.html"],
+    ["Field Kit", "/products.html"],
     ["About", "/pages/about.html"],
     ["Contact", "/pages/contact.html"],
     ["Privacy Policy", "/pages/privacy.html"],
