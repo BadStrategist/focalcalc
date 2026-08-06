@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Background Blur (Bokeh) Calculator | ShutterMath</title>
+<meta name="description" content="Background blur calculator: the exact blur disk size in millimetres and as a percentage of frame height, for any camera, lens and distance — computed from your sensor's real dimensions.">
+<link rel="canonical" href="https://shuttermath.com/tools/background-blur.html">
+<meta property="og:title" content="Background Blur (Bokeh) Calculator | ShutterMath">
+<meta property="og:description" content="How much background blur will your lens actually give? Blur disk in mm and % of frame height, for any of 48 cameras.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://shuttermath.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Background Blur (Bokeh) Calculator","url":"https://shuttermath.com/tools/background-blur.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How is background blur calculated?","acceptedAnswer":{"@type":"Answer","text":"The blur disk diameter on the sensor is b = f²·(x−s) / (N·s·(x−f)), where f is focal length, N the f-number, s the focus distance and x the background distance (all in mm). At infinity it simplifies to f²/(N·s)."}},
+{"@type":"Question","name":"What does the blur disk size mean for bokeh?","acceptedAnswer":{"@type":"Answer","text":"A point of light in the background becomes a disk whose diameter this calculator reports in millimetres on the sensor. As a percentage of frame height, roughly 1–2% looks nearly sharp, 3–5% is gentle blur, and 6%+ gives the creamy separation portrait shooters want."}},
+{"@type":"Question","name":"Does sensor size affect background blur?","acceptedAnswer":{"@type":"Answer","text":"Yes. For the same lens and distances, a larger sensor shows the same blur disk as a larger percentage of the frame — so full frame looks more blurred than Micro 4/3 at identical settings."}},
+{"@type":"Question","name":"Is the bokeh calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — every ShutterMath calculator is free, with no sign-up, no watermarks and no limits."}}
+]}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Background Blur Calculator</nav>
+  <h1>Background Blur (Bokeh) Calculator</h1>
+  <p class="muted">Background blur is the size of the out-of-focus disk that distant points of light become in a photograph — the quality most people mean when they say "bokeh". This calculator computes the exact blur disk for your camera and lens, in millimetres on the sensor and as a percentage of frame height.</p>
+
+  <div class="ad-slot" id="ad-content" data-ad="tool"></div>
+
+  <div class="panel">
+    <h2>Your setup</h2>
+    <label for="cam">CAMERA</label>
+    <select id="cam"></select>
+    <p class="muted" id="cam-spec"></p>
+    <label for="f">FOCAL LENGTH (MM)</label>
+    <input id="f" type="number" min="4" max="1200" step="1" value="85">
+    <label for="a">APERTURE (F/)</label>
+    <select id="a"></select>
+    <label for="s">FOCUS DISTANCE</label>
+    <input id="s" type="number" min="0.1" max="10000" step="0.1" value="3">
+    <div class="row">
+      <label for="s-unit">UNIT</label>
+      <select id="s-unit"><option value="m">m</option><option value="ft">ft</option></select>
+    </div>
+    <label for="x">BACKGROUND DISTANCE</label>
+    <input id="x" type="number" min="0.2" max="100000" step="1" value="30">
+    <div class="row">
+      <label for="x-unit">UNIT</label>
+      <select id="x-unit"><option value="m">m</option><option value="ft">ft</option></select>
+      <label class="chk" for="x-inf"><input type="checkbox" id="x-inf"> Background at infinity</label>
+    </div>
+    <div class="btn-row no-print">
+      <button class="btn" onclick="window.print()">🖨 Print cheat sheet</button>
+      <button class="btn ghost" onclick="copyBlurSummary()">📋 Copy summary</button>
+    </div>
+  </div>
+
+  <div class="panel" id="results">
+    <h2>Result</h2>
+    <div class="grid grid-3">
+      <div class="result"><div class="r-label">Blur disk</div><div class="r-value" id="r-disk">–</div><div class="r-sub">diameter on sensor</div></div>
+      <div class="result"><div class="r-value" id="r-pct">–</div><div class="r-label">of frame height</div></div>
+      <div class="result"><div class="r-value" id="r-inf">–</div><div class="r-label">if background were at ∞</div></div>
+    </div>
+    <p class="muted mt1" id="r-verdict"></p>
+  </div>
+
+  <h2>How to use this bokeh calculator</h2>
+  <p>Pick your camera (48 bodies in the database — the sensor dimensions are exact, not "full frame approximations"), set the lens, aperture and distances, and read the blur disk. Three things drive background blur: <strong>aperture</strong> (wider = more blur), <strong>focal length</strong> (longer = more blur), and <strong>how far behind the subject the background sits</strong>. Doubling the background distance roughly doubles the blur until it approaches the infinity value — which is why a compressed background (long lens, subject far from both you and the backdrop) blurs hardest.</p>
+
+  <h2>Worked example</h2>
+  <p>85&nbsp;mm f/1.8, focused at 3&nbsp;m, background 30&nbsp;m away on full frame: blur disk = 85²·(30−3)/(1.8·3·(30−0.085)) ≈ <strong>1.21&nbsp;mm</strong> — about <strong>5.0% of frame height</strong>. That's the classic "creamy separation" portrait look. The same lens on Micro 4/3 (17.3×13&nbsp;mm sensor) gives the same 1.21&nbsp;mm disk but 9.3% of frame height — the smaller sensor makes the blur look <em>stronger</em> relative to the frame, which is why M4/3 portraits with fast lenses still blur nicely.</p>
+
+  <h2>Background blur FAQ</h2>
+  <div class="faq">
+    <details><summary>How is background blur calculated?</summary><p>b = f²·(x−s) / (N·s·(x−f)) with all lengths in millimetres; at infinity it simplifies to f²/(N·s). This is the standard geometric formula for the out-of-focus disk diameter on the sensor.</p></details>
+    <details><summary>What does the blur disk size mean for bokeh?</summary><p>As a percentage of frame height: under ~2% looks nearly sharp, 3–5% is gentle separation, 6%+ is the strong blur portrait shooters chase. The disk's <em>edges</em> (smooth vs. busy) are the lens's optical character — that's the part of bokeh no number can capture.</p></details>
+    <details><summary>Does sensor size affect background blur?</summary><p>Yes — same lens and distances, the blur disk is the same physical size, but it occupies a bigger slice of a smaller sensor's frame. That's why Micro 4/3 can look more blurred at the same settings, and why full frame "isolates" subjects with normal lenses.</p></details>
+    <details><summary>What's the difference between blur and depth of field?</summary><p>DoF is about what's <em>acceptably sharp</em>; blur is about how soft the out-of-focus areas are. You can have a thin DoF with modest background blur (wide-angle close-up) or a deep DoF with strong blur (telephoto at f/5.6). They follow different math.</p></details>
+  </div>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <a class="card" href="depth-of-field.html"><h3>Depth of Field Calculator</h3><p>Near/far limits and total DoF for any camera + lens.</p><span class="card-go">Open →</span></a>
+    <a class="card" href="aperture-explained.html"><h3>Aperture Explained</h3><p>What f-stops do to light, sharpness and blur — with examples.</p><span class="card-go">Open →</span></a>
+    <a class="card" href="sharpest-aperture.html"><h3>Sharpest Aperture</h3><p>Diffraction limits and the f-stop sweet spot per camera.</p><span class="card-go">Open →</span></a>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js?v=20260806a"></script>
+<script src="../assets/js/main.js?v=20260806a"></script>
+<script>
+(function () {
+  var cameras = [];
+  var cam = document.getElementById("cam");
+  var spec = document.getElementById("cam-spec");
+
+  function fillApertures() {
+    var a = document.getElementById("a");
+    [1, 1.1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.5, 2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 7.1, 8, 9, 10, 11, 13, 14, 16, 18, 20, 22, 25, 29, 32].forEach(function (n) {
+      var o = document.createElement("option");
+      o.value = n; o.textContent = "f/" + n;
+      if (n === 1.8) o.selected = true;
+      a.appendChild(o);
+    });
+  }
+  function selectedCam() {
+    var i = parseInt(cam.value, 10);
+    return cameras[i] || cameras[0];
+  }
+  function compute() {
+    var c = selectedCam();
+    var f = parseFloat(document.getElementById("f").value) || 50;
+    var N = parseFloat(document.getElementById("a").value) || 1.8;
+    var sUnit = document.getElementById("s-unit").value === "ft" ? 0.3048 : 1;
+    var xUnit = document.getElementById("x-unit").value === "ft" ? 0.3048 : 1;
+    var s = (parseFloat(document.getElementById("s").value) || 3) * sUnit * 1000;
+    var inf = document.getElementById("x-inf").checked;
+    var x = inf ? Infinity : (parseFloat(document.getElementById("x").value) || 30) * xUnit * 1000;
+    var b = FC.blurDisk(f, N, s, x);
+    var pct = FC.blurPct(b, c.sensor_h);
+    var bInf = FC.blurInfinity(f, N, s);
+    document.getElementById("r-disk").textContent = (b >= 10 ? b.toFixed(1) : b.toFixed(2)) + " mm";
+    document.getElementById("r-pct").textContent = pct.toFixed(1) + "%";
+    document.getElementById("r-inf").textContent = (bInf >= 10 ? bInf.toFixed(1) : bInf.toFixed(2)) + " mm";
+    var v;
+    if (pct < 1.5) v = "Nearly sharp background — the blur is barely perceptible. Open up, zoom in, or move the subject away from the background.";
+    else if (pct < 3) v = "Gentle blur — separation is visible but subtle. Good for environmental portraits.";
+    else if (pct < 6) v = "Noticeable separation — a classic portrait look. The background reads as soft texture rather than detail.";
+    else v = "Strong blur — creamy, dreamy separation. This is the bokeh most people picture; the background is fully abstracted.";
+    document.getElementById("r-verdict").textContent = v;
+  }
+  function fillCameras() {
+    cameras.forEach(function (c, i) {
+      var o = document.createElement("option");
+      o.value = i; o.textContent = c.name;
+      cam.appendChild(o);
+    });
+    var want = location.search ? decodeURIComponent(location.search).match(/cam=([^&]+)/) : null;
+    if (want) {
+      for (var i = 0; i < cameras.length; i++) {
+        if (cameras[i].name.replace(/[ .]/g, "").toLowerCase() === want[1].replace(/[ .]/g, "").toLowerCase()) { cam.value = i; break; }
+      }
+    }
+    cam.onchange = function () { showSpec(); compute(); };
+    showSpec();
+    compute();
+  }
+  function showSpec() {
+    var c = selectedCam();
+    spec.textContent = c.format + " · " + c.sensor_w.toFixed(1) + "×" + c.sensor_h.toFixed(1) + " mm sensor";
+  }
+  ["f", "a", "s", "s-unit", "x", "x-unit", "x-inf"].forEach(function (id) {
+    document.getElementById(id).addEventListener(id === "x-inf" ? "change" : "input", compute);
+  });
+  fillApertures();
+  loadJSON("../data/cameras.json", function (d) { cameras = d.cameras; fillCameras(); });
+
+  function loadJSON(url, cb) {
+    fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function (e) { console.error(url, e); });
+  }
+  window.copyBlurSummary = function () {
+    var c = selectedCam();
+    var s = document.getElementById("s").value + " " + document.getElementById("s-unit").value;
+    var bg = document.getElementById("x-inf").checked ? "infinity" : document.getElementById("x").value + " " + document.getElementById("x-unit").value;
+    var txt = c.name + " · " + document.getElementById("f").value + "mm f/" + document.getElementById("a").value +
+      " · focus " + s + " · background " + bg + " → blur disk " + document.getElementById("r-disk").textContent +
+      " (" + document.getElementById("r-pct").textContent + " of frame height) — via ShutterMath";
+    if (navigator.clipboard) { navigator.clipboard.writeText(txt); }
+    else { var ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+  };
+})();
+</script>
+</body>
+</html>

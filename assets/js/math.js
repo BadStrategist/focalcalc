@@ -96,7 +96,17 @@
     shutterFromAngle: (fps, angle) => 1 / (fps * 360 / angle),
     angleFromShutter: (fps, t_s) => 360 * t_s * fps,
     // --- default CoC div (standard) ---
-    COC_DIV: 1500
+    COC_DIV: 1500,
+    // --- background blur (bokeh) ---
+    // Blur disk diameter on the sensor (mm) for a background point at distance x,
+    // focus at s, focal f, aperture N. Standard geometric formula (all lengths in mm).
+    blurDisk: (f, N, s, x) => {
+      if (x <= s) return 0;               // background at/behind focus plane not applicable
+      if (!isFinite(x)) return f * f / (N * s);  // background at infinity
+      return f * f * (x - s) / (N * s * (x - f));
+    },
+    blurInfinity: (f, N, s) => f * f / (N * s),
+    blurPct: (b, sensorH) => b / sensorH * 100
   };
   window.FC = FC;
 })();
