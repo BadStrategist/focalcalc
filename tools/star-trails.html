@@ -41,6 +41,7 @@
         <div class="result warn"><div class="k">NPF rule (accurate)</div><div class="v" id="r-npf">—</div><div class="s">pixel-size aware</div></div>
         <div class="result"><div class="k">500 rule</div><div class="v" id="r-500">—</div><div class="s">classic, forgiving</div></div>
         <div class="result"><div class="k">300 rule</div><div class="v" id="r-300">—</div><div class="s">safer for high-res</div></div>
+        <div class="result"><div class="k">600 rule</div><div class="v" id="r-600">—</div><div class="s">forgiving, film-era</div></div>
       </div>
       <div class="callout good mt1">🌌 <strong>How to use it:</strong> set your shutter to <strong id="r-npf-inline"></strong> (or just under), open the aperture fully, then raise ISO until the histogram is ⅓–½ from the left. Check at 100% zoom: if stars are still elongated, shorten by 20%.</div>
     </section>
@@ -128,6 +129,7 @@
     el("r-npf").textContent = fmt(npf);
     el("r-500").textContent = fmt(FC.starRule(f, crop, 500));
     el("r-300").textContent = fmt(FC.starRule(f, crop, 300));
+    el("r-600").textContent = fmt(FC.starRule(f, crop, 600));
     el("r-npf-inline").textContent = fmt(npf);
   }
   compute();

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moon Exposure Calculator — Looney 11 & Phase Guide | ShutterMath</title>
+<meta name="description" content="Moon exposure calculator: the exact shutter speed for photographing the moon at any phase and ISO, based on the Looney 11 rule — plus the classic exposure mistakes to avoid.">
+<link rel="canonical" href="https://shuttermath.com/tools/moon-exposure.html">
+<meta property="og:title" content="Moon Exposure Calculator | ShutterMath">
+<meta property="og:description" content="Exact shutter speed for moon photos at any phase: Looney 11 rule, phase stops, and the mistakes that blow out the moon.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://shuttermath.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Moon Exposure Calculator","url":"https://shuttermath.com/tools/moon-exposure.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the Looney 11 rule for moon photography?","acceptedAnswer":{"@type":"Answer","text":"Looney 11 (the moon's equivalent of sunny 16) says: full moon at f/11, shutter speed 1/ISO. At ISO 100 that's 1/100 s at f/11 — the moon is a sunlit subject, so it needs roughly the same exposure as a daylight scene, not a night scene."}},
+{"@type":"Question","name":"How do I expose the moon at different phases?","acceptedAnswer":{"@type":"Answer","text":"Start from full moon (f/11 at 1/ISO). Add one stop for a gibbous moon, two stops for a quarter moon, and about three to four stops for a crescent — the lit fraction of the moon's face gets dimmer as it narrows."}},
+{"@type":"Question","name":"Why is my moon overexposed when I shoot at night?","acceptedAnswer":{"@type":"Answer","text":"Because your camera meters the dark sky and stretches the exposure — the moon itself is sunlit and bright. Meter directly off the moon (spot mode) or use the Looney 11 settings and let the sky go black."}},
+{"@type":"Question","name":"Can I photograph the moon and landscape in one shot?","acceptedAnswer":{"@type":"Answer","text":"The moon is about 12 stops brighter than a blue-hour landscape, so one exposure can't hold both. Shoot two frames (one for the moon, one for the landscape) and blend, or wait for a crescent moon during twilight, which is much closer in brightness."}},
+{"@type":"Question","name":"Is this moon exposure calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — every ShutterMath calculator is free, with no sign-up, no watermarks and no limits."}}
+]}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Moon Exposure Calculator</nav>
+  <h1>Moon Exposure Calculator</h1>
+  <p class="muted">Moon exposure is the shutter speed that correctly exposes the moon's surface — and it follows a fixed rule, because the moon is simply a sunlit subject at a known brightness. This calculator applies the Looney 11 rule with phase adjustments to give you the exact settings.</p>
+
+  <div class="ad-slot" id="ad-content" data-ad="tool"></div>
+
+  <div class="panel">
+    <h2>Your setup</h2>
+    <label for="phase">MOON PHASE</label>
+    <select id="phase">
+      <option value="0" selected>Full moon</option>
+      <option value="1">Gibbous (¾ lit)</option>
+      <option value="2">Quarter (½ lit)</option>
+      <option value="3">Crescent (¼ lit)</option>
+      <option value="4">Thin crescent</option>
+    </select>
+    <label for="iso">ISO</label>
+    <select id="iso">
+      <option value="50">50</option><option value="100" selected>100</option><option value="200">200</option><option value="400">400</option><option value="800">800</option><option value="1600">1600</option><option value="3200">3200</option>
+    </select>
+    <label for="a">APERTURE (F/)</label>
+    <select id="a"></select>
+    <div class="btn-row no-print">
+      <button class="btn" onclick="window.print()">🖨 Print cheat sheet</button>
+      <button class="btn ghost" onclick="copyMoonSummary()">📋 Copy summary</button>
+    </div>
+  </div>
+
+  <div class="panel" id="results">
+    <h2>Result</h2>
+    <div class="grid grid-3">
+      <div class="result"><div class="r-label">Shutter speed</div><div class="r-value" id="r-shutter">–</div></div>
+      <div class="result"><div class="r-label">Equivalent EV</div><div class="r-value" id="r-ev">–</div></div>
+      <div class="result"><div class="r-label">Looney 11 baseline</div><div class="r-value" id="r-looney">–</div></div>
+    </div>
+    <p class="muted mt1" id="r-verdict"></p>
+  </div>
+
+  <h2>How to use this moon exposure calculator</h2>
+  <p>Pick the moon's phase and your ISO, and the calculator returns the shutter speed at your chosen aperture. The math: a full moon is a sunlit surface worth about <strong>EV 13.6</strong> — the Looney 11 baseline (f/11 at 1/ISO). Each phase step dims the lit surface by roughly one stop. Meter with <strong>spot mode directly on the moon</strong> if your camera supports it; the Looney 11 numbers are the failsafe when the meter lies (it will, because the sky around the moon is black).</p>
+
+  <h2>Worked example</h2>
+  <p>A full moon at ISO 100, f/11: Looney 11 gives <strong>1/100 s</strong>. Shoot the same moon at ISO 400 and you'd use 1/400 s (or f/22 at 1/100 s). A quarter moon is two stops dimmer: at ISO 100, f/8, that's about <strong>1/50 s</strong>. Handheld is fine for the moon — at these shutter speeds camera shake is rarely the problem; a tripod matters when you zoom to 300&nbsp;mm+ or shoot the moon with a landscape.</p>
+
+  <h2>Moon exposure FAQ</h2>
+  <div class="faq">
+    <details><summary>What is the Looney 11 rule for moon photography?</summary><p>Looney 11 (the moon's equivalent of sunny 16): full moon at f/11, shutter 1/ISO. At ISO 100 that's 1/100 s at f/11 — the moon is a sunlit subject, so it needs a daylight exposure, not a night exposure.</p></details>
+    <details><summary>How do I expose the moon at different phases?</summary><p>Start from full moon (f/11 at 1/ISO). Add one stop for gibbous, two for quarter, three to four for a crescent — the lit fraction of the face gets dimmer as it narrows.</p></details>
+    <details><summary>Why is my moon overexposed when I shoot at night?</summary><p>Your camera meters the dark sky and stretches the exposure — but the moon itself is sunlit and bright. Meter directly off the moon (spot mode) or use the Looney 11 settings and let the sky go black.</p></details>
+    <details><summary>Can I photograph the moon and landscape in one shot?</summary><p>The moon is about 12 stops brighter than a blue-hour landscape, so one exposure can't hold both. Shoot two frames and blend, or catch a crescent moon in twilight, which is much closer in brightness.</p></details>
+  </div>
+
+  <div class="callout good no-print mt1">🎒 Want this as a laminated field card? The <a href="../products.html">ShutterMath Field Kit</a> has all six, print-ready.</div>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <a class="card" href="star-trails.html"><h3>500 Rule &amp; NPF Calculator</h3><p>Max shutter time for sharp stars — 500/400/300 rules + NPF with declination.</p><span class="card-go">Open →</span></a>
+    <a class="card" href="exposure.html"><h3>Exposure Calculator</h3><p>EV and equivalent settings for any scene.</p><span class="card-go">Open →</span></a>
+    <a class="card" href="../pages/depth-of-field-astro.html"><h3>DoF for Astro</h3><p>Focus, hyperfocal and star sharpness for night landscapes.</p><span class="card-go">Open →</span></a>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js?v=20260806a"></script>
+<script src="../assets/js/main.js?v=20260806a"></script>
+<script>
+(function () {
+  // Full moon EV ≈ 13.6 (Looney 11 baseline: f/11 at 1/ISO). Phases dim by 1 stop each.
+  var PHASE_EV = [13.6, 12.6, 11.6, 10.6, 9.6];
+  function fillApertures() {
+    var a = document.getElementById("a");
+    [2.8, 4, 5.6, 8, 11, 16, 22].forEach(function (n) {
+      var o = document.createElement("option");
+      o.value = n; o.textContent = "f/" + n;
+      if (n === 11) o.selected = true;
+      a.appendChild(o);
+    });
+  }
+  function fmtTime(s) {
+    if (s < 1) return "1/" + Math.round(1 / s) + " s";
+    return s.toFixed(s < 10 ? 2 : 1) + " s";
+  }
+  function compute() {
+    var phase = parseInt(document.getElementById("phase").value, 10);
+    var iso = parseInt(document.getElementById("iso").value, 10);
+    var N = parseFloat(document.getElementById("a").value) || 11;
+    var ev = PHASE_EV[phase];
+    var t = N * N / Math.pow(2, ev) * (100 / iso);
+    document.getElementById("r-shutter").textContent = fmtTime(t);
+    document.getElementById("r-ev").textContent = "EV " + ev.toFixed(1);
+    document.getElementById("r-looney").textContent = "f/11 · 1/" + iso + " s";
+    var names = ["full", "gibbous", "quarter", "crescent", "thin-crescent"];
+    var verdict = "Phase: " + names[phase] + " moon. At ISO " + iso + ", f/" + N + ": " + fmtTime(t) + ".";
+    if (phase === 0) verdict += " Full moon = Looney 11 baseline.";
+    else verdict += " " + phase + " stop(s) dimmer than full moon.";
+    if (N >= 16 || t < 0.1) verdict += " At long focal lengths use a tripod or image stabilization.";
+    document.getElementById("r-verdict").textContent = verdict;
+  }
+  ["phase", "iso", "a"].forEach(function (id) {
+    document.getElementById(id).addEventListener("change", compute);
+  });
+  fillApertures();
+  compute();
+  window.copyMoonSummary = function () {
+    var names = ["full", "gibbous", "quarter", "crescent", "thin-crescent"];
+    var txt = names[parseInt(document.getElementById("phase").value, 10)] + " moon at ISO " +
+      document.getElementById("iso").value + ", f/" + document.getElementById("a").value +
+      " → " + document.getElementById("r-shutter").textContent + " (Looney 11 rule) — via ShutterMath";
+    if (navigator.clipboard) navigator.clipboard.writeText(txt);
+    else { var ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+  };
+})();
+</script>
+</body>
+</html>
