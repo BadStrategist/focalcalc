@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Print Size Planner — How Many Megapixels Do I Need? | ShutterMath</title>
+<meta name="description" content="Print planner: enter the print size and quality you want, and it tells you the pixel dimensions and megapixels required — and whether your camera has enough.">
+<link rel="canonical" href="https://shuttermath.com/tools/print-planner.html">
+<meta property="og:title" content="Print Size Planner — Megapixels Needed | ShutterMath">
+<meta property="og:description" content="What resolution do you need for a 40×60 cm gallery print? Required pixels, megapixels, and whether your camera delivers.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://shuttermath.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Print Size Planner","url":"https://shuttermath.com/tools/print-planner.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How many megapixels do I need for printing?","acceptedAnswer":{"@type":"Answer","text":"It depends on print size and viewing distance. A 10×8-inch print held in the hand needs about 7 MP (300 DPI); a 40×60 cm wall print viewed from a metre away needs only about 3 MP (150 DPI). More pixels than needed only add file size, not visible quality."}},
+{"@type":"Question","name":"What DPI should I print at?","acceptedAnswer":{"@type":"Answer","text":"300 DPI for small prints viewed up close, 240 DPI for typical wall prints, and 150 DPI is plenty for large prints viewed from a metre or more. Viewing distance is the real driver — beyond about 1 metre the eye can't resolve 300 DPI."}},
+{"@type":"Question","name":"Can I print larger than my camera's megapixels allow?","acceptedAnswer":{"@type":"Answer","text":"Yes — modern upscaling (including AI upscalers) handles +50% gracefully for large prints, and the viewing-distance rule means large prints are forgiving. The planner shows exactly how far above the 'native' resolution you'd be."}},
+{"@type":"Question","name":"Is this print calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — every ShutterMath calculator is free, with no sign-up, no watermarks and no limits."}}
+]}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Print Size Planner</nav>
+  <h1>Print Size Planner — How Many Megapixels Do I Need?</h1>
+  <p class="muted">Print resolution is the number of pixels per inch in a print — it decides how large you can print before a photo starts to look soft. This planner works the way photographers actually think: start with the print size and quality you want, and it tells you the pixels and megapixels required, then checks it against your camera.</p>
+
+  <div class="ad-slot" id="ad-content" data-ad="tool"></div>
+
+  <div class="panel">
+    <h2>Your print</h2>
+    <div class="row">
+      <label for="pw">PRINT WIDTH</label>
+      <input id="pw" type="number" min="1" max="500" step="0.1" value="40">
+      <select id="pu">
+        <option value="cm" selected>cm</option>
+        <option value="in">inches</option>
+      </select>
+    </div>
+    <div class="row">
+      <label for="ph">PRINT HEIGHT</label>
+      <input id="ph" type="number" min="1" max="500" step="0.1" value="60">
+      <select id="hu">
+        <option value="cm" selected>cm</option>
+        <option value="in">inches</option>
+      </select>
+    </div>
+    <label for="dpi">QUALITY (DPI)</label>
+    <select id="dpi">
+      <option value="300" selected>300 — gallery / close-up (recommended)</option>
+      <option value="240">240 — standard wall print</option>
+      <option value="150">150 — large print, viewed from ~1 m</option>
+      <option value="100">100 — poster / viewing from several metres</option>
+    </select>
+    <label for="cam">YOUR CAMERA (for the comparison)</label>
+    <select id="cam"></select>
+    <p class="muted" id="cam-spec"></p>
+    <div class="btn-row no-print">
+      <button class="btn" onclick="window.print()">🖨 Print cheat sheet</button>
+    </div>
+  </div>
+
+  <div class="panel" id="results">
+    <h2>Result</h2>
+    <div class="grid grid-3">
+      <div class="result"><div class="r-label">Required pixels</div><div class="r-value" id="r-px">–</div></div>
+      <div class="result"><div class="r-label">Required megapixels</div><div class="r-value" id="r-mp">–</div></div>
+      <div class="result"><div class="r-label">Your camera</div><div class="r-value" id="r-cam">–</div></div>
+    </div>
+    <p class="muted mt1" id="r-verdict"></p>
+  </div>
+
+  <h2>How to use this print planner</h2>
+  <p>Enter the print dimensions you're aiming for, pick the quality your viewing distance demands, and choose your camera from the database (48 bodies — or just read the required number and compare your own). The planner returns the minimum pixels and megapixels, and tells you whether your camera prints it natively or needs upscaling.</p>
+
+  <h2>Worked example</h2>
+  <p>A 40×60&nbsp;cm gallery print at 300 DPI: 40&nbsp;cm ≈ 15.7&nbsp;in and 60&nbsp;cm ≈ 23.6&nbsp;in, so you need 15.7×300 × 23.6×300 = <strong>4724 × 7087 px — about 33.5 MP</strong>. A 24 MP camera prints it at ~253 DPI — perfectly sharp at arm's length. The same 40×60&nbsp;cm at 150 DPI (viewed from a metre) needs only <strong>8.4 MP</strong>, which is why phone photos make fine large prints.</p>
+
+  <h2>Print resolution FAQ</h2>
+  <div class="faq">
+    <details><summary>How many megapixels do I need for printing?</summary><p>It depends on print size and viewing distance. A 10×8-inch print held in the hand needs about 7 MP (300 DPI); a 40×60 cm wall print viewed from a metre away needs only about 3 MP (150 DPI). More pixels than needed only add file size, not visible quality.</p></details>
+    <details><summary>What DPI should I print at?</summary><p>300 DPI for small prints viewed up close, 240 for typical wall prints, 150 is plenty for large prints viewed from a metre or more. Viewing distance is the real driver — beyond about a metre the eye can't resolve 300 DPI.</p></details>
+    <details><summary>Can I print larger than my camera's megapixels allow?</summary><p>Yes — modern upscaling (including AI upscalers) handles +50% gracefully for large prints, and the viewing-distance rule means large prints are forgiving. The planner shows exactly how far above native resolution you'd be.</p></details>
+  </div>
+
+  <div class="callout good no-print mt1">🎒 Want this as a laminated field card? The <a href="../products.html">ShutterMath Field Kit</a> has all six, print-ready.</div>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <a class="card" href="print-resolution.html"><h3>Print Resolution Calculator</h3><p>Pixels and DPI → the print sizes you can make.</p><span class="card-go">Open →</span></a>
+    <a class="card" href="../pages/camera-sensor-sizes.html"><h3>Camera Sensor Sizes</h3><p>Full frame vs APS-C vs Micro 4/3 vs phone, side by side.</p><span class="card-go">Open →</span></a>
+    <a class="card" href="../pages/guides.html"><h3>All Guides &amp; Charts</h3><p>Printable reference charts for every discipline.</p><span class="card-go">Open →</span></a>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js?v=20260806a"></script>
+<script src="../assets/js/main.js?v=20260806a"></script>
+<script>
+(function () {
+  var cameras = [];
+  var cam = document.getElementById("cam");
+  var spec = document.getElementById("cam-spec");
+
+  function selectedCam() {
+    var i = parseInt(cam.value, 10);
+    return cameras[i] || { name: "—", px_w: 0, px_h: 0 };
+  }
+  function toInches(v, u) { return u === "cm" ? v / 2.54 : v; }
+  function compute() {
+    var pw = parseFloat(document.getElementById("pw").value) || 0;
+    var ph = parseFloat(document.getElementById("ph").value) || 0;
+    var dpi = parseInt(document.getElementById("dpi").value, 10) || 300;
+    var c = selectedCam();
+    var wIn = toInches(pw, document.getElementById("pu").value);
+    var hIn = toInches(ph, document.getElementById("hu").value);
+    if (wIn <= 0 || hIn <= 0) return;
+    var pxW = Math.round(wIn * dpi), pxH = Math.round(hIn * dpi);
+    var mp = pxW * pxH / 1e6;
+    document.getElementById("r-px").textContent = pxW.toLocaleString() + " × " + pxH.toLocaleString();
+    document.getElementById("r-mp").textContent = mp.toFixed(1) + " MP";
+    var camMp = c.px_w ? c.px_w * c.px_h / 1e6 : 0;
+    document.getElementById("r-cam").textContent = c.name + (camMp ? " · " + camMp.toFixed(0) + " MP" : "");
+    var v = document.getElementById("r-verdict");
+    if (!camMp) {
+      v.textContent = "Required resolution: " + mp.toFixed(1) + " MP at " + dpi + " DPI. Compare with your camera's megapixels.";
+    } else if (camMp >= mp) {
+      var dpiYouGet = Math.round(Math.sqrt(c.px_w * c.px_h / (wIn * hIn)));
+      v.textContent = "Your " + c.name + " (" + camMp.toFixed(0) + " MP) covers this natively — it prints at about " + dpiYouGet + " DPI, comfortably above the " + dpi + " DPI target. Print with confidence.";
+    } else {
+      var ratio = mp / camMp;
+      v.textContent = "Your " + c.name + " (" + camMp.toFixed(0) + " MP) is short of the " + mp.toFixed(1) + " MP target by " + (ratio * 100 - 100).toFixed(0) + "% — upscaling by ~" + (Math.sqrt(ratio) * 100 - 100).toFixed(0) + "% per side handles this cleanly at typical viewing distances. Modern upscalers do this well.";
+    }
+  }
+  function fillCameras() {
+    cameras.forEach(function (c, i) {
+      var o = document.createElement("option");
+      o.value = i; o.textContent = c.name + " (" + (c.px_w * c.px_h / 1e6).toFixed(0) + " MP)";
+      cam.appendChild(o);
+    });
+    // preselect a full-frame body if present
+    for (var i = 0; i < cameras.length; i++) {
+      if (cameras[i].format === "Full Frame") { cam.value = i; break; }
+    }
+    cam.onchange = function () {
+      var c = selectedCam();
+      spec.textContent = c.format + " · " + c.sensor_w.toFixed(1) + "×" + c.sensor_h.toFixed(1) + " mm · " + (c.px_w * c.px_h / 1e6).toFixed(0) + " MP";
+      compute();
+    };
+    spec.textContent = selectedCam().format + " · " + (selectedCam().px_w * selectedCam().px_h / 1e6).toFixed(0) + " MP";
+    compute();
+  }
+  ["pw", "ph", "pu", "hu", "dpi"].forEach(function (id) {
+    document.getElementById(id).addEventListener("input", compute);
+  });
+  loadJSON("../data/cameras.json", function (d) { cameras = d.cameras; fillCameras(); });
+  function loadJSON(url, cb) {
+    fetch(url).then(function (r) { return r.json(); }).then(cb).catch(function (e) { console.error(url, e); });
+  }
+})();
+</script>
+</body>
+</html>

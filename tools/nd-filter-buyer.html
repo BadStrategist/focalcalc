@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which ND Filter Do I Need? — Free ND Buying Calculator | ShutterMath</title>
+<meta name="description" content="Which ND filter should you buy? Enter your current exposure and the shutter time you want — the calculator tells you the exact filter strength in stops and which filters to get.">
+<link rel="canonical" href="https://shuttermath.com/tools/nd-filter-buyer.html">
+<meta property="og:title" content="Which ND Filter Do I Need? | ShutterMath">
+<meta property="og:description" content="Free ND filter buying calculator: current exposure + desired shutter time → exact stops needed and which filters to buy.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://shuttermath.com/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌫️</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Which ND Filter Do I Need? — ND Buying Calculator","url":"https://shuttermath.com/tools/nd-filter-buyer.html","applicationCategory":"UtilityApplication","operatingSystem":"Any","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I know which ND filter I need?","acceptedAnswer":{"@type":"Answer","text":"Meter the scene without a filter (or use the scene presets), decide the shutter time you want, then count the stops between them: every 3 stops ≈ 8× the exposure time. A 6-stop filter (ND64) is the all-rounder for daylight waterfalls; 10 stops (ND1000) for midday mist."}},
+{"@type":"Question","name":"What does each ND filter do?","acceptedAnswer":{"@type":"Answer","text":"ND8 (3 stops) — gentle motion blur in shade. ND64 (6 stops) — moving water at dusk or bright light. ND1000 (10 stops) — cotton-soft water at midday and crowds-free streets. ND100000 (17 stops) — blackout-style long exposures in full sun."}},
+{"@type":"Question","name":"Should I buy a fixed ND or a variable ND?","acceptedAnswer":{"@type":"Answer","text":"Fixed filters give consistent, predictable colour and sharpness — best for landscape. Variable (VND) filters are convenient for video and run-and-gun, but can show X-shaped darkening at the wide end and are less colour-accurate."}},
+{"@type":"Question","name":"Is this ND filter calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes — every ShutterMath calculator is free, with no sign-up, no watermarks and no limits."}}
+]}
+</script>
+</head>
+<body>
+<header class="site-header"></header>
+<main class="container">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Which ND Filter Do I Need?</nav>
+  <h1>Which ND Filter Do I Need?</h1>
+  <p class="muted">An ND (neutral density) filter reduces light by a fixed number of stops so you can use longer shutter speeds in bright conditions. This calculator answers the buying question: given your current exposure and the shutter time you want, exactly how many stops do you need — and which filters to buy.</p>
+
+  <div class="ad-slot" id="ad-content" data-ad="tool"></div>
+
+  <div class="panel">
+    <h2>Your situation</h2>
+    <label for="scene">SCENE (sets the unmetered base exposure)</label>
+    <select id="scene">
+      <option value="15">Bright sun — sunny 16 (EV 15)</option>
+      <option value="12">Bright daylight, light clouds (EV 12)</option>
+      <option value="11" selected>Overcast, soft light (EV 11)</option>
+      <option value="9">Heavy shade / overcast evening (EV 9)</option>
+      <option value="6">Dusk / very dark indoor (EV 6)</option>
+    </select>
+    <p class="muted">Or skip the preset and type your own metered exposure below.</p>
+    <label for="base">CURRENT EXPOSURE WITHOUT FILTER (SHUTTER TIME)</label>
+    <div class="row">
+      <input id="base" type="number" min="0.0001" max="3600" step="0.001" value="0.002">
+      <select id="base-unit">
+        <option value="s">seconds</option>
+        <option value="ms">milliseconds</option>
+        <option value="frac">as a fraction (1/x)</option>
+      </select>
+    </div>
+    <label for="iso">ISO</label>
+    <select id="iso">
+      <option value="100" selected>100</option><option value="200">200</option><option value="400">400</option><option value="800">800</option><option value="1600">1600</option><option value="3200">3200</option>
+    </select>
+    <label for="a">APERTURE (F/)</label>
+    <select id="a"></select>
+    <label for="target">DESIRED SHUTTER TIME</label>
+    <div class="row">
+      <input id="target" type="number" min="0.01" max="3600" step="0.1" value="2">
+      <select id="target-unit">
+        <option value="s">seconds</option>
+        <option value="min">minutes</option>
+      </select>
+    </div>
+    <div class="btn-row no-print">
+      <button class="btn" onclick="window.print()">🖨 Print cheat sheet</button>
+    </div>
+  </div>
+
+  <div class="panel" id="results">
+    <h2>Result</h2>
+    <div class="grid grid-3">
+      <div class="result"><div class="r-label">Stops needed</div><div class="r-value" id="r-stops">–</div></div>
+      <div class="result"><div class="r-label">Recommended filter</div><div class="r-value" id="r-filter">–</div></div>
+      <div class="result"><div class="r-label">Actual time with it</div><div class="r-value" id="r-actual">–</div></div>
+    </div>
+    <p class="muted mt1" id="r-verdict"></p>
+  </div>
+
+  <h2>How to use this ND filter calculator</h2>
+  <p>Pick the closest scene preset, or type the shutter time you'd get <em>without</em> a filter at your aperture and ISO. Set the shutter speed you want for your shot. The calculator counts the stops between them and recommends the filter — rounding up to a real filter strength, because buying a filter one stop stronger than needed is safer than one stop weaker (you can always open the aperture or lower the ISO to compensate).</p>
+
+  <h2>Worked example</h2>
+  <p>Bright sun at f/8, ISO 100 (sunny 16 → EV 15): your base exposure without a filter is about 1/500&nbsp;s. You want a 2-second exposure to smooth a waterfall: that's log₂(500×2) ≈ <strong>10 stops</strong> → grab an <strong>ND1000</strong>, which gives exactly 2&nbsp;s at 1/500&nbsp;s base. Want 30&nbsp;s instead? Add 4 more stops — an ND1000 plus a 2-stop ND4 stacked, or a single ND16000.</p>
+
+  <h2>ND filter FAQ</h2>
+  <div class="faq">
+    <details><summary>How do I know which ND filter I need?</summary><p>Meter the scene without a filter (or use the scene presets), decide the shutter time you want, then count the stops between them: every 3 stops ≈ 8× the exposure time. A 6-stop filter (ND64) is the all-rounder for daylight waterfalls; 10 stops (ND1000) for midday mist.</p></details>
+    <details><summary>What does each ND filter do?</summary><p>ND8 (3 stops) — gentle motion blur in shade. ND64 (6 stops) — moving water at dusk or in bright light. ND1000 (10 stops) — cotton-soft water at midday, empty streets. ND100000 (17 stops) — blackout-style exposures in full sun.</p></details>
+    <details><summary>Should I buy a fixed ND or a variable ND?</summary><p>Fixed filters give consistent colour and sharpness — best for landscape. Variable (VND) filters are convenient for video and run-and-gun, but can show X-shaped darkening at the wide end and are less colour-accurate.</p></details>
+    <details><summary>Can I stack ND filters?</summary><p>Yes — stops add: ND64 + ND8 = 9 stops. Watch for vignetting on wide lenses and a slight colour cast with cheap glass; a single filter is always optically better.</p></details>
+  </div>
+
+  <div class="callout good no-print mt1">🎒 Want this as a laminated field card? The <a href="../products.html">ShutterMath Field Kit</a> has all six, print-ready.</div>
+
+  <h2>Related tools &amp; guides</h2>
+  <div class="grid grid-3">
+    <a class="card" href="nd-filter.html"><h3>ND Filter Calculator</h3><p>Base exposure → exact result time for any filter strength.</p><span class="card-go">Open →</span></a>
+    <a class="card" href="video-nd.html"><h3>Video ND Calculator</h3><p>The 180° rule shutter speed and the filter to keep it in daylight.</p><span class="card-go">Open →</span></a>
+    <a class="card" href="../pages/nd-filter-long-exposure-chart.html"><h3>ND Long Exposure Chart</h3><p>Base to shutter time for every common filter — printable.</p><span class="card-go">Open →</span></a>
+  </div>
+</main>
+<footer class="site-footer"></footer>
+<div class="consent" role="dialog" aria-label="Cookie consent">
+  <div class="container">
+    <p>We use cookies to measure traffic and, if you consent, to show ads that keep this tool free. See our <a href="../pages/privacy.html">Privacy Policy</a>.</p>
+    <div><button class="btn consent-accept">Accept</button> <button class="btn ghost consent-deny" style="border-color:#556;color:#ddd">Decline</button></div>
+  </div>
+</div>
+<script src="../assets/js/math.js?v=20260806a"></script>
+<script src="../assets/js/main.js?v=20260806a"></script>
+<script>
+(function () {
+  function fillApertures() {
+    var a = document.getElementById("a");
+    [1, 1.4, 1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22].forEach(function (n) {
+      var o = document.createElement("option");
+      o.value = n; o.textContent = "f/" + n;
+      if (n === 8) o.selected = true;
+      a.appendChild(o);
+    });
+  }
+  function readTime(id, unitId, isFrac) {
+    var v = parseFloat(document.getElementById(id).value) || 0;
+    var u = document.getElementById(unitId).value;
+    if (u === "min") return v * 60;
+    if (u === "ms") return v / 1000;
+    if (u === "frac") return v > 0 ? 1 / v : 0;
+    return v;
+  }
+  function compute() {
+    var ev = parseFloat(document.getElementById("scene").value);
+    var iso = parseInt(document.getElementById("iso").value, 10);
+    var N = parseFloat(document.getElementById("a").value) || 8;
+    // base exposure from scene EV at chosen aperture/ISO: t = N^2 / (2^EV) * (100/ISO)
+    var sceneBase = N * N / Math.pow(2, ev) * (100 / iso);
+    var typed = readTime("base", "base-unit");
+    var base = typed > 0 ? typed : sceneBase;
+    var target = readTime("target", "target-unit");
+    if (base <= 0 || target <= 0) { return; }
+    var stops = Math.log2(target / base);
+    var rStops = document.getElementById("r-stops");
+    var rFilter = document.getElementById("r-filter");
+    var rActual = document.getElementById("r-actual");
+    var rVerdict = document.getElementById("r-verdict");
+    if (stops <= 0) {
+      rStops.textContent = stops.toFixed(1);
+      rFilter.textContent = "None needed";
+      rActual.textContent = "—";
+      rVerdict.textContent = "Your desired time is shorter than (or equal to) your unfiltered exposure — you don't need an ND filter for this. You'd need a faster shutter, smaller aperture, or lower ISO instead.";
+      return;
+    }
+    // recommended filter: round up to nearest common strength
+    var strengths = [[3, "ND8"], [6, "ND64"], [10, "ND1000"], [13, "ND16000"], [17, "ND100000"]];
+    var rec = strengths[0];
+    for (var i = 0; i < strengths.length; i++) {
+      if (stops <= strengths[i][0] + 0.5) { rec = strengths[i]; break; }
+      rec = strengths[i];
+    }
+    var actual = base * Math.pow(2, rec[0]);
+    rStops.textContent = stops.toFixed(1) + " stops";
+    rFilter.textContent = rec[1];
+    rActual.textContent = fmtTime(actual);
+    rVerdict.textContent = "Your base exposure is " + fmtTime(base) + "; you need ≈ " + stops.toFixed(1) +
+      " stops, so get a " + rec[1] + " (" + rec[0] + " stops) — it gives " + fmtTime(actual) +
+      ". One stop stronger is a safer buy than one stop weaker.";
+  }
+  function fmtTime(s) {
+    if (s < 1) return "1/" + Math.round(1 / s) + " s";
+    if (s < 60) return s.toFixed(s < 10 ? 1 : 0) + " s";
+    var m = Math.floor(s / 60), r = s % 60;
+    return m + " min " + (r > 0 ? Math.round(r) + " s" : "");
+  }
+  ["scene", "base", "base-unit", "iso", "a", "target", "target-unit"].forEach(function (id) {
+    document.getElementById(id).addEventListener("input", compute);
+  });
+  fillApertures();
+  compute();
+})();
+</script>
+</body>
+</html>
