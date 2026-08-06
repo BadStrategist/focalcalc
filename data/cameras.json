@@ -92,6 +92,16 @@
       "pop": 2
     },
     {
+      "name": "Canon EOS R6",
+      "brand": "Canon",
+      "format": "Full Frame",
+      "sensor_w": 36.0,
+      "sensor_h": 24.0,
+      "px_w": 5472,
+      "px_h": 3648,
+      "pop": 1
+    },
+    {
       "name": "Canon EOS R6 II",
       "brand": "Canon",
       "format": "Full Frame",
@@ -117,6 +127,16 @@
       "format": "Full Frame",
       "sensor_w": 36.0,
       "sensor_h": 24.0,
+      "px_w": 6000,
+      "px_h": 4000,
+      "pop": 2
+    },
+    {
+      "name": "Canon EOS Rebel T7",
+      "brand": "Canon",
+      "format": "APS-C",
+      "sensor_w": 22.3,
+      "sensor_h": 14.9,
       "px_w": 6000,
       "px_h": 4000,
       "pop": 2
@@ -152,7 +172,17 @@
       "pop": 3
     },
     {
-      "name": "Fujifilm X100 VI",
+      "name": "Fujifilm X-T50",
+      "brand": "Fujifilm",
+      "format": "APS-C",
+      "sensor_w": 23.5,
+      "sensor_h": 15.6,
+      "px_w": 7728,
+      "px_h": 5152,
+      "pop": 2
+    },
+    {
+      "name": "Fujifilm X100VI",
       "brand": "Fujifilm",
       "format": "APS-C",
       "sensor_w": 23.5,
@@ -179,6 +209,16 @@
       "sensor_h": 24.0,
       "px_w": 9528,
       "px_h": 6328,
+      "pop": 2
+    },
+    {
+      "name": "Nikon D3500",
+      "brand": "Nikon",
+      "format": "APS-C",
+      "sensor_w": 23.5,
+      "sensor_h": 15.6,
+      "px_w": 6000,
+      "px_h": 4000,
       "pop": 2
     },
     {
@@ -209,6 +249,16 @@
       "sensor_h": 15.6,
       "px_w": 5568,
       "px_h": 3712,
+      "pop": 2
+    },
+    {
+      "name": "Nikon Z5",
+      "brand": "Nikon",
+      "format": "Full Frame",
+      "sensor_w": 35.9,
+      "sensor_h": 23.9,
+      "px_w": 6000,
+      "px_h": 4000,
       "pop": 2
     },
     {
@@ -350,6 +400,16 @@
       "px_w": 8640,
       "px_h": 5760,
       "pop": 3
+    },
+    {
+      "name": "Sony A6000",
+      "brand": "Sony",
+      "format": "APS-C",
+      "sensor_w": 23.5,
+      "sensor_h": 15.6,
+      "px_w": 6000,
+      "px_h": 4000,
+      "pop": 2
     },
     {
       "name": "Sony A6700",
